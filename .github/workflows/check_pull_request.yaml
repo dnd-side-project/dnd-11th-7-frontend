@@ -1,0 +1,36 @@
+name: check_pull_request
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches: ['main']
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: yarn
+      - run: yarn run lint
+        working-directory: .
+
+  storybookpreview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: install packages
+        run: yarn
+
+      - name: deploy with chromatic
+        id: chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: '🎉 Storybook 미리보기: ${{ steps.chromatic.outputs.storybookUrl }}'
