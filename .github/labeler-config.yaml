@@ -1,0 +1,21 @@
+filters:
+  - label: feat
+    regexs:
+      - /feat|FEAT/
+    events: [issues, pull_request]
+    targets: [title]
+  - label: bug
+    regexs:
+      - /bug|BUG/
+    events: [issues]
+    targets: [title]
+  - label: docs
+    regexs:
+      - /docs/
+    events: [issues, pull_request]
+    targets: [title]
+  - label: chore
+    regexs:
+      - /chore|CHORE/
+    events: [issues, pull_request]
+    targets: [title]
