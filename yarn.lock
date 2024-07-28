@@ -5334,6 +5334,7 @@ __metadata:
   resolution: "dnd-11th-7-frontend@workspace:."
   dependencies:
     "@chromatic-com/storybook": "npm:^1.6.1"
+    "@emotion/babel-plugin": "npm:^11.12.0"
     "@emotion/react": "npm:^11.11.4"
     "@emotion/styled": "npm:^11.12.0"
     "@storybook/addon-a11y": "npm:^8.2.3"
