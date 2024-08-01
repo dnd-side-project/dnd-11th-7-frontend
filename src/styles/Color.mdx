@@ -1,0 +1,32 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
+import { colors } from './global';
+
+<Meta title="foundations/Colors" />
+
+<ColorPalette>
+  <ColorItem title="WH" subtitle="basic/WH" colors={{ WH: colors.WH }} />
+  <ColorItem title="BK" subtitle="basic/BK" colors={{ BK: colors.BK }} />
+  <ColorItem
+    title="GY"
+    subtitle="basic/GY"
+    colors={{
+      GY1: colors.GY1,
+      GY2: colors.GY2,
+      GY3: colors.GY3,
+      GY4: colors.GY4,
+      GY5: colors.GY5,
+      GY6: colors.GY6,
+    }}
+  />
+  <ColorItem title="yellow" subtitle="main/yellow" colors={{ yellow: colors.yellow }} />
+  <ColorItem title="purple" subtitle="main/purple" colors={{ purple: colors.purple }} />
+  <ColorItem
+    title="P"
+    subtitle="basic/P"
+    colors={{
+      P1: colors.P1,
+      P2: colors.P2,
+      P3: colors.P3,
+    }}
+  />
+</ColorPalette>
