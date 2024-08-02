@@ -1,7 +1,16 @@
+@font-face {
+  font-family: Pretendard;
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/PretendardVariable.woff2') format('woff2-variations');
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  font-family: Pretendard;
 }
 
 html {
