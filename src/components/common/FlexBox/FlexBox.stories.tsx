@@ -19,6 +19,7 @@ export const Basic: Story = {
     gap: 0,
     alignItem: 'center',
     justifyContent: 'center',
+    flexWrap: 'nowrap',
   },
   argTypes: {
     flexDir: {
@@ -42,6 +43,10 @@ export const Basic: Story = {
         'space-around',
         'space-evenly',
       ],
+    },
+    flexWrap: {
+      control: { type: 'inline-radio' },
+      options: ['nowrap', 'wrap', 'wrap-reverse'],
     },
   },
   render: (args) => (

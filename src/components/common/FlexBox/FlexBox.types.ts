@@ -24,4 +24,8 @@ export type Props = {
     | 'space-between'
     | 'space-around'
     | 'space-evenly';
+  /**
+   * @default 'nowrap'
+   */
+  flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
 } & ComponentPropsWithRef<'div'>;
