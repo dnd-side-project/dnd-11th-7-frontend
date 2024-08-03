@@ -6,14 +6,7 @@ import { Props } from './Button.types';
 
 // StyledButton component using Emotion styled with Typescript
 export const StyledButton = styled.button<Props>`
-  width: ${(props) => {
-    switch (props.width) {
-      case 'full':
-        return '100%';
-      default:
-        return 'fit-content';
-    }
-  }};
+  width: ${({ width = 'fit-content' }) => (width === 'full' ? '100%' : 'fit-content')};
   height: 62px;
   padding: 17px 159px;
   transition: background-color 0.3s;
