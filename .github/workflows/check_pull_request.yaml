@@ -34,9 +34,3 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: '🎉 Storybook 미리보기: ${{ steps.chromatic.outputs.storybookUrl }}'
-
-      - name: storybook deploy alert webhook
-        uses: tsickert/discord-webhook@v5.3.0
-        with:
-          webhook-url: ${{ secrets.WEBHOOK_URL }}
-          content: '✅ 컴포넌트가 Storybook에 배포되었어요. 확인해 주세요! 👉🏻 ${{ steps.chromatic.outputs.storybookUrl }}'
