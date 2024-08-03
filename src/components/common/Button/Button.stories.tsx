@@ -14,12 +14,28 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const Basic: Story = {
-  render: () => (
+  args: {
+    variant: 'primary',
+    width: 'fit',
+    disabled: false,
+  },
+  argTypes: {
+    variant: {
+      control: { type: 'radio' },
+      options: ['primary', 'secondary'], // 예시 옵션, 실제 Button 컴포넌트에 맞게 조정
+    },
+    width: {
+      control: { type: 'text' },
+      options: ['fit', 'full'], // 예시 옵션, 실제 Button 컴포넌트에 맞게 조정
+    },
+    disabled: {
+      control: { type: 'boolean' },
+    },
+  },
+  render: (args) => (
     <FlexBox flexDir="column" gap={8} alignItem="center">
-      <Button variant="primary" width="full">
-        버튼
-      </Button>
-      <Button variant="primary" width="full" disabled>
+      <Button {...args}>버튼</Button>
+      <Button {...args} disabled>
         버튼
       </Button>
     </FlexBox>
