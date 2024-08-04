@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { FlexBox } from '@/components/common/FlexBox';
 import { Caption } from '@/components/common/Typography';
 
 import { Chip } from '.';
@@ -16,12 +15,39 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof Chip>;
 
+export const Basic: Story = {
+  args: {
+    children: '예시',
+    component: 'span',
+    variant: 'filled',
+  },
+  argTypes: {
+    children: {
+      description: 'Chip에 표시할 텍스트',
+      control: 'text',
+    },
+    component: {
+      control: {
+        type: 'inline-radio',
+      },
+      options: ['span', 'button'],
+    },
+    variant: {
+      control: {
+        type: 'inline-radio',
+      },
+      options: ['filled', 'dimmed'],
+    },
+  },
+  render: (args) => <Chip {...args}>{args.children}</Chip>,
+};
+
 export const ChipDisplay: Story = {
   render: () => (
-    <FlexBox flexDir="row" gap={4} justifyContent="flex-start">
+    <Chip.Group>
       <Chip>조율중</Chip>
       <Chip>일정 확정</Chip>
-    </FlexBox>
+    </Chip.Group>
   ),
 };
 
@@ -42,7 +68,7 @@ export const ChipButton: Story = {
     return (
       <>
         <Caption>카테고리를 선택해 주세요.</Caption>
-        <FlexBox flexDir="row" gap={4} justifyContent="flex-start">
+        <Chip.Group>
           {categories.map((category) => (
             <Chip
               component="button"
@@ -52,8 +78,32 @@ export const ChipButton: Story = {
               {category}
             </Chip>
           ))}
-        </FlexBox>
+        </Chip.Group>
       </>
     );
   },
+};
+
+export const ChipGroup: Story = {
+  render: () => (
+    <>
+      <Caption>Case 1: 칩이 한 줄에 배치되는 경우</Caption>
+      <Chip.Group>
+        {Array(5)
+          .fill(0)
+          .map((_, index) => (
+            <Chip>{`Chip ${index}`}</Chip>
+          ))}
+      </Chip.Group>
+
+      <Caption>Case 2: 칩이 여러 줄에 걸쳐 배치되는 경우</Caption>
+      <Chip.Group>
+        {Array(20)
+          .fill(0)
+          .map((_, index) => (
+            <Chip>{`Chip ${index}`}</Chip>
+          ))}
+      </Chip.Group>
+    </>
+  ),
 };
