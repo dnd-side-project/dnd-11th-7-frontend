@@ -1,4 +1,3 @@
-// Button.tsx
 import { forwardRef } from 'react';
 
 import { StyledButton } from './Button.styled';
