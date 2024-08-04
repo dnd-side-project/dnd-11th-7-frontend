@@ -7,9 +7,9 @@ export type Props = {
   flexDir?: 'row' | 'column';
   /**
    * @default 0
-   * @description px 값입니다.
+   * @description number를 입력하면 px로, string을 입력하면 그대로 적용됩니다.
    */
-  gap?: number;
+  gap?: number | string;
   /**
    * @default 'center'
    */
@@ -24,4 +24,8 @@ export type Props = {
     | 'space-between'
     | 'space-around'
     | 'space-evenly';
+  /**
+   * @default 'nowrap'
+   */
+  flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
 } & ComponentPropsWithRef<'div'>;
