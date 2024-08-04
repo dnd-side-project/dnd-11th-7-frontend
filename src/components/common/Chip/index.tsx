@@ -21,12 +21,10 @@ const Group = forwardRef<HTMLDivElement, GroupProps>(({ children }, ref) => {
   return (
     <FlexBox
       flexDir="row"
-      // gap="12px 6px"
-      // flexWrap="wrap"
+      gap="12px 6px"
+      flexWrap="wrap"
       css={css`
-        flex-wrap: wrap; // TODO prop으로 대체
         width: fit-content;
-        gap: 12px 6px; // TODO prop으로 대체
       `}
       ref={ref}
     >
