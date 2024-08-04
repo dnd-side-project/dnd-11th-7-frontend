@@ -23,23 +23,18 @@ export const Basic: Story = {
   },
   argTypes: {
     min: {
-      control: { type: 'number' },
       options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     },
     max: {
-      control: { type: 'number' },
       options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     },
     step: {
-      control: { type: 'number' },
       options: [1, 2, 5, 10],
     },
     value: {
-      control: { type: 'number' },
       options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     },
     disabled: {
-      control: { type: 'boolean' },
       options: [true, false],
     },
   },
