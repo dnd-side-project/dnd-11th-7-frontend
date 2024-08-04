@@ -7,7 +7,7 @@ import { Props } from './Button.types';
 export const StyledButton = styled.button<Props>`
   width: ${({ width = 'fit-content' }) => (width === 'full' ? '100%' : 'fit-content')};
   height: 62px;
-  padding: 17px 159px;
+  padding: ${({ padding = 0 }) => (typeof padding === 'number' ? `${padding}px` : padding)};
   transition: background-color 0.3s;
   border: none;
   cursor: pointer;
