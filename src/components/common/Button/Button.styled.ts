@@ -13,6 +13,7 @@ export const StyledButton = styled.button<Props>`
   border: none;
   cursor: pointer;
   border-radius: 12px;
+  font-size: 20px;
 
   // Styles for primary variant
   ${(props) =>
