@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef, ComponentPropsWithRef } from 'react';
 
 type CompProps =
   | ({ component?: 'span' } & ComponentPropsWithoutRef<'span'>)
@@ -7,3 +7,5 @@ type ChipCustomProps = {
   variant?: 'filled' | 'dimmed';
 };
 export type Props = ChipCustomProps & CompProps;
+
+export type GroupProps = ComponentPropsWithRef<'div'>;
