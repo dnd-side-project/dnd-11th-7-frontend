@@ -1,18 +1,26 @@
 import { ComponentPropsWithoutRef, ElementType } from 'react';
 
-import { weights } from '@/styles/global';
+import { colors, Colors, weights } from '@/styles/global';
 
 import { StyledTypography, TypographyVariant } from './Typography.styled';
 
-type Props = { regularWeight?: boolean } & ComponentPropsWithoutRef<'p'>;
+type Props = { regularWeight?: boolean; color?: Colors } & ComponentPropsWithoutRef<'p'>;
 
 const withBaseTypography = (element: ElementType, variant: TypographyVariant) => {
-  const Typography = ({ children, regularWeight, style, ...props }: Props) => {
+  const Typography = ({
+    children,
+    regularWeight = false,
+    color = 'BK',
+    style,
+    ...props
+  }: Props) => {
+    const _style = { ...style, color: colors[color] };
+
     return (
       <StyledTypography
         as={element}
         variant={variant}
-        style={regularWeight ? { ...style, fontWeight: weights.regular } : style}
+        style={regularWeight ? { ..._style, fontWeight: weights.regular } : _style}
         {...props}
       >
         {children}
