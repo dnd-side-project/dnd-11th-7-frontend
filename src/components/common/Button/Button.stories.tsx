@@ -14,30 +14,32 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const Basic: Story = {
-  args: {
-    variant: 'primary',
-    width: 'full',
-    disabled: false,
-  },
-  argTypes: {
-    variant: {
-      control: { type: 'radio' },
-      options: ['primary'], // 예시 옵션, 실제 Button 컴포넌트에 맞게 조정. 추후에 secondary 추가 예정
-    },
-    width: {
-      control: { type: 'radio' },
-      options: ['full', 'fit'], // 예시 옵션, 실제 Button 컴포넌트에 맞게 조정
-    },
-    disabled: {
-      control: { type: 'boolean' },
-    },
-  },
-  render: (args) => (
-    <FlexBox flexDir="column" gap={8} alignItem="center">
-      <Button {...args}>버튼</Button>
-      <Button {...args} disabled>
-        버튼
-      </Button>
+  render: () => (
+    <FlexBox flexDir="row" gap={10}>
+      <FlexBox flexDir="column" gap={8} alignItem="center">
+        <Button variant="primary" padding="17px 159px">
+          다음
+        </Button>
+        <Button variant="primary" padding="17px 159px" disabled>
+          다음
+        </Button>
+      </FlexBox>
+      <FlexBox flexDir="column" gap={8} alignItem="center">
+        <Button variant="primary" padding="17px 30px">
+          일정 생성하기
+        </Button>
+        <Button variant="primary" padding="17px 30px" disabled>
+          일정 생성하기
+        </Button>
+      </FlexBox>
+      <FlexBox flexDir="column" gap={8} alignItem="center">
+        <Button variant="primary" padding="17px 49.5px">
+          돌아가기
+        </Button>
+        <Button variant="primary" padding="17px 49.5px" disabled>
+          돌아가기
+        </Button>
+      </FlexBox>
     </FlexBox>
   ),
 };
