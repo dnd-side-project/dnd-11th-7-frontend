@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, ComponentPropsWithRef } from 'react';
 
 export type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   /**
@@ -12,6 +12,12 @@ export type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
    */
   width?: 'full' | 'fit';
   /**
+   * Button padding style.
+   * @default 0
+   * @example 8, '8px', '8px 16px', '8px 16px 24px 32px'
+   */
+  padding?: number | string;
+  /**
    * Disabled state of the button.
    * @default 'false'
    */
@@ -20,4 +26,4 @@ export type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
    * Optional children for the button, typically a string.
    */
   children?: React.ReactNode;
-};
+} & ComponentPropsWithRef<'button'>;
