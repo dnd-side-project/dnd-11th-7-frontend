@@ -20,6 +20,8 @@ export const Basic: Story = {
     alignItem: 'center',
     justifyContent: 'center',
     flexWrap: 'nowrap',
+    margin: 0,
+    padding: 0,
   },
   argTypes: {
     flexDir: {
@@ -47,6 +49,12 @@ export const Basic: Story = {
     flexWrap: {
       control: { type: 'inline-radio' },
       options: ['nowrap', 'wrap', 'wrap-reverse'],
+    },
+    margin: {
+      control: { type: 'number' },
+    },
+    padding: {
+      control: { type: 'number' },
     },
   },
   render: (args) => (
