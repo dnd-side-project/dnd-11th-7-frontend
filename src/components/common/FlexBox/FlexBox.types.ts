@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 
 export type Props = {
   /**
@@ -28,4 +28,14 @@ export type Props = {
    * @default 'nowrap'
    */
   flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
-} & ComponentPropsWithRef<'div'>;
+  /**
+   * @default 0
+   * @description number를 입력하면 px로, string을 입력하면 그대로 적용됩니다.
+   */
+  margin?: number | string;
+  /**
+   * @default 0
+   * @description number를 입력하면 px로, string을 입력하면 그대로 적용됩니다.
+   */
+  padding?: number | string;
+} & ComponentPropsWithoutRef<'div'>;
