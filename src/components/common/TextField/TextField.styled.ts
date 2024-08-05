@@ -5,28 +5,49 @@ import { colors } from '@/styles/global';
 
 import { Props } from './TextField.types';
 
-const textFieldStyles = {
+const variantStyles = {
   filled: css`
     color: ${colors.BK};
     background-color: ${colors.WH};
 
-    &::placeholder {
+    & input::placeholder {
+      color: ${colors.GY5};
+    }
+
+    &:has(input:disabled) {
       color: ${colors.GY4};
+      background-color: #eaeaea; // TODO: global로 관리
+      & input::placeholder {
+        color: ${colors.GY4};
+      }
     }
   `,
 };
-const textFieldWidthStyles = {
-  full: css`
-    width: 100%;
-  `,
-};
 
-export const StyledTextField = styled.input<Props>`
-  all: unset;
-  padding: 15px;
+export const StyledTextFieldContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
+`;
+export const StyledTextFieldWrapper = styled.div<Pick<Props, 'variant'>>`
+  display: flex;
   border-radius: 5px;
-  font-size: 16px;
+  padding-right: 15px;
+  gap: 10px;
+  cursor: text;
+  ${({ variant = 'filled' }) => variantStyles[variant]}
 
-  ${({ variant = 'filled' }) => textFieldStyles[variant]}
-  ${({ width = 'full' }) => textFieldWidthStyles[width]}
+  &:has(input:focus) {
+    outline: 1px solid ${colors.purple};
+  }
+  &:has(input:disabled) {
+    cursor: default;
+  }
+`;
+export const StyledInput = styled.input`
+  all: unset;
+  flex-grow: 1;
+  padding: 15px 0 15px 15px;
+  font-size: 16px;
 `;

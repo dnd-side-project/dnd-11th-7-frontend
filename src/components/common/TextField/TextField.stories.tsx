@@ -1,8 +1,6 @@
 /* eslint-disable no-restricted-exports */
-import { css } from '@emotion/react';
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-
-import { FlexBox } from '@/components/common/FlexBox';
 
 import { TextField } from '.';
 
@@ -22,9 +20,9 @@ type Story = StoryObj<typeof TextField>;
 
 export const Basic: Story = {
   args: {
-    placeholder: '입력해 주세요.',
+    placeholder: '10글자까지 입력 가능합니다.',
     variant: 'filled',
-    width: 'full',
+    disabled: false,
   },
   argTypes: {
     placeholder: {
@@ -34,18 +32,36 @@ export const Basic: Story = {
       control: 'inline-radio',
       options: ['filled'],
     },
-    width: {
-      control: 'inline-radio',
-      options: ['full'],
-    },
   },
-  render: (args) => (
-    <FlexBox
-      css={css`
-        padding: 20px;
-      `}
-    >
-      <TextField {...args} />
-    </FlexBox>
-  ),
+  render: (args) => {
+    const [value, setValue] = useState('');
+    const validator = (target: string) => {
+      if (target.length > 10) {
+        return { isValid: false, message: '10글자까지 입력 가능합니다.' };
+      }
+      return { isValid: true };
+    };
+
+    const handleChange = (newValue: string) => {
+      setValue(newValue);
+    };
+    const handleClickClear = () => {
+      setValue('');
+    };
+
+    return (
+      <TextField
+        disabled
+        value={value}
+        onChange={(e) => handleChange(e.target.value)}
+        onClickClear={handleClickClear}
+        validator={validator}
+        {...args}
+      />
+    );
+  },
+};
+
+export const Disabled: Story = {
+  render: () => <TextField disabled value="disabled" />,
 };
