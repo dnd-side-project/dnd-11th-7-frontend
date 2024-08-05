@@ -13,6 +13,7 @@ export const colors = {
   P3: '#F3F2FF',
   yellow: '#FFF279',
   hover: '#6456FF',
+  RD: '#FF4D4D',
 };
 
 export const weights = {
