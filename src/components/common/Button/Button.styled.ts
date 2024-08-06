@@ -5,7 +5,7 @@ import { colors } from '@/styles/global';
 import { Props } from './Button.types';
 
 export const StyledButton = styled.button<Props>`
-  width: ${({ width = 'full' }) => (width === 'full' ? '100%' : 'fit-content')};
+  width: 100%;
   height: 62px;
   display: flex;
   justify-content: center;

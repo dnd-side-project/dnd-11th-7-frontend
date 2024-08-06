@@ -15,14 +15,9 @@ type Story = StoryObj<typeof Button>;
 
 export const Basic: Story = {
   args: {
-    width: 'full',
     disabled: false,
   },
   argTypes: {
-    width: {
-      control: { type: 'radio' },
-      options: ['full'], // 현재는 fit이 필요없어서 full만 추가
-    },
     disabled: {
       control: { type: 'boolean' },
     },
