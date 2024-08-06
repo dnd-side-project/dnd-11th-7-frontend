@@ -8,7 +8,7 @@ export type Props = {
   min?: number;
   /**
    * Maximum value of the progress.
-   * @default 10
+   * @default 6
    */
   max?: number;
   /**
