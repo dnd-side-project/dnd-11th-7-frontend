@@ -19,7 +19,6 @@ export const StyledButton = styled.button<Props>`
   transition: background-color 0.3s;
   color: ${colors.WH};
   background-color: ${({ disabled }) => (disabled ? colors.GY5 : colors.purple)};
-  ${colors.purple};
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       background-color: ${({ disabled }) => (disabled ? colors.GY5 : colors.hover)};
