@@ -64,7 +64,6 @@ export const TextField = forwardRef<HTMLInputElement, Props>(
           )}
         </StyledTextFieldWrapper>
         {isInvalidInput && (
-          // TODO 에러 메시지 디자인 반영
           <Caption color="RD" regularWeight>
             {validState.message || '올바른 값을 입력해 주세요.'}
           </Caption>
