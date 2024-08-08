@@ -31,7 +31,7 @@ export const Basic: Story = {
     },
   },
   render: (args) => {
-    const [value, setValue] = useState<number>(args.value || 1);
+    const [value, setValue] = useState<number>(1);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setValue(Number(event.target.value));
