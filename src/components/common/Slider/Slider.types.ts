@@ -1,6 +1,6 @@
-import { ComponentPropsWithRef, InputHTMLAttributes } from 'react';
+import { ComponentPropsWithRef } from 'react';
 
-export type Props = InputHTMLAttributes<HTMLInputElement> & {
+export type Props = {
   /**
    * Minimum value of the slider.
    * @default 0
@@ -26,4 +26,9 @@ export type Props = InputHTMLAttributes<HTMLInputElement> & {
    * @default false
    */
   disabled?: boolean;
+  /**
+   * Show or hide the bubble label.
+   * @default true
+   */
+  showBubble?: boolean;
 } & ComponentPropsWithRef<'input'>;
