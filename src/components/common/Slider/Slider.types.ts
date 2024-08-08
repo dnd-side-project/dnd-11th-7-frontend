@@ -15,12 +15,7 @@ export type Props = {
    * Current value of the slider.
    * @default 1
    */
-  value?: number;
-  /**
-   * Disabled state of the slider.
-   * @default false
-   */
-  disabled?: boolean;
+  value: number;
   /**
    * Show or hide the bubble label.
    * @default true
