@@ -1,16 +1,6 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 
-export type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
-  /**
-   * Button variant style.
-   * @default 'primary'
-   */
-  variant?: 'primary' | 'secondary';
-  /**
-   * Button width style.
-   * @default 'fit'
-   */
-  width?: 'full' | 'fit';
+export type Props = {
   /**
    * Disabled state of the button.
    * @default 'false'
@@ -20,4 +10,4 @@ export type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
    * Optional children for the button, typically a string.
    */
   children?: React.ReactNode;
-};
+} & ComponentPropsWithoutRef<'button'>;

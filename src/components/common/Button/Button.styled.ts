@@ -5,38 +5,23 @@ import { colors } from '@/styles/global';
 import { Props } from './Button.types';
 
 export const StyledButton = styled.button<Props>`
-  width: ${({ width = 'fit-content' }) => (width === 'full' ? '100%' : 'fit-content')};
+  width: 100%;
   height: 62px;
-  padding: 17px 159px;
-  transition: background-color 0.3s;
-  border: none;
-  cursor: pointer;
-  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 17px;
+  padding-bottom: 17px;
   font-size: 20px;
-
-  // Styles for primary variant
-  ${(props) =>
-    props.variant === 'primary' &&
-    `
-      background-color: ${colors.purple};
-      color: white;
-      @media (hover: hover) and (pointer: fine) {
-        &:hover {
-          background-color: ${colors.hover};
-        }
-      }
-    `}
-
-  // Disabled state
-  ${(props) =>
-    props.disabled &&
-    `
-      background-color: ${colors.GY5};  
-      cursor: not-allowed;
-      @media (hover: hover) and (pointer: fine) {
-        &:hover {
-          background-color: ${colors.GY5};
-        }
-      }
-    `}
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: ${colors.WH};
+  background-color: ${({ disabled }) => (disabled ? colors.GY5 : colors.purple)};
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: ${({ disabled }) => (disabled ? colors.GY5 : colors.hover)};
+    }
+  }
 `;
