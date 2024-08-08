@@ -18,8 +18,7 @@ export const Basic: Story = {
     min: 0,
     max: 10,
     step: 1,
-    value: 1,
-    disabled: false,
+    showBubble: true,
   },
   argTypes: {
     min: {
@@ -29,13 +28,10 @@ export const Basic: Story = {
       control: { type: 'number', min: 0, max: 10, step: 1 },
     },
     step: {
-      control: { type: 'number', min: 0, max: 10, step: 1 },
+      control: { type: 'number', min: 1, max: 10, step: 1 },
     },
-    value: {
-      control: { type: 'number', min: 0, max: 10, step: 1 },
-    },
-    disabled: {
-      options: [true, false],
+    showBubble: {
+      control: { type: 'boolean' },
     },
   },
   render: (args) => {
