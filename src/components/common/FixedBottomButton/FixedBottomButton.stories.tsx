@@ -24,7 +24,16 @@ export const Basic: Story = {
       css={css(`width: 393px; margin: 0 20px;`)}
     >
       <FixedBottomButton>다음</FixedBottomButton>
+      <FixedBottomButton disabled>다음</FixedBottomButton>
       <FixedBottomButton left={<Button>돌아가기</Button>} right={<Button>일정 생성하기</Button>} />
+      <FixedBottomButton
+        left={<Button disabled>돌아가기</Button>}
+        right={<Button>일정 생성하기</Button>}
+      />
+      <FixedBottomButton
+        left={<Button>돌아가기</Button>}
+        right={<Button disabled>일정 생성하기</Button>}
+      />
     </FlexBox>
   ),
 };
