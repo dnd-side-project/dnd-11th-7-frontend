@@ -4,33 +4,43 @@ import styled from '@emotion/styled';
 import { weights } from '@/styles/global';
 
 const typographyStyles = {
-  h1: css`
+  Head1: css`
     font-size: 32px;
     font-weight: ${weights.semibold};
     line-height: 140%;
   `,
-  h2: css`
+  Head2: css`
     font-size: 28px;
     font-weight: ${weights.semibold};
     line-height: 140%;
   `,
-  h3: css`
+  Head3: css`
     font-size: 24px;
     font-weight: ${weights.semibold};
     line-height: 140%;
   `,
-  b1: css`
+  Head4: css`
+    font-size: 22px;
+    font-weight: ${weights.semibold};
+    line-height: 140%;
+  `,
+  Body1: css`
     font-size: 20px;
     font-weight: ${weights.semibold};
     line-height: 140%;
   `,
-  b2: css`
+  Body2: css`
+    font-size: 18px;
+    font-weight: ${weights.semibold};
+    line-height: 140%;
+  `,
+  Body3: css`
     font-size: 16px;
     font-weight: ${weights.semibold};
     line-height: 140%;
   `,
-  b3: css`
-    font-size: 12px;
+  Body4: css`
+    font-size: 14px;
     font-weight: ${weights.semibold};
     line-height: 140%;
   `,
