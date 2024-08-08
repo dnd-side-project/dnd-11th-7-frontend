@@ -5,15 +5,15 @@ export type Props = {
    * Minimum value of the progress.
    * @default 0
    */
-  min?: number;
+  min: number;
   /**
    * Maximum value of the progress.
    * @default 6
    */
-  max?: number;
+  max: number;
   /**
    * Current value of the progress.
    * @default 1
    */
-  value?: number;
+  value: number;
 } & ComponentPropsWithoutRef<'div'>;
