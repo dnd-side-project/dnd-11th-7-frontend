@@ -11,6 +11,8 @@
 *::after {
   box-sizing: border-box;
   font-family: Pretendard;
+  margin: 0;
+  padding: 0;
 }
 
 html {
