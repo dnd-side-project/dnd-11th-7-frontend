@@ -4,7 +4,7 @@ import { BubbleLabel, SliderContainer, SliderLabel, StyledSlider } from './Slide
 import { Props } from './Slider.types';
 
 export const Slider = forwardRef<HTMLInputElement, Props>(
-  ({ min = 1, max = 10, value, showBubble = true, ...props }, ref) => {
+  ({ min, max, value, showBubble = true, ...props }, ref) => {
     return (
       <SliderContainer>
         {showBubble && (
