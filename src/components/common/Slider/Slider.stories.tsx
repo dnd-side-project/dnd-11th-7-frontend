@@ -17,7 +17,6 @@ export const Basic: Story = {
   args: {
     min: 0,
     max: 10,
-    step: 1,
     showBubble: true,
   },
   argTypes: {
@@ -26,9 +25,6 @@ export const Basic: Story = {
     },
     max: {
       control: { type: 'number', min: 0, max: 10, step: 1 },
-    },
-    step: {
-      control: { type: 'number', min: 1, max: 10, step: 1 },
     },
     showBubble: {
       control: { type: 'boolean' },

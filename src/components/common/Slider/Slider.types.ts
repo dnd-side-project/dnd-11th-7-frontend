@@ -12,11 +12,6 @@ export type Props = {
    */
   max?: number;
   /**
-   * Step value of the slider.
-   * @default 1
-   */
-  step?: number;
-  /**
    * Current value of the slider.
    * @default 1
    */
