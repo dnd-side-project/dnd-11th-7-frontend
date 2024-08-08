@@ -14,8 +14,11 @@ export const typography = {
     32: '32px',
     28: '28px',
     24: '24px',
+    22: '22px',
     20: '20px',
+    18: '18px',
     16: '16px',
+    14: '14px',
     12: '12px',
   },
 };
@@ -31,49 +34,61 @@ export const SampleText = '안녕하세요! 째깍입니다.';
 <Typeset
   fontSizes={[typography.size[32]]}
   fontWeight={typography.weight.semibold}
-  sampleText={`H1 ${SampleText}`}
+  sampleText={`Head1 ${SampleText}`}
   fontFamily={typography.type.primary}
 />
 <Typeset
   fontSizes={[typography.size[28]]}
   fontWeight={typography.weight.semibold}
-  sampleText={`H2 ${SampleText}`}
+  sampleText={`Head2 ${SampleText}`}
   fontFamily={typography.type.primary}
 />
 <Typeset
   fontSizes={[typography.size[24]]}
   fontWeight={typography.weight.semibold}
-  sampleText={`H3 ${SampleText}`}
+  sampleText={`Head3 ${SampleText}`}
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={[typography.size[22]]}
+  fontWeight={typography.weight.semibold}
+  sampleText={`Head4 ${SampleText}`}
   fontFamily={typography.type.primary}
 />
 <Typeset
   fontSizes={[typography.size[20]]}
   fontWeight={typography.weight.semibold}
-  sampleText={`B1 ${SampleText}`}
+  sampleText={`Body1 ${SampleText}`}
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={[typography.size[18]]}
+  fontWeight={typography.weight.semibold}
+  sampleText={`Body2 ${SampleText}`}
   fontFamily={typography.type.primary}
 />
 <Typeset
   fontSizes={[typography.size[16]]}
   fontWeight={typography.weight.semibold}
-  sampleText={`B2 ${SampleText}`}
+  sampleText={`Body3 ${SampleText}`}
   fontFamily={typography.type.primary}
 />
 <Typeset
   fontSizes={[typography.size[16]]}
   fontWeight={typography.weight.regular}
-  sampleText={`B2 ${SampleText} (regular)`}
+  sampleText={`Body3 ${SampleText} (regular)`}
   fontFamily={typography.type.primary}
 />
 <Typeset
-  fontSizes={[typography.size[12]]}
+  fontSizes={[typography.size[14]]}
   fontWeight={typography.weight.semibold}
-  sampleText={`B3 ${SampleText}`}
+  sampleText={`Body4 ${SampleText}`}
   fontFamily={typography.type.primary}
 />
 <Typeset
-  fontSizes={[typography.size[12]]}
+  fontSizes={[typography.size[14]]}
   fontWeight={typography.weight.regular}
-  sampleText={`B3 ${SampleText} (regular)`}
+  sampleText={`Body4 ${SampleText} (regular)`}
   fontFamily={typography.type.primary}
 />
 <Typeset
