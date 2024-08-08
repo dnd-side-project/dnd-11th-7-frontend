@@ -17,9 +17,7 @@ export const Basic: Story = {
   args: {
     min: 0,
     max: 10,
-    step: 1,
-    value: 1,
-    disabled: false,
+    showBubble: true,
   },
   argTypes: {
     min: {
@@ -28,18 +26,12 @@ export const Basic: Story = {
     max: {
       control: { type: 'number', min: 0, max: 10, step: 1 },
     },
-    step: {
-      control: { type: 'number', min: 0, max: 10, step: 1 },
-    },
-    value: {
-      control: { type: 'number', min: 0, max: 10, step: 1 },
-    },
-    disabled: {
-      options: [true, false],
+    showBubble: {
+      control: { type: 'boolean' },
     },
   },
   render: (args) => {
-    const [value, setValue] = useState<number>(args.value || 1);
+    const [value, setValue] = useState<number>(1);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setValue(Number(event.target.value));
