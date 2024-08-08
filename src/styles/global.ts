@@ -35,3 +35,5 @@ export const theme = {
 
 export type Colors = keyof typeof colors;
 export type Weights = keyof typeof weights;
+
+export const colorNames = Object.keys(colors) as Colors[];
