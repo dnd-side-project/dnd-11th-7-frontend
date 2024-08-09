@@ -4,7 +4,7 @@ type CompProps =
   | ({ component?: 'span' } & ComponentPropsWithoutRef<'span'>)
   | ({ component?: 'button' } & ComponentPropsWithoutRef<'button'>);
 type ChipCustomProps = {
-  variant?: 'filled' | 'dimmed';
+  variant?: 'filled' | 'dimmed' | 'greyFilled';
 };
 export type Props = ChipCustomProps & CompProps;
 

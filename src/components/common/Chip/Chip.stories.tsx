@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { FlexBox } from '@/components/common/FlexBox';
 import { Caption } from '@/components/common/Typography';
 
 import { Chip } from '.';
@@ -36,7 +37,7 @@ export const Basic: Story = {
       control: {
         type: 'inline-radio',
       },
-      options: ['filled', 'dimmed'],
+      options: ['filled', 'greyFilled', 'dimmed'],
     },
   },
   render: (args) => <Chip {...args}>{args.children}</Chip>,
@@ -44,10 +45,19 @@ export const Basic: Story = {
 
 export const ChipDisplay: Story = {
   render: () => (
-    <Chip.Group>
-      <Chip>조율중</Chip>
-      <Chip>일정 확정</Chip>
-    </Chip.Group>
+    <FlexBox gap={10} alignItem="flex-start">
+      <Chip.Group>
+        <Chip>조율중</Chip>
+        <Chip>일정 확정</Chip>
+      </Chip.Group>
+      <Chip.Group>
+        <Chip variant="greyFilled">1/5</Chip>
+        <Chip variant="greyFilled">2/5</Chip>
+        <Chip variant="greyFilled">3/5</Chip>
+        <Chip variant="greyFilled">4/5</Chip>
+        <Chip variant="greyFilled">5/5</Chip>
+      </Chip.Group>
+    </FlexBox>
   ),
 };
 
