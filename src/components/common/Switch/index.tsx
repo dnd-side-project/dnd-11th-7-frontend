@@ -9,7 +9,8 @@ import { colors } from '@/styles/global';
 import { StyeldButton } from './Switch.styled';
 import { Props, SwitchButtonProps } from './Switch.types';
 
-const SwitchContext = createContext({ selectedValue: '', onChange: (value: string) => {} });
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const SwitchContext = createContext({ selectedValue: '', onChange: (_value: string) => {} });
 export const Switch = ({ selectedValue, onChange, children }: Props) => {
   return (
     <SwitchContext.Provider value={{ selectedValue, onChange }}>
