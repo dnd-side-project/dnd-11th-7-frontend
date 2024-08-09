@@ -9,6 +9,7 @@ const chipStyles = {
   span: css`
     cursor: default;
     font-size: 12px;
+    padding: 2.5px 12px;
   `,
   button: css`
     cursor: pointer;
@@ -17,11 +18,15 @@ const chipStyles = {
 };
 const chipVariantStyles = {
   filled: css`
-    color: white;
+    color: ${colors.WH};
     background-color: ${colors.purple};
   `,
+  greyFilled: css`
+    color: black;
+    background-color: ${colors.GY5};
+  `,
   dimmed: css`
-    color: white;
+    color: ${colors.WH};
     background-color: ${colors.GY5};
   `,
 };
