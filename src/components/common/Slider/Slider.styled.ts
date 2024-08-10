@@ -4,9 +4,16 @@ import { colors } from '@/styles/global';
 
 import { Props } from './Slider.types';
 
+export const SliderContainer = styled.div`
+  width: 306px;
+  position: relative;
+  margin: 0 auto 3rem;
+`;
+
 export const StyledSlider = styled.input<Props>`
-  width: 300px;
+  width: 100%;
   height: 5px;
+  margin-top: 80px;
   background: ${({ value = 1, min = 1, max = 10 }) =>
     `linear-gradient(
         to right,
@@ -16,11 +23,7 @@ export const StyledSlider = styled.input<Props>`
         ${colors.GY5} 100%
       )`};
   border-radius: 5px;
-  outline: none;
-  transition: background-color 0.3s;
-  cursor: pointer;
   -webkit-appearance: none;
-  appearance: none;
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -29,19 +32,46 @@ export const StyledSlider = styled.input<Props>`
     background-color: ${colors.purple};
     border-radius: 100%;
     cursor: pointer;
+    position: relative;
   }
+`;
 
-  &:focus {
-    outline: none;
+export const SliderLabel = styled.span<Props>`
+  color: ${colors.purple};
+  font-size: 16px;
+  white-space: nowrap;
+  margin-top: 8px;
+  display: block;
+  position: absolute;
+  left: ${({ value = 1, min = 1, max = 10 }) =>
+    `calc(${((value - min) * 100) / (max - min)}% + (${8 - (value - min)}px))`};
+  transform: translateX(-50%);
+`;
+
+export const BubbleLabel = styled.div<Props>`
+  width: 68px;
+  height: 32px;
+  line-height: 32px;
+  background-color: ${colors.purple};
+  color: ${colors.WH};
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
+  position: absolute;
+  left: ${({ value = 1, min = 1, max = 10 }) =>
+    `calc(${((value - min) * 100) / (max - min)}% + (${10 - (value - min) / 0.7}px))`};
+  transform: translateX(-50%);
+  display: ${({ showBubble = true }) => (showBubble ? 'block' : 'none')};
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: ${colors.purple} transparent transparent transparent;
   }
-
-  ${(props) =>
-    props.disabled &&
-    `
-      background-color: ${colors.GY5};
-      cursor: not-allowed;
-      &::-webkit-slider-thumb {
-        background-color: ${colors.GY5};
-      }
-    `}
 `;
