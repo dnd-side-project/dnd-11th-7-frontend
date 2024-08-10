@@ -10,6 +10,8 @@ import Jjakkak6 from './jjakkak-6.svg?react';
 import Jjakkak7 from './jjakkak-7.svg?react';
 import Jjakkak8 from './jjakkak-8.svg?react';
 import Jjakkak9 from './jjakkak-9.svg?react';
+import JjakkakCircle1 from './jjakkak-circle-1.svg';
+import JjakkakCircle2 from './jjakkak-circle-2.svg';
 import JjakkakFill1 from './jjakkak-fill-1.svg?react';
 import JjakkakFill10 from './jjakkak-fill-10.svg?react';
 import JjakkakFill2 from './jjakkak-fill-2.svg?react';
@@ -61,6 +63,8 @@ export const IconMap = {
   jjakkakFill10: JjakkakFill10,
   jjakkakIllust: JjakkakIllust,
   jjakkaksIllust: JjakkaksIllust,
+  jjakkakCircle1: JjakkakCircle1,
+  JjakkakCircle2: JjakkakCircle2,
   jjakkakGray3: JjakkakGray3,
 };
 
