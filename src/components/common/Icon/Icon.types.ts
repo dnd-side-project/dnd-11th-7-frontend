@@ -11,5 +11,5 @@ export type Props = {
    * @description px 단위로 변환합니다.
    * @default 20
    */
-  size?: number;
+  size?: number | { width: number; height: number };
 } & React.SVGProps<SVGSVGElement>;

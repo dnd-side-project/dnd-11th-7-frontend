@@ -19,10 +19,12 @@ type Story = StoryObj<typeof Icon>;
 export const Basic: Story = {
   args: {
     color: 'BK',
+    size: 20,
   },
   argTypes: {
     name: { table: { disable: true } },
     color: { control: { type: 'select' }, options: colorNames },
+    size: { control: { type: 'number' } },
   },
   render: (args) => {
     return (
