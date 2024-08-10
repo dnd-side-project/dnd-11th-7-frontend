@@ -5,12 +5,12 @@ export type Props = {
    * Minimum value of the slider.
    * @default 0
    */
-  min?: number;
+  min: number;
   /**
    * Maximum value of the slider.
    * @default 10
    */
-  max?: number;
+  max: number;
   /**
    * Current value of the slider.
    * @default 1
