@@ -29,7 +29,7 @@ type Story = StoryObj<typeof Header>;
 export const Basic: Story = {
   render: () => (
     <Header
-      left={<Icon name="logo" size={{ width: 131, height: 15 }} />}
+      left={<Icon name="JjakkakText" size={{ width: 131, height: 15 }} />}
       right={<IconButton iconName="user" />}
     />
   ),

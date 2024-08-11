@@ -29,7 +29,6 @@ import JjakkaksIllust from './jjakkaks-illust.svg?react';
 import Kakaotalk from './kakaotalk.svg?react';
 import Left from './left.svg?react';
 import Link from './link.svg?react';
-import Logo from './logo.svg?react';
 import Right from './right.svg?react';
 import User from './user.svg?react';
 
@@ -43,7 +42,6 @@ export const IconMap = {
   right: Right,
   user: User,
   /* 째깍이 */
-  logo: Logo,
   jjakkak1: Jjakkak1,
   jjakkak2: Jjakkak2,
   jjakkak3: Jjakkak3,
