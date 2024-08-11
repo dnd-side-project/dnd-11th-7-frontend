@@ -17,7 +17,7 @@ export const Basic: Story = {
   args: {
     flexDir: 'column',
     gap: 0,
-    alignItem: 'center',
+    alignItems: 'center',
     justifyContent: 'center',
     flexWrap: 'nowrap',
     margin: 0,
@@ -31,7 +31,7 @@ export const Basic: Story = {
     gap: {
       control: { type: 'number' },
     },
-    alignItem: {
+    alignItems: {
       control: { type: 'inline-radio' },
       options: ['center', 'flex-start', 'flex-end', 'baseline', 'stretch'],
     },

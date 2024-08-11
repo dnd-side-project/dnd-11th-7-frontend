@@ -23,7 +23,7 @@ export const Basic: Story = {
     },
   },
   render: (args) => (
-    <FlexBox flexDir="column" gap={8} alignItem="center">
+    <FlexBox flexDir="column" gap={8} alignItems="center">
       <Button {...args}>버튼</Button>
       <Button {...args} disabled>
         버튼

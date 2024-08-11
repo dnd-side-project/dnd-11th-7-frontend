@@ -45,7 +45,7 @@ export const Default: Story = {
     };
 
     return (
-      <FlexBox gap={10} alignItem="flex-start">
+      <FlexBox gap={10} alignItems="flex-start">
         <Caption regularWeight>아래 아이콘 버튼을 클릭해 보세요.</Caption>
         <IconButton iconName="user" onClick={handleClick} />
       </FlexBox>
@@ -60,7 +60,7 @@ export const Square: Story = {
     };
 
     return (
-      <FlexBox gap={10} alignItem="flex-start">
+      <FlexBox gap={10} alignItems="flex-start">
         <Caption regularWeight>아래 아이콘 버튼을 클릭해 보세요.</Caption>
         <IconButton variant="square" iconName="link" label="링크 복사" onClick={handleClick} />
       </FlexBox>
