@@ -15,7 +15,7 @@ export const StyledButton = styled.button<Props>`
   font-size: 20px;
   border: none;
   border-radius: 12px;
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   transition: background-color 0.3s;
   color: ${colors.WH};
   background-color: ${({ disabled }) => (disabled ? colors.GY5 : colors.purple)};
