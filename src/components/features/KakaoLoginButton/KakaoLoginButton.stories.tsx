@@ -16,7 +16,7 @@ type Story = StoryObj<typeof KakaoLoginButton>;
 export const Basic: Story = {
   render: () => (
     <FlexBox width="393px">
-      <KakaoLoginButton />,
+      <KakaoLoginButton />
     </FlexBox>
   ),
 };
