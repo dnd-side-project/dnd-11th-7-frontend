@@ -23,7 +23,7 @@ import JjakkakFill7 from './jjakkak-fill-7.svg?react';
 import JjakkakFill8 from './jjakkak-fill-8.svg?react';
 import JjakkakFill9 from './jjakkak-fill-9.svg?react';
 import JjakkakGray3 from './jjakkak-gray-3.svg?react';
-import JjakkakIllust from './jjakkak-illust.svg';
+import JjakkakIllust from './jjakkak-illust.svg?react';
 import JjakkakText from './jjakkak-text.svg?react';
 import JjakkaksIllust from './jjakkaks-illust.svg?react';
 import Kakaotalk from './kakaotalk.svg?react';
