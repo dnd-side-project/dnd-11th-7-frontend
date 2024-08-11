@@ -45,7 +45,7 @@ export const Basic: Story = {
 
 export const ChipDisplay: Story = {
   render: () => (
-    <FlexBox gap={10} alignItem="flex-start">
+    <FlexBox gap={10} alignItems="flex-start">
       <Chip.Group>
         <Chip>조율중</Chip>
         <Chip>일정 확정</Chip>

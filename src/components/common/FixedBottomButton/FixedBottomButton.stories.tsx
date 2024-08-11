@@ -19,7 +19,7 @@ export const Basic: Story = {
   render: () => (
     <FlexBox
       flexDir="column"
-      alignItem="center"
+      alignItems="center"
       gap={10}
       css={css(`width: 393px; margin: 0 20px;`)}
     >

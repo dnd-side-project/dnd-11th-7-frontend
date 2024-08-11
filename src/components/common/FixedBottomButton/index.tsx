@@ -11,7 +11,7 @@ export const FixedBottomButton = forwardRef<HTMLButtonElement, Props>(
     return (
       <Container>
         {left && right ? (
-          <FlexBox flexDir="row" justifyContent="space-between" alignItem="center" gap="15px">
+          <FlexBox flexDir="row" justifyContent="space-between" alignItems="center" gap="15px">
             {left}
             {right}
           </FlexBox>
