@@ -51,4 +51,12 @@ export type Props = {
    * @description number를 입력하면 px로, string을 입력하면 그대로 적용됩니다.
    */
   padding?: number | string;
+  /**
+   * @default 'auto'
+   */
+  width?: string;
+  /**
+   * @default 'auto'
+   */
+  height?: string;
 } & ComponentPropsWithoutRef<'div'>;

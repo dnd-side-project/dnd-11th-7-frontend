@@ -11,4 +11,6 @@ export const StyledFlexBox = styled.div<Props>`
   flex-wrap: ${({ flexWrap = 'nowrap' }) => flexWrap};
   margin: ${({ margin = 0 }) => (typeof margin === 'number' ? `${margin}px` : margin)};
   padding: ${({ padding = 0 }) => (typeof padding === 'number' ? `${padding}px` : padding)};
+  width: ${({ width = 'auto' }) => width};
+  height: ${({ height = 'auto' }) => height};
 `;
