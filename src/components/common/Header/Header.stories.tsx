@@ -1,10 +1,8 @@
 /* eslint-disable no-restricted-exports */
-import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { AppLayout } from '@/components/common/AppLayout';
 import { Chip } from '@/components/common/Chip';
-import { FlexBox } from '@/components/common/FlexBox';
 import { Icon } from '@/components/common/Icon';
 import { IconButton } from '@/components/common/IconButton';
 import { Progress } from '@/components/common/Progress';
@@ -19,19 +17,7 @@ const meta = {
   decorators: [
     (Story) => (
       <AppLayout>
-        <FlexBox>
-          <FlexBox
-            justifyContent="flex-start"
-            css={css`
-              width: 393px;
-              height: 100vh;
-              background-color: white;
-            `} // TODO Flexbox 프롭 개선
-            padding={0}
-          >
-            <Story />
-          </FlexBox>
-        </FlexBox>
+        <Story />
       </AppLayout>
     ),
   ],
