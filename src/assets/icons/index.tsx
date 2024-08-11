@@ -26,7 +26,8 @@ import JjakkakGray3 from './jjakkak-gray-3.svg?react';
 import JjakkakIllust from './jjakkak-illust.svg?react';
 import JjakkakText from './jjakkak-text.svg?react';
 import JjakkaksIllust from './jjakkaks-illust.svg?react';
-import Kakaotalk from './kakaotalk.svg?react';
+import Kakaotalk1 from './kakaotalk-1.svg?react';
+import Kakaotalk2 from './kakaotalk-2.svg?react';
 import Left from './left.svg?react';
 import Link from './link.svg?react';
 import Right from './right.svg?react';
@@ -36,7 +37,8 @@ export const IconMap = {
   /* 기본 아이콘 */
   anonymous: Anonymous,
   back: Back,
-  kakaotalk: Kakaotalk,
+  kakaotalk1: Kakaotalk1,
+  kakaotalk2: Kakaotalk2,
   left: Left,
   link: Link,
   right: Right,
