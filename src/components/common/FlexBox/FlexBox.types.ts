@@ -13,7 +13,18 @@ export type Props = {
   /**
    * @default 'center'
    */
-  alignItem?: 'center' | 'flex-start' | 'flex-end' | 'baseline' | 'stretch';
+  alignItems?:
+    | 'normal'
+    | 'center'
+    | 'flex-start'
+    | 'flex-end'
+    | 'baseline'
+    | 'stretch'
+    | 'start'
+    | 'end'
+    | 'baseline'
+    | 'initial'
+    | 'inherit';
   /**
    * @default 'center'
    */
@@ -23,7 +34,9 @@ export type Props = {
     | 'flex-end'
     | 'space-between'
     | 'space-around'
-    | 'space-evenly';
+    | 'space-evenly'
+    | 'initial'
+    | 'inherit';
   /**
    * @default 'nowrap'
    */
