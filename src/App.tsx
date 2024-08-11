@@ -1,11 +1,13 @@
-import { Outlet } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { AppLayout } from '@/components/common/AppLayout';
+import { Login } from './pages/login';
 
 export const App = () => {
   return (
-    <AppLayout>
-      <Outlet />
-    </AppLayout>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 };

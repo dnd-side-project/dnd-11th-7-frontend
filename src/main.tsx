@@ -6,11 +6,14 @@ import { queryClient } from '@/lib/reactQuery.ts';
 
 import { App } from './App.tsx';
 import './index.css';
+import { AppLayout } from './components/common/AppLayout/index.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <AppLayout>
+        <App />
+      </AppLayout>
     </QueryClientProvider>
   </React.StrictMode>
 );
