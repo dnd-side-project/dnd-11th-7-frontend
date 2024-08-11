@@ -1,6 +1,10 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef, ElementType } from 'react';
 
 export type Props = {
+  /**
+   * @default 'div'
+   */
+  as?: ElementType;
   /**
    * @default 'column'
    */
