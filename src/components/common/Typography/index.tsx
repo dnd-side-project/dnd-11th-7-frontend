@@ -30,10 +30,12 @@ const withBaseTypography = (element: ElementType, variant: TypographyVariant) =>
   return Typography;
 };
 
-export const Head1 = withBaseTypography('h1', 'h1');
-export const Head2 = withBaseTypography('h2', 'h2');
-export const Head3 = withBaseTypography('h3', 'h3');
-export const Body1 = withBaseTypography('p', 'b1');
-export const Body2 = withBaseTypography('p', 'b2');
-export const Body3 = withBaseTypography('p', 'b3');
+export const Head1 = withBaseTypography('h1', 'Head1');
+export const Head2 = withBaseTypography('h2', 'Head2');
+export const Head3 = withBaseTypography('h3', 'Head3');
+export const Head4 = withBaseTypography('h4', 'Head4');
+export const Body1 = withBaseTypography('p', 'Body1');
+export const Body2 = withBaseTypography('p', 'Body2');
+export const Body3 = withBaseTypography('p', 'Body3');
+export const Body4 = withBaseTypography('p', 'Body4');
 export const Caption = withBaseTypography('p', 'caption');
