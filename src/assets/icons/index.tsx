@@ -65,8 +65,8 @@ export const IconMap = {
   jjakkakIllust: JjakkakIllust,
   jjakkaksIllust: JjakkaksIllust,
   jjakkakCircle1: JjakkakCircle1,
-  JjakkakCircle2: JjakkakCircle2,
-  JjakkakText: JjakkakText,
+  jjkakkakCircle2: JjakkakCircle2,
+  jjakkakText: JjakkakText,
   jjakkakGray3: JjakkakGray3,
 };
 
