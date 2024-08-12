@@ -20,7 +20,7 @@ export const FormLayout = ({
     <FlexBox justifyContent="flex-start" height="100%">
       <Header
         left={<IconButton iconName="back" />}
-        middle={<Progress min={0} max={progressMaxValue} value={progressValue} />}
+        middle={<Progress min={1} max={progressMaxValue} value={progressValue} />}
         right={<Chip variant="greyFilled">{`${progressValue}/${progressMaxValue}`}</Chip>}
       />
       <FlexBox
