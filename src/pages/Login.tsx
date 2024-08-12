@@ -8,7 +8,7 @@ export const Login = () => {
   return (
     <FlexBox
       justifyContent="space-between"
-      alignItem="center"
+      alignItems="center"
       css={css`
         width: 100%;
         height: 100vh;
@@ -18,7 +18,7 @@ export const Login = () => {
       <FlexBox
         flexDir="column"
         justifyContent="center"
-        alignItem="center"
+        alignItems="center"
         margin="60px 0 0 0"
         css={css`
           flex: 1;
@@ -28,7 +28,7 @@ export const Login = () => {
         <FlexBox
           flexDir="column"
           justifyContent="center"
-          alignItem="center"
+          alignItems="center"
           margin="60px 0 100px 0"
         >
           <Head3>함께 하는 시간을</Head3>
