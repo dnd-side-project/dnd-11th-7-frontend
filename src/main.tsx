@@ -1,19 +1,19 @@
 import React from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
+// eslint-disable-next-line import/order
 import ReactDOM from 'react-dom/client';
+
+import './index.css';
+import { RouterProvider } from 'react-router-dom';
 
 import { queryClient } from '@/lib/reactQuery.ts';
 
-import { App } from './App.tsx';
-import './index.css';
-import { AppLayout } from './components/common/AppLayout/index.tsx';
+import { router } from './routes/route';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <AppLayout>
-        <App />
-      </AppLayout>
+      <RouterProvider router={router} />
     </QueryClientProvider>
   </React.StrictMode>
 );
