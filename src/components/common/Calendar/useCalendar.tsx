@@ -50,41 +50,34 @@ export const useCalendar = ({ startDate, endDate, onDateChange }: Props) => {
     onDateChange(startDate, startDate.add(13, 'day'));
   };
 
+  const isDateInRange = (date: dayjs.Dayjs, start: dayjs.Dayjs, end: dayjs.Dayjs) =>
+    start && end && date.isAfter(start, 'day') && date.isBefore(end, 'day');
+
+  const isDateDisabled = (date: dayjs.Dayjs, today: dayjs.Dayjs, startDate: dayjs.Dayjs) =>
+    date.isBefore(today) ||
+    date.isAfter(today.add(30, 'day')) ||
+    (startDate && date.isAfter(startDate.add(14, 'day'))) ||
+    (startDate && date.isBefore(startDate.subtract(14, 'day')));
+
+  const createDateObject = (currentDate: dayjs.Dayjs) => ({
+    date: currentDate,
+    isCurrentMonth: currentDate.isSame(currentMonth, 'month'),
+    isSelected:
+      currentDate.isSame(startDate, 'day') || (endDate && currentDate.isSame(endDate, 'day')),
+    isInRange: startDate && endDate && isDateInRange(currentDate, startDate, endDate),
+    isRangeStart: startDate && currentDate.isSame(startDate, 'day'),
+    isRangeEnd: endDate && currentDate.isSame(endDate, 'day'),
+    isDisabled: startDate && isDateDisabled(currentDate, today, startDate),
+  });
+
   const generateDates = () => {
-    const dates = [];
     const startOfMonth = currentMonth.startOf('month');
     const startDayOfWeek = startOfMonth.day();
 
-    for (let i = 0; i < 35; i++) {
+    return Array.from({ length: 35 }, (_, i) => {
       const currentDate = startOfMonth.add(i - startDayOfWeek, 'day');
-      const isCurrentMonth = currentDate.isSame(currentMonth, 'month');
-
-      const isSelected =
-        currentDate.isSame(startDate, 'day') || (endDate && currentDate.isSame(endDate, 'day')); // 선택된 날짜인지 확인
-      const isInRange =
-        startDate &&
-        endDate &&
-        currentDate.isAfter(startDate, 'day') &&
-        currentDate.isBefore(endDate, 'day');
-      const isRangeStart = startDate && currentDate.isSame(startDate, 'day');
-      const isRangeEnd = endDate && currentDate.isSame(endDate, 'day');
-      const isDisabled =
-        currentDate.isBefore(today) ||
-        currentDate.isAfter(today.add(30, 'day')) ||
-        (startDate && currentDate.isAfter(startDate.add(14, 'day')));
-
-      dates.push({
-        date: currentDate,
-        isCurrentMonth,
-        isSelected: isSelected || false,
-        isInRange: isInRange || false,
-        isRangeStart: isRangeStart || false,
-        isRangeEnd: isRangeEnd || false,
-        isDisabled: isDisabled || false,
-      });
-    }
-
-    return dates;
+      return createDateObject(currentDate);
+    });
   };
 
   return {
