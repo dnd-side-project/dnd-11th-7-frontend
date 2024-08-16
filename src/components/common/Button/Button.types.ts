@@ -4,7 +4,7 @@ export type Props = {
   /**
    * The variant of the button.
    */
-  variant: 'big' | 'grey' | 'p2'; // TODO variant명 수정
+  variant: 'CTN' | 'grey' | 'box'; // TODO variant명 수정
   /**
    * The height of the button.
    */
@@ -14,6 +14,11 @@ export type Props = {
    * @default 'false'
    */
   disabled?: boolean;
+  /**
+   * fontSize of the button.
+   * @default 'large'
+   */
+  fontSize?: 'small' | 'medium' | 'large';
   /**
    * Optional children for the button, typically a string.
    */
