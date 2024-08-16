@@ -6,7 +6,7 @@ import { colors } from '@/styles/global';
 import { Props } from './Button.types';
 
 const buttonVariantStyles = {
-  big: css`
+  CTN: css`
     color: ${colors.WH};
     background-color: ${colors.purple};
 
@@ -37,7 +37,7 @@ const buttonVariantStyles = {
       }
     }
   `,
-  p2: css`
+  box: css`
     color: ${colors.GY1};
     background-color: ${colors.P2};
 
@@ -63,11 +63,13 @@ export const StyledButton = styled.button<Props>`
   align-items: center;
   padding-top: 17px;
   padding-bottom: 17px;
-  font-size: 20px;
   border: none;
   border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-weight: 500;
+  font-size: ${({ fontSize = 'large' }) =>
+    fontSize === 'small' ? '16px' : fontSize === 'medium' ? '18px' : '20px'};
 
-  ${({ variant = 'big' }) => buttonVariantStyles[variant]};
+  ${({ variant = 'CTN' }) => buttonVariantStyles[variant]};
 `;
