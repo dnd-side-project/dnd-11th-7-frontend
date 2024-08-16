@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 
+import { CALENDAR } from '@/constants/calendar';
+
 import { Props } from './Calendar.types';
 
 export const useCalendar = ({ startDate, endDate, onDateChange }: Props) => {
@@ -9,9 +11,12 @@ export const useCalendar = ({ startDate, endDate, onDateChange }: Props) => {
   const today = dayjs().startOf('day');
   const currentMonthStart = dayjs().startOf('month');
 
-  const handleDateChange = (direction: string) => {
+  const handleDateChange = (direction: 'prev' | 'next') => {
     setCurrentMonth((prev) => {
-      const newMonth = direction === 'prev' ? prev.subtract(1, 'month') : prev.add(1, 'month');
+      const newMonth =
+        direction === 'prev'
+          ? prev.subtract(CALENDAR.MAX_MONTHS, 'month')
+          : prev.add(CALENDAR.MAX_MONTHS, 'month');
 
       return newMonth.isBefore(currentMonthStart) ? currentMonthStart : newMonth;
     });
@@ -42,12 +47,12 @@ export const useCalendar = ({ startDate, endDate, onDateChange }: Props) => {
       return;
     }
 
-    if (date.diff(startDate, 'day') <= 14) {
+    if (date.diff(startDate, 'day') <= CALENDAR.MAX_RANGE) {
       onDateChange(startDate, date);
       return;
     }
 
-    onDateChange(startDate, startDate.add(13, 'day'));
+    onDateChange(startDate, startDate.add(CALENDAR.MAX_RANGE, 'day'));
   };
 
   const isDateInRange = (date: dayjs.Dayjs, start: dayjs.Dayjs, end: dayjs.Dayjs) =>
@@ -55,9 +60,9 @@ export const useCalendar = ({ startDate, endDate, onDateChange }: Props) => {
 
   const isDateDisabled = (date: dayjs.Dayjs, today: dayjs.Dayjs, startDate: dayjs.Dayjs) =>
     date.isBefore(today) ||
-    date.isAfter(today.add(30, 'day')) ||
-    (startDate && date.isAfter(startDate.add(14, 'day'))) ||
-    (startDate && date.isBefore(startDate.subtract(14, 'day')));
+    date.isAfter(today.add(CALENDAR.MAX_MONTH_DAYS, 'day')) ||
+    (startDate && date.isAfter(startDate.add(CALENDAR.MAX_RANGE, 'day'))) ||
+    (startDate && date.isBefore(startDate.subtract(CALENDAR.MAX_RANGE, 'day')));
 
   const createDateObject = (currentDate: dayjs.Dayjs) => ({
     date: currentDate,
@@ -74,7 +79,7 @@ export const useCalendar = ({ startDate, endDate, onDateChange }: Props) => {
     const startOfMonth = currentMonth.startOf('month');
     const startDayOfWeek = startOfMonth.day();
 
-    return Array.from({ length: 35 }, (_, i) => {
+    return Array.from({ length: CALENDAR.TOTAL_DAYS }, (_, i) => {
       const currentDate = startOfMonth.add(i - startDayOfWeek, 'day');
       return createDateObject(currentDate);
     });
