@@ -3,8 +3,9 @@ import { ComponentPropsWithoutRef } from 'react';
 export type Props = {
   /**
    * The variant of the button.
+   * @default 'CTN'
    */
-  variant: 'CTN' | 'grey' | 'box'; // TODO variant명 수정
+  variant: 'CTN' | 'grey' | 'box';
   /**
    * The height of the button.
    */
