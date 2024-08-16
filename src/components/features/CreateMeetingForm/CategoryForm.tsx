@@ -13,9 +13,9 @@ import { CreateMeetingFormBaseProps } from './types';
 
 type Props = CreateMeetingFormBaseProps;
 
-const categories = ['학교', '친구', '팀플', '회의', '스터디', '취미', '봉사', '기타'];
+const categories = ['학교', '친구', '팀플', '회의', '스터디', '취미', '봉사', '기타']; // TODO 임시 데이터
 export const CategoryForm = ({ onNext, onPrevious }: Props) => {
-  const [selectedChip, setSelectedChip] = useState<string[]>([]);
+  const [selectedChip, setSelectedChip] = useState<string[]>([]); // TODO 임시 state
 
   return (
     <>
