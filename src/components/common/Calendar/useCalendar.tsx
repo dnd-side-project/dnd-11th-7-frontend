@@ -67,12 +67,14 @@ export const useCalendar = ({ startDate, endDate, onDateChange }: Props) => {
   const createDateObject = (currentDate: dayjs.Dayjs) => ({
     date: currentDate,
     isCurrentMonth: currentDate.isSame(currentMonth, 'month'),
-    isSelected:
-      currentDate.isSame(startDate, 'day') || (endDate && currentDate.isSame(endDate, 'day')),
-    isInRange: startDate && endDate && isDateInRange(currentDate, startDate, endDate),
-    isRangeStart: startDate && currentDate.isSame(startDate, 'day'),
-    isRangeEnd: endDate && currentDate.isSame(endDate, 'day'),
-    isDisabled: startDate && isDateDisabled(currentDate, today, startDate),
+    isSelected: !!(
+      currentDate.isSame(startDate, 'day') ||
+      (endDate && currentDate.isSame(endDate, 'day'))
+    ),
+    isInRange: !!(startDate && endDate && isDateInRange(currentDate, startDate, endDate)),
+    isRangeStart: !!(startDate && currentDate.isSame(startDate, 'day')),
+    isRangeEnd: !!(endDate && currentDate.isSame(endDate, 'day')),
+    isDisabled: !!(startDate && isDateDisabled(currentDate, today, startDate)),
   });
 
   const generateDates = () => {
