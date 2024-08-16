@@ -1,9 +1,10 @@
 /* eslint-disable no-restricted-exports */
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { AppLayout } from '@/components/common/AppLayout';
+import { Button } from '@/components/common/Button';
+
 import { FixedBottomButton } from '.';
-import { AppLayout } from '../AppLayout';
-import { Button } from '../Button';
 
 const meta = {
   title: 'components/common/FixedBottomButton',
