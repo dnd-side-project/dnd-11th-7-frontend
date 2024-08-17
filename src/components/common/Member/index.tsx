@@ -16,7 +16,7 @@ export const Member = ({
   isLeader = false,
   isAnonymous = false,
   anonymousNumber = 0,
-  JJakkakEmoji,
+  iconName,
   children,
   ...props
 }: Props) => {
@@ -37,7 +37,9 @@ export const Member = ({
             <Icon name="check" size={15} color={isData ? 'purple' : 'GY4'} />
           </StyledCircleCheckBox>
         )}
-        <StyledCircleIcon>{JJakkakEmoji}</StyledCircleIcon>
+        <StyledCircleIcon>
+          <Icon name={iconName} color={isData ? 'purple' : 'GY4'} size={27} />
+        </StyledCircleIcon>
       </StyledMemberButton>
       <StyledText>{displayName}</StyledText>
     </FlexBox>
