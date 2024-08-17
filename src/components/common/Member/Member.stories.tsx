@@ -5,7 +5,6 @@ import { IconName } from '@/assets/icons';
 
 import { Member } from '.';
 import { FlexBox } from '../FlexBox';
-import { Icon } from '../Icon';
 
 const meta = {
   title: 'components/common/Member',
