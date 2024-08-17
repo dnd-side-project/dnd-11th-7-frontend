@@ -23,15 +23,13 @@ export const Basic: Story = {
     isLeader: false,
     isAnonymous: false,
     anonymousNumber: 1,
-    JJakkakEmoji: 'jjakkak1',
+    iconName: 'jjakkak1',
     children: '리더',
   },
   render: (args) => {
     return (
       <FlexBox flexDir="row" flexWrap="wrap" justifyContent="flex-start" gap={10}>
-        <Member {...args} JJakkakEmoji={<Icon name={args.JJakkakEmoji as IconName} size={27} />}>
-          {args.children}
-        </Member>
+        <Member {...args}>{args.children}</Member>
       </FlexBox>
     );
   },
@@ -62,7 +60,7 @@ export const Member_Display: Story = {
             isData={member.isData}
             isChecked={member.isChecked}
             isLeader={member.isLeader}
-            JJakkakEmoji={<Icon name={member.emoji} size={27} />}
+            iconName={member.emoji}
           >
             {member.name}
           </Member>
@@ -79,17 +77,16 @@ const anonymousMemberVariations: Array<{
   isLeader?: boolean;
   emoji: IconName;
 }> = [
-  { isData: true, isLeader: true, isAnonymous: true, emoji: 'jjakkak1' },
-  { isData: true, isChecked: true, isAnonymous: true, emoji: 'jjakkak2' },
-  { isData: true, isAnonymous: true, emoji: 'jjakkak3' },
+  { isData: false, isLeader: true, isAnonymous: true, emoji: 'jjakkak1' },
+  { isData: false, isChecked: true, isAnonymous: true, emoji: 'jjakkak2' },
+  { isData: false, isAnonymous: true, emoji: 'jjakkak3' },
   { isData: false, isAnonymous: true, emoji: 'jjakkak4' },
   { isData: false, isAnonymous: true, emoji: 'jjakkak5' },
   { isData: false, isAnonymous: true, emoji: 'jjakkak6' },
-  {
-    isData: false,
-    isAnonymous: true,
-    emoji: 'jjakkak7',
-  },
+  { isData: false, isAnonymous: true, emoji: 'jjakkak7' },
+  { isData: false, isAnonymous: true, emoji: 'jjakkak8' },
+  { isData: false, isAnonymous: true, emoji: 'jjakkak9' },
+  { isData: false, isAnonymous: true, emoji: 'jjakkak10' },
 ];
 export const Anonymous: Story = {
   render: () => {
@@ -103,7 +100,7 @@ export const Anonymous: Story = {
             isLeader={member.isLeader}
             isAnonymous={true}
             anonymousNumber={index + 1}
-            JJakkakEmoji={<Icon name={member.emoji} size={27} />}
+            iconName={member.emoji}
           />
         ))}
       </FlexBox>
