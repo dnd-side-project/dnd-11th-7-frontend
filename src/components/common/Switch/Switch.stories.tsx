@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { AppLayout } from '@/components/common/AppLayout';
+
 import { Switch } from '.';
 
 const meta = {
@@ -35,10 +37,14 @@ export const TextOnly: Story = {
     const handleChange = (string: string) => setSelected(string);
 
     return (
-      <Switch selectedValue={selected} onChange={handleChange}>
-        <Switch.Button label="익명" />
-        <Switch.Button label="실명" />
-      </Switch>
+      <AppLayout>
+        <Switch selectedValue={selected} onChange={handleChange}>
+          <Switch.Button label="오늘" />
+          <Switch.Button label="내일" />
+          <Switch.Button label="3일" />
+          <Switch.Button label="5일" />
+        </Switch>
+      </AppLayout>
     );
   },
 };

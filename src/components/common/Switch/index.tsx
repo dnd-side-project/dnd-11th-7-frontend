@@ -16,7 +16,7 @@ const SwitchContext = createContext({
 export const Switch = ({ selectedValue, onChange, children }: Props) => {
   return (
     <SwitchContext.Provider value={{ selectedValue, onChange }}>
-      <FlexBox flexDir="row" gap={13} width="100%">
+      <FlexBox flexDir="row" gap={13} width="100%" flexWrap="wrap">
         {children}
       </FlexBox>
     </SwitchContext.Provider>
@@ -31,7 +31,7 @@ const Button = ({ label, img }: SwitchButtonProps) => {
     <StyeldButton
       label={label}
       css={css`
-        border-color: ${isSelected ? `${colors.purple}` : `${colors.GY4}`};
+        border: ${isSelected ? `2px solid ${colors.purple}` : `1px solid ${colors.GY4}`};
         & > img {
           filter: ${isSelected ? '' : 'grayscale(100%) brightness(1.27)'};
         }
