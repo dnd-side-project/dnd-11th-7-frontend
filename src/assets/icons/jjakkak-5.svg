@@ -1,8 +1,8 @@
 <svg width="196" height="211" viewBox="0 0 196 211" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M97.6642 4.42332C46.256 4.42332 4.58152 46.0978 4.58152 97.506V189.705C4.58152 198.653 11.835 205.906 20.7826 205.906H174.546C183.493 205.906 190.747 198.653 190.747 189.705V97.506C190.747 46.0979 149.072 4.42332 97.6642 4.42332Z" fill="#857BFF" stroke="white" stroke-width="8.83696"/>
-<circle cx="97.6728" cy="98.6826" r="68.6337" fill="#A9A3FF"/>
+<path d="M97.6642 4.42332C46.256 4.42332 4.58152 46.0978 4.58152 97.506V189.705C4.58152 198.653 11.835 205.906 20.7826 205.906H174.546C183.493 205.906 190.747 198.653 190.747 189.705V97.506C190.747 46.0979 149.072 4.42332 97.6642 4.42332Z" fill="currentColor" stroke="white" stroke-width="8.83696"/>
+<circle cx="97.6728" cy="98.6826" r="68.6337" fill="currentColor"/>
 <ellipse cx="20.4513" cy="21.2087" rx="20.4513" ry="21.2087" transform="matrix(-1 0 0 1 136.992 26.5156)" fill="white"/>
 <ellipse cx="20.83" cy="21.2087" rx="20.83" ry="21.2087" transform="matrix(-1 0 0 1 96.082 26.5156)" fill="white"/>
-<ellipse cx="11.3618" cy="12.8767" rx="11.3618" ry="12.8767" transform="matrix(-1 0 0 1 81.2656 28.6523)" fill="black"/>
-<ellipse cx="11.3618" cy="12.8767" rx="11.3618" ry="12.8767" transform="matrix(-1 0 0 1 123.008 28.6523)" fill="black"/>
+<ellipse cx="11.3618" cy="12.8767" rx="11.3618" ry="12.8767" transform="matrix(-1 0 0 1 81.2656 28.6523)" fill="currentColor"/>
+<ellipse cx="11.3618" cy="12.8767" rx="11.3618" ry="12.8767" transform="matrix(-1 0 0 1 123.008 28.6523)" fill="currentColor"/>
 </svg>
