@@ -1,6 +1,7 @@
 import { ChangeEvent, forwardRef, useState } from 'react';
 import { css } from '@emotion/react';
 
+import { IconButton } from '@/components/common/IconButton';
 import { Caption } from '@/components/common/Typography';
 import { colors } from '@/styles/global';
 
@@ -51,16 +52,7 @@ export const TextField = forwardRef<HTMLInputElement, Props>(
             {...inputProps}
           />
           {canShowClearButton && (
-            // TODO 추후 아이콘 버튼 구현되면 교체하기
-            <img
-              role="button"
-              src="/icons/delete-rounded.svg"
-              alt="icon"
-              onClick={handleClickClear}
-              css={css`
-                cursor: pointer;
-              `}
-            />
+            <IconButton iconName="deleteRounded" size={14} onClick={handleClickClear} css={css``} />
           )}
         </StyledTextFieldWrapper>
         {isInvalidInput && (
