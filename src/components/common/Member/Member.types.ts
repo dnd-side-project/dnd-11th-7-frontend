@@ -1,5 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react';
 
+import { IconName } from '@/assets/icons';
+
 export type Props = {
   /**
    * @default false
@@ -24,5 +26,5 @@ export type Props = {
   /**
    * 째깍 이모지
    */
-  JJakkakEmoji: React.ReactNode;
+  iconName: IconName;
 } & ComponentPropsWithoutRef<'div'>;
