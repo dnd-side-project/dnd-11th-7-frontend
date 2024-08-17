@@ -1,5 +1,8 @@
 import Anonymous from './anonymous.svg?react';
 import Back from './back.svg?react';
+import Check from './check.svg?react';
+import Circle1 from './circle-1.svg?react';
+import Circle2 from './circle-2.svg?react';
 import Jjakkak1 from './jjakkak-1.svg?react';
 import Jjakkak10 from './jjakkak-10.svg?react';
 import Jjakkak2 from './jjakkak-2.svg?react';
@@ -43,6 +46,9 @@ export const IconMap = {
   link: Link,
   right: Right,
   user: User,
+  check: Check,
+  circle1: Circle1,
+  circle2: Circle2,
   /* 째깍이 */
   jjakkak1: Jjakkak1,
   jjakkak2: Jjakkak2,
