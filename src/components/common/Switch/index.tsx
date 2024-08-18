@@ -6,14 +6,14 @@ import { Body3 } from '@/components/common/Typography';
 import { colors } from '@/styles/global';
 
 import { StyeldButton } from './Switch.styled';
-import { Props, SwitchButtonProps } from './Switch.types';
+import { Props, SwitchButtonProps, SwitchContextType } from './Switch.types';
 
-const SwitchContext = createContext({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const SwitchContext = createContext<SwitchContextType<any>>({
   selectedValue: '',
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onChange: (_value: string) => {},
+  onChange: () => {},
 });
-export const Switch = ({ selectedValue, onChange, children }: Props) => {
+export const Switch = <T,>({ selectedValue, onChange, children }: Props<T>) => {
   return (
     <SwitchContext.Provider value={{ selectedValue, onChange }}>
       <FlexBox flexDir="row" gap={13} width="100%" flexWrap="wrap">
@@ -23,20 +23,21 @@ export const Switch = ({ selectedValue, onChange, children }: Props) => {
   );
 };
 
-const Button = ({ label, img }: SwitchButtonProps) => {
-  const { selectedValue, onChange } = useContext(SwitchContext);
-  const isSelected = selectedValue === label;
+const Button = <T,>({ label, value, img }: SwitchButtonProps<T>) => {
+  const { selectedValue, onChange } = useContext<SwitchContextType<T>>(SwitchContext);
+  const isSelected = selectedValue === value;
 
   return (
     <StyeldButton
       label={label}
+      value={value}
       css={css`
         border: ${isSelected ? `2px solid ${colors.purple}` : `1px solid ${colors.GY4}`};
         & > img {
           filter: ${isSelected ? '' : 'grayscale(100%) brightness(1.27)'};
         }
       `}
-      onClick={() => onChange(label)}
+      onClick={() => onChange(value)}
     >
       <Body3 color={isSelected ? 'purple' : 'GY4'}>{label}</Body3>
       {img}
