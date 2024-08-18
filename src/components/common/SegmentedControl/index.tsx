@@ -15,12 +15,7 @@ const SegmentedControlContext = createContext<SegmentedControlContextType<any>>(
   layoutId: '',
 });
 
-export const SegmentedControl = <T,>({
-  variant = 'contained',
-  selectedValue,
-  onChange,
-  children,
-}: Props<T>) => {
+export const SegmentedControl = <T,>({ variant, selectedValue, onChange, children }: Props<T>) => {
   const layoutId = useId();
 
   const value = { variant, selectedValue, onChange, layoutId };

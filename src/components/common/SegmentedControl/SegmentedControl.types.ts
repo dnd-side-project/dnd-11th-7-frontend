@@ -2,9 +2,6 @@ export type Props<T> = {
   selectedValue: T;
   onChange: (value: T) => void;
   children: React.ReactNode;
-  /**
-   * @default 'contained'
-   */
   variant: 'contained' | 'underline' | 'textOnly';
 };
 
