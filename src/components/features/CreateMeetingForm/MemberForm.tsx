@@ -11,13 +11,13 @@ import { CreateMeetingFormBaseProps } from './types';
 
 type Props = CreateMeetingFormBaseProps;
 
-export const MemberForm = ({ onNext, onPrevious }: Props) => {
+export const MemberForm = ({ onNext, onPrev }: Props) => {
   return (
     <>
       <FormLayout
         header={
           <Header
-            left={<IconButton iconName="back" onClick={onPrevious} />}
+            left={<IconButton iconName="back" onClick={onPrev} />}
             middle={<Progress min={0} max={6} value={4} />} // TODO 하드코딩 제거할 방법 고민
             right={<Chip variant="greyFilled">{`${4}/${6}`}</Chip>}
           />

@@ -14,7 +14,7 @@ import { CreateMeetingFormBaseProps } from './types';
 type Props = CreateMeetingFormBaseProps;
 
 const categories = ['학교', '친구', '팀플', '회의', '스터디', '취미', '봉사', '기타']; // TODO 임시 데이터
-export const CategoryForm = ({ onNext, onPrevious }: Props) => {
+export const CategoryForm = ({ onNext, onPrev }: Props) => {
   const [selectedChip, setSelectedChip] = useState<string[]>([]); // TODO 임시 state
 
   return (
@@ -22,7 +22,7 @@ export const CategoryForm = ({ onNext, onPrevious }: Props) => {
       <FormLayout
         header={
           <Header
-            left={<IconButton iconName="back" onClick={onPrevious} />}
+            left={<IconButton iconName="back" onClick={onPrev} />}
             middle={<Progress min={0} max={6} value={1} />} // TODO 하드코딩 제거할 방법 고민
             right={<Chip variant="greyFilled">{`${1}/${6}`}</Chip>}
           />
