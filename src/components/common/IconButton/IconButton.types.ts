@@ -12,4 +12,5 @@ export type Props = {
    * @description 텍스트가 포함된 버튼일 때 사용합니다.
    */
   label?: string;
+  size?: number;
 } & ComponentPropsWithoutRef<'button'>;

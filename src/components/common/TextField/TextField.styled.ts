@@ -47,7 +47,8 @@ export const StyledTextFieldWrapper = styled.div<Pick<Props, 'variant'>>`
 `;
 export const StyledInput = styled.input`
   all: unset;
-  flex-grow: 1;
+  min-width: 0;
+  width: 100%;
   padding: 15px 0 15px 15px;
   font-size: 16px;
 `;
