@@ -1,5 +1,6 @@
 import Anonymous from './anonymous.svg?react';
 import Back from './back.svg?react';
+import Close from './close.svg?react';
 import Jjakkak1 from './jjakkak-1.svg?react';
 import Jjakkak10 from './jjakkak-10.svg?react';
 import Jjakkak2 from './jjakkak-2.svg?react';
@@ -43,6 +44,7 @@ export const IconMap = {
   link: Link,
   right: Right,
   user: User,
+  close: Close,
   /* 째깍이 */
   jjakkak1: Jjakkak1,
   jjakkak2: Jjakkak2,
