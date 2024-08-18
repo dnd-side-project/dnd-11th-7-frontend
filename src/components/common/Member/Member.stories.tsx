@@ -17,7 +17,7 @@ type Story = StoryObj<typeof Member>;
 
 export const Basic: Story = {
   args: {
-    isData: true,
+    isSubmitted: true,
     isChecked: true,
     isLeader: false,
     isAnonymous: false,
@@ -35,19 +35,19 @@ export const Basic: Story = {
 };
 
 const memberVariations: Array<{
-  isData: boolean;
+  isSubmitted: boolean;
   isChecked?: boolean;
   isLeader?: boolean;
   emoji: IconName;
   name: string;
 }> = [
-  { isData: true, isLeader: true, emoji: 'jjakkak1', name: '리더' },
-  { isData: true, emoji: 'jjakkak2', name: '승조' },
-  { isData: true, emoji: 'jjakkak3', name: '태웅' },
-  { isData: false, emoji: 'jjakkak4', name: '세빈' },
-  { isData: false, emoji: 'jjakkak5', name: '지현' },
-  { isData: false, emoji: 'jjakkak6', name: '채영' },
-  { isData: false, emoji: 'jjakkak7', name: '노트북 두고 거제도 놀러간 경욱공주' },
+  { isSubmitted: true, isLeader: true, emoji: 'jjakkak1', name: '리더' },
+  { isSubmitted: true, emoji: 'jjakkak2', name: '승조' },
+  { isSubmitted: true, emoji: 'jjakkak3', name: '태웅' },
+  { isSubmitted: false, emoji: 'jjakkak4', name: '세빈' },
+  { isSubmitted: false, emoji: 'jjakkak5', name: '지현' },
+  { isSubmitted: false, emoji: 'jjakkak6', name: '채영' },
+  { isSubmitted: false, emoji: 'jjakkak7', name: '노트북 두고 거제도 놀러간 경욱공주' },
 ];
 export const Member_Display: Story = {
   render: () => {
@@ -56,7 +56,7 @@ export const Member_Display: Story = {
         {memberVariations.map((member, index) => (
           <Member
             key={index}
-            isData={member.isData}
+            isSubmitted={member.isSubmitted}
             isChecked={member.isChecked}
             isLeader={member.isLeader}
             iconName={member.emoji}
@@ -70,22 +70,22 @@ export const Member_Display: Story = {
 };
 
 const anonymousMemberVariations: Array<{
-  isData: boolean;
+  isSubmitted: boolean;
   isChecked?: boolean;
   isAnonymous: boolean;
   isLeader?: boolean;
   emoji: IconName;
 }> = [
-  { isData: false, isLeader: true, isAnonymous: true, emoji: 'jjakkak1' },
-  { isData: false, isChecked: true, isAnonymous: true, emoji: 'jjakkak2' },
-  { isData: false, isAnonymous: true, emoji: 'jjakkak3' },
-  { isData: false, isAnonymous: true, emoji: 'jjakkak4' },
-  { isData: false, isAnonymous: true, emoji: 'jjakkak5' },
-  { isData: false, isAnonymous: true, emoji: 'jjakkak6' },
-  { isData: false, isAnonymous: true, emoji: 'jjakkak7' },
-  { isData: false, isAnonymous: true, emoji: 'jjakkak8' },
-  { isData: false, isAnonymous: true, emoji: 'jjakkak9' },
-  { isData: false, isAnonymous: true, emoji: 'jjakkak10' },
+  { isSubmitted: false, isLeader: true, isAnonymous: true, emoji: 'jjakkak1' },
+  { isSubmitted: false, isChecked: true, isAnonymous: true, emoji: 'jjakkak2' },
+  { isSubmitted: false, isAnonymous: true, emoji: 'jjakkak3' },
+  { isSubmitted: false, isAnonymous: true, emoji: 'jjakkak4' },
+  { isSubmitted: false, isAnonymous: true, emoji: 'jjakkak5' },
+  { isSubmitted: false, isAnonymous: true, emoji: 'jjakkak6' },
+  { isSubmitted: false, isAnonymous: true, emoji: 'jjakkak7' },
+  { isSubmitted: false, isAnonymous: true, emoji: 'jjakkak8' },
+  { isSubmitted: false, isAnonymous: true, emoji: 'jjakkak9' },
+  { isSubmitted: false, isAnonymous: true, emoji: 'jjakkak10' },
 ];
 export const Anonymous: Story = {
   render: () => {
@@ -94,7 +94,7 @@ export const Anonymous: Story = {
         {anonymousMemberVariations.map((member, index) => (
           <Member
             key={index}
-            isData={member.isData}
+            isSubmitted={member.isSubmitted}
             isChecked={member.isChecked}
             isLeader={member.isLeader}
             isAnonymous={true}

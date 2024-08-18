@@ -11,7 +11,7 @@ import { FlexBox } from '../FlexBox';
 import { Icon } from '../Icon';
 
 export const Member = ({
-  isData = false,
+  isSubmitted = false,
   isChecked = true,
   isLeader = false,
   isAnonymous = false,
@@ -29,16 +29,16 @@ export const Member = ({
           <Icon
             name={isLeader ? 'circle2' : 'circle1'}
             size={52}
-            color={isData ? 'purple' : 'GY4'}
+            color={isSubmitted ? 'purple' : 'GY4'}
           />
         </StyledCircleContainer>
         {isChecked && (
           <StyledCircleCheckBox>
-            <Icon name="check" size={15} color={isData ? 'purple' : 'GY4'} />
+            <Icon name="check" size={15} color={isSubmitted ? 'purple' : 'GY4'} />
           </StyledCircleCheckBox>
         )}
         <StyledCircleIcon>
-          <Icon name={iconName} color={isData ? 'purple' : 'GY4'} size={27} />
+          <Icon name={iconName} color={isSubmitted ? 'purple' : 'GY4'} size={27} />
         </StyledCircleIcon>
       </StyledMemberButton>
       <StyledText>{displayName}</StyledText>

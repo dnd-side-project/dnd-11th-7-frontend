@@ -6,7 +6,7 @@ export type Props = {
   /**
    * @default false
    */
-  isData: boolean;
+  isSubmitted: boolean;
   /**
    * @default true
    */
