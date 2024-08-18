@@ -1,4 +1,3 @@
-import Anonymous from './anonymous.svg?react';
 import Back from './back.svg?react';
 import DeleteRounded from './delete-rounded.svg?react';
 import Jjakkak1 from './jjakkak-1.svg?react';
@@ -23,7 +22,6 @@ import JjakkakFill6 from './jjakkak-fill-6.svg?react';
 import JjakkakFill7 from './jjakkak-fill-7.svg?react';
 import JjakkakFill8 from './jjakkak-fill-8.svg?react';
 import JjakkakFill9 from './jjakkak-fill-9.svg?react';
-import JjakkakGray3 from './jjakkak-gray-3.svg?react';
 import JjakkakIllust from './jjakkak-illust.svg?react';
 import JjakkakText from './jjakkak-text.svg?react';
 import JjakkaksIllust from './jjakkaks-illust.svg?react';
@@ -36,7 +34,6 @@ import User from './user.svg?react';
 
 export const IconMap = {
   /* 기본 아이콘 */
-  anonymous: Anonymous,
   back: Back,
   deleteRounded: DeleteRounded,
   kakaotalk1: Kakaotalk1,
@@ -71,7 +68,6 @@ export const IconMap = {
   jjakkakCircle1: JjakkakCircle1,
   jjkakkakCircle2: JjakkakCircle2,
   jjakkakText: JjakkakText,
-  jjakkakGray3: JjakkakGray3,
 };
 
 export type IconName = keyof typeof IconMap;
