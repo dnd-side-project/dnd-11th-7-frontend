@@ -2,6 +2,7 @@ import Back from './back.svg?react';
 import Check from './check.svg?react';
 import Circle1 from './circle-1.svg?react';
 import Circle2 from './circle-2.svg?react';
+import Close from './close.svg?react';
 import DeleteRounded from './delete-rounded.svg?react';
 import Jjakkak1 from './jjakkak-1.svg?react';
 import Jjakkak10 from './jjakkak-10.svg?react';
@@ -48,6 +49,7 @@ export const IconMap = {
   check: Check,
   circle1: Circle1,
   circle2: Circle2,
+  close: Close,
   /* 째깍이 */
   jjakkak1: Jjakkak1,
   jjakkak2: Jjakkak2,
