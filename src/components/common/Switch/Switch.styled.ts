@@ -2,9 +2,7 @@ import styled from '@emotion/styled';
 
 import { colors } from '@/styles/global';
 
-import { SwitchButtonProps } from './Switch.types';
-
-export const StyeldButton = styled.button<SwitchButtonProps>`
+export const StyeldButton = styled.button`
   display: flex;
   flex-direction: column;
   width: 40%;

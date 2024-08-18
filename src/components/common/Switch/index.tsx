@@ -29,8 +29,6 @@ const Button = <T,>({ label, value, img }: SwitchButtonProps<T>) => {
 
   return (
     <StyeldButton
-      label={label}
-      value={value}
       css={css`
         border: ${isSelected ? `2px solid ${colors.purple}` : `1px solid ${colors.GY4}`};
         & > img {
