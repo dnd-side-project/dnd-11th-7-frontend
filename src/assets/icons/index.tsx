@@ -1,6 +1,7 @@
 import Anonymous from './anonymous.svg?react';
 import Back from './back.svg?react';
 import Close from './close.svg?react';
+import DeleteRounded from './delete-rounded.svg?react';
 import Jjakkak1 from './jjakkak-1.svg?react';
 import Jjakkak10 from './jjakkak-10.svg?react';
 import Jjakkak2 from './jjakkak-2.svg?react';
@@ -38,6 +39,7 @@ export const IconMap = {
   /* 기본 아이콘 */
   anonymous: Anonymous,
   back: Back,
+  deleteRounded: DeleteRounded,
   kakaotalk1: Kakaotalk1,
   kakaotalk2: Kakaotalk2,
   left: Left,
