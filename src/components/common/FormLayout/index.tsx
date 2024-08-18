@@ -1,7 +1,11 @@
+import { Chip } from '@/components/common/Chip';
 import { FlexBox } from '@/components/common/FlexBox';
+import { Header } from '@/components/common/Header';
+import { IconButton } from '@/components/common/IconButton';
+import { Progress } from '@/components/common/Progress';
 import { Caption, Head3 } from '@/components/common/Typography';
 
-import { Props } from './FormLayout.types';
+import { Props, HeaderProps } from './FormLayout.types';
 
 export const FormLayout = ({ header, title, description, content }: Props) => {
   return (
@@ -17,3 +21,15 @@ export const FormLayout = ({ header, title, description, content }: Props) => {
     </FlexBox>
   );
 };
+
+const FormLayoutHeader = ({ progress, maxProgress, onPrev }: HeaderProps) => {
+  return (
+    <Header
+      left={<IconButton iconName="back" onClick={onPrev} />}
+      middle={<Progress min={0} max={maxProgress} value={progress} />}
+      right={<Chip variant="greyFilled">{`${progress}/${maxProgress}`}</Chip>}
+    />
+  );
+};
+
+FormLayout.Header = FormLayoutHeader;

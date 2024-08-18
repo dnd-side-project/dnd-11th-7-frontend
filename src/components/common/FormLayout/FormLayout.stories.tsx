@@ -2,10 +2,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { AppLayout } from '@/components/common/AppLayout';
-import { Chip } from '@/components/common/Chip';
-import { Header } from '@/components/common/Header';
-import { IconButton } from '@/components/common/IconButton';
-import { Progress } from '@/components/common/Progress';
 
 import { FormLayout } from '.';
 
@@ -31,13 +27,7 @@ export const Basic: Story = {
   render: (args) => (
     <AppLayout>
       <FormLayout
-        header={
-          <Header
-            left={<IconButton iconName="back" />}
-            middle={<Progress min={0} max={6} value={1} />}
-            right={<Chip variant="greyFilled">{`${1}/${6}`}</Chip>}
-          />
-        }
+        header={<FormLayout.Header progress={1} maxProgress={6} onPrev={() => {}} />}
         title={args.title}
         description={args.description}
         content={undefined}

@@ -4,3 +4,9 @@ export type Props = {
   header: React.ReactNode;
   content: React.ReactNode;
 };
+
+export type HeaderProps = {
+  progress: number;
+  maxProgress: number;
+  onPrev: () => void;
+};

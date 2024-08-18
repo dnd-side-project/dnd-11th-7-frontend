@@ -1,10 +1,6 @@
-import { Chip } from '@/components/common/Chip';
 import { FixedBottomButton } from '@/components/common/FixedBottomButton';
 import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
-import { Header } from '@/components/common/Header';
-import { IconButton } from '@/components/common/IconButton';
-import { Progress } from '@/components/common/Progress';
 import { TextField } from '@/components/common/TextField';
 
 import { CreateMeetingFormBaseProps } from './types';
@@ -15,13 +11,7 @@ export const MeetingNameForm = ({ onNext, onPrev }: Props) => {
   return (
     <>
       <FormLayout
-        header={
-          <Header
-            left={<IconButton iconName="back" onClick={onPrev} />}
-            middle={<Progress min={0} max={6} value={2} />} // TODO 하드코딩 제거할 방법 고민
-            right={<Chip variant="greyFilled">{`${2}/${6}`}</Chip>}
-          />
-        }
+        header={<FormLayout.Header progress={2} maxProgress={6} onPrev={onPrev} />}
         title={`모임의 이름을\n입력해 주세요`}
         description="20글자까지 입력 가능합니다."
         content={
