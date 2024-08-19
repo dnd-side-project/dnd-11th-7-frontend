@@ -19,3 +19,8 @@ filters:
       - /chore|CHORE/
     events: [issues, pull_request]
     targets: [title]
+  - label: fix
+    regexs:
+      - /BUGFIX/
+    events: [pull_request]
+    targets: [title]

@@ -1,10 +1,10 @@
 <svg width="225" height="220" viewBox="0 0 225 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M27.1322 73.4563C23.6648 76.4593 21.6725 80.8203 21.6725 85.4073V199.068C21.6725 207.8 28.751 214.878 37.4826 214.878H187.34C196.071 214.878 203.15 207.8 203.15 199.068V85.4073C203.15 80.8203 201.158 76.4593 197.69 73.4563L122.762 8.5628C116.821 3.41739 108.002 3.41739 102.061 8.5628L27.1322 73.4563Z" fill="#857BFF" stroke="white" stroke-width="8.62368"/>
-<ellipse cx="112.225" cy="136.672" rx="56.9163" ry="56.6288" fill="#A9A3FF"/>
+<path d="M27.1322 73.4563C23.6648 76.4593 21.6725 80.8203 21.6725 85.4073V199.068C21.6725 207.8 28.751 214.878 37.4826 214.878H187.34C196.071 214.878 203.15 207.8 203.15 199.068V85.4073C203.15 80.8203 201.158 76.4593 197.69 73.4563L122.762 8.5628C116.821 3.41739 108.002 3.41739 102.061 8.5628L27.1322 73.4563Z" fill="currentColor" stroke="white" stroke-width="8.62368"/>
+<ellipse cx="112.225" cy="136.672" rx="56.9163" ry="56.6288" fill="currentColor"/>
 <ellipse cx="21.9895" cy="22.804" rx="21.9895" ry="22.804" transform="matrix(-1 0 0 1 156.316 63.3672)" fill="white"/>
 <ellipse cx="22.3967" cy="22.804" rx="22.3967" ry="22.804" transform="matrix(-1 0 0 1 112.336 63.3672)" fill="white"/>
-<ellipse cx="12.2164" cy="13.8453" rx="12.2164" ry="13.8453" transform="matrix(-1 0 0 1 96.4102 65.666)" fill="black"/>
-<ellipse cx="12.2164" cy="13.8453" rx="12.2164" ry="13.8453" transform="matrix(-1 0 0 1 141.266 65.666)" fill="black"/>
-<circle cx="202.689" cy="140.637" r="18.6272" fill="#857BFF" stroke="white" stroke-width="6.89894"/>
-<circle cx="22.1777" cy="140.637" r="18.6272" fill="#857BFF" stroke="white" stroke-width="6.89894"/>
+<ellipse cx="12.2164" cy="13.8453" rx="12.2164" ry="13.8453" transform="matrix(-1 0 0 1 96.4102 65.666)" fill="currentColor"/>
+<ellipse cx="12.2164" cy="13.8453" rx="12.2164" ry="13.8453" transform="matrix(-1 0 0 1 141.266 65.666)" fill="currentColor"/>
+<circle cx="202.689" cy="140.637" r="18.6272" fill="currentColor" stroke="white" stroke-width="6.89894"/>
+<circle cx="22.1777" cy="140.637" r="18.6272" fill="currentColor" stroke="white" stroke-width="6.89894"/>
 </svg>
