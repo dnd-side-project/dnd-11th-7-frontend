@@ -1,42 +1,17 @@
-import { ChangeEvent, forwardRef, useRef } from 'react';
+import { forwardRef } from 'react';
+
+import { PIN } from '@/constants/pin';
 
 import { StyledCharInput, StyledInputContainer } from './PinInput.styled';
 import { Props } from './PinInput.types';
 
+import { usePinInput } from '../../../hooks/usePinInput';
+
 export const PinInput = forwardRef<HTMLInputElement, Props>(({ value, onPinChange, ...props }) => {
-  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
-
-  const focusInput = (index: number) => {
-    inputRefs.current[index]?.focus();
-  };
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
-    const newPinValue = [...value];
-    newPinValue[index] = e.target.value;
-    onPinChange(newPinValue);
-
-    if (e.target.value.length === 1 && index < value.length - 1) {
-      focusInput(index + 1);
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
-    if (e.key !== 'Backspace') {
-      return;
-    }
-    const newPinValue = [...value];
-    if (newPinValue[index]) {
-      newPinValue[index] = '';
-      onPinChange(newPinValue);
-    }
-    if (index > 0) {
-      focusInput(index - 1);
-    }
-  };
-
+  const { inputRefs, handleChange, handleKeyDown } = usePinInput({ value, onPinChange });
   return (
     <StyledInputContainer>
-      {[...Array(6)].map((_, index) => (
+      {Array.from({ length: PIN.LENGTH }).map((_, index) => (
         <StyledCharInput
           key={index}
           ref={(el) => (inputRefs.current[index] = el)}
