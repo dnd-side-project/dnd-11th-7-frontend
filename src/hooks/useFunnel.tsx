@@ -1,21 +1,31 @@
 import { ReactElement, useState } from 'react';
 
 import { FlexBox } from '@/components/common/FlexBox';
+import { FunnelProgressContext } from '@/contexts/FunnelProgressContext';
 
-type StepProps = {
-  name: string;
+type StepNames<T> = readonly T[];
+type StepProps<T> = {
+  name: T;
   children: React.ReactNode;
 };
 
-export const useFunnel = () => {
-  const [step, setStep] = useState<string>('카테고리');
+export const useFunnel = <T,>(stepNames: StepNames<T>) => {
+  const [step, setStep] = useState(stepNames[0]);
 
   const Funnel = ({ children }: { children: ReactElement[] }) => {
-    const Step = children.find((child) => child.props.name === step);
-    return <>{Step}</>;
+    const stepComponentIndex = children.findIndex((child) => child.props.name === step);
+    const StepComponent = children[stepComponentIndex];
+
+    return (
+      <FunnelProgressContext.Provider
+        value={{ progress: stepComponentIndex + 1, maxProgress: children.length }}
+      >
+        {StepComponent}
+      </FunnelProgressContext.Provider>
+    );
   };
 
-  const Step = ({ children }: StepProps) => {
+  const Step = ({ children }: StepProps<T>) => {
     return <FlexBox>{children}</FlexBox>;
   };
 
