@@ -9,22 +9,26 @@ export const usePinInput = ({ value, onPinChange }: Props) => {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const focusInput = (index: number) => {
-    inputRefs.current[index]?.focus();
+    if (index >= 0 && index < PIN.LENGTH) {
+      inputRefs.current[index]?.focus();
+    }
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
-    const inputValue = e.target.value;
+    const newChar = e.target.value.slice(-1);
 
-    if (!englishAndNumberRegex(inputValue)) {
-      return;
-    }
+    if (!englishAndNumberRegex(newChar)) return;
+
     const newPinValue = [...value];
-    newPinValue[index] = inputValue;
-    onPinChange(newPinValue);
+    let nextIndex = index;
 
-    if (inputValue.length === 1 && index < PIN.LENGTH - 1) {
-      focusInput(index + 1);
+    if (newPinValue[index] && index < PIN.LENGTH - 1) {
+      nextIndex = index + 1;
     }
+
+    newPinValue[nextIndex] = newChar;
+    onPinChange(newPinValue);
+    focusInput(Math.min(nextIndex + 1, PIN.LENGTH - 1));
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {

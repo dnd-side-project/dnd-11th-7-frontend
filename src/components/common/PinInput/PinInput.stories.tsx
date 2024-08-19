@@ -1,5 +1,4 @@
 /* eslint-disable no-restricted-exports */
-
 import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 
