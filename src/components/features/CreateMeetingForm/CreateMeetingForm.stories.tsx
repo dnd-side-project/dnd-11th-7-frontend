@@ -2,6 +2,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { AppLayout } from '@/components/common/AppLayout';
+import { meetingStepNames } from '@/constants/meetingForm';
 import { useFunnel } from '@/hooks/useFunnel';
 
 import {
@@ -25,7 +26,7 @@ type Story = StoryObj<typeof CategoryForm>;
 
 export const Basic: Story = {
   render: () => {
-    const { Funnel, setStep } = useFunnel();
+    const { Funnel, setStep } = useFunnel(meetingStepNames);
 
     return (
       <AppLayout>

@@ -6,10 +6,11 @@ import {
   MemberForm,
   PeriodForm,
 } from '@/components/features/CreateMeetingForm';
+import { meetingStepNames } from '@/constants/meetingForm';
 import { useFunnel } from '@/hooks/useFunnel';
 
 export const NewMeeting = () => {
-  const { Funnel, setStep } = useFunnel();
+  const { Funnel, setStep } = useFunnel(meetingStepNames);
 
   return (
     <Funnel>
