@@ -1,11 +1,12 @@
 /* eslint-disable no-restricted-exports */
-import { useState } from 'react';
+
 import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { colors } from '@/styles/global';
 
 import { PinInput } from '.';
+import { usePinState } from '../../../hooks/usePinState';
 import { FlexBox } from '../FlexBox';
 
 const meta = {
@@ -19,11 +20,7 @@ type Story = StoryObj<typeof PinInput>;
 
 export const Basic: Story = {
   render: () => {
-    const [pin, setPin] = useState<string[]>(Array(6).fill(''));
-
-    const handlePinChange = (newValue: string[]) => {
-      setPin(newValue);
-    };
+    const { pin, setPin } = usePinState();
 
     return (
       <FlexBox
@@ -34,7 +31,7 @@ export const Basic: Story = {
         height="100px"
         css={css(`background-color: ${colors.GY6}`)}
       >
-        <PinInput value={pin} onPinChange={handlePinChange} />
+        <PinInput value={pin} onPinChange={setPin} />
       </FlexBox>
     );
   },
