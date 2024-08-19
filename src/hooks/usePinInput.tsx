@@ -20,15 +20,11 @@ export const usePinInput = ({ value, onPinChange }: Props) => {
     if (!englishAndNumberRegex(newChar)) return;
 
     const newPinValue = [...value];
-    let nextIndex = index;
+    newPinValue[index] = newChar;
 
-    if (newPinValue[index] && index < PIN.LENGTH - 1) {
-      nextIndex = index + 1;
-    }
-
-    newPinValue[nextIndex] = newChar;
+    const nextIndex = index < PIN.LENGTH - 1 && newPinValue[index] ? index + 1 : index;
     onPinChange(newPinValue);
-    focusInput(Math.min(nextIndex + 1, PIN.LENGTH - 1));
+    focusInput(nextIndex);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
@@ -36,10 +32,16 @@ export const usePinInput = ({ value, onPinChange }: Props) => {
       return;
     }
     const newPinValue = [...value];
+
     if (newPinValue[index]) {
       newPinValue[index] = '';
       onPinChange(newPinValue);
-    } else if (index > 0) {
+      return;
+    }
+
+    if (index > 0) {
+      newPinValue[index - 1] = '';
+      onPinChange(newPinValue);
       focusInput(index - 1);
     }
   };
