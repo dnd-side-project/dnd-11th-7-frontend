@@ -1,7 +1,12 @@
 export type Props = {
   title: string;
   description?: string;
-  progressValue: number;
-  progressMaxValue?: number;
+  header: React.ReactNode;
   content: React.ReactNode;
+};
+
+export type HeaderProps = {
+  progress: number;
+  maxProgress: number;
+  onPrev: () => void;
 };

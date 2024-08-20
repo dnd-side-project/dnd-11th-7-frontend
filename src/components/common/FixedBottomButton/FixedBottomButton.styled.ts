@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
 
-import { colors } from '@/styles/global';
-
 export const Container = styled.div`
   width: 100%;
-  background-color: ${colors.WH};
+  max-width: 430px;
+  padding: 20px;
+  position: fixed;
+  margin: auto;
+  bottom: 0;
   border: none;
 `;
