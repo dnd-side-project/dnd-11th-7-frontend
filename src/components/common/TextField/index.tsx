@@ -51,6 +51,7 @@ export const TextField = forwardRef<HTMLInputElement, Props>(
             <IconButton iconName="deleteRounded" size={14} onClick={handleClickClear} css={css``} />
           )}
         </StyledTextFieldWrapper>
+        {/* TODO valid 헬퍼 필요한 경우 대응 */}
         {validationState.isValid === false && (
           <Caption color="RD" regularWeight>
             {validationState.message || '올바른 값을 입력해 주세요.'}
