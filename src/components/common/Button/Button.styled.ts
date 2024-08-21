@@ -9,7 +9,6 @@ const buttonVariantStyles = {
   primary: css`
     color: ${colors.WH};
     background-color: ${colors.purple};
-    font-size: 20px;
 
     @media (hover: hover) and (pointer: fine) {
       &:hover:not(:disabled) {
@@ -20,7 +19,6 @@ const buttonVariantStyles = {
   secondary: css`
     color: ${colors.GY1};
     background-color: ${colors.P2};
-    font-size: 18px;
 
     @media (hover: hover) and (pointer: fine) {
       &:hover:not(:disabled) {
@@ -31,7 +29,6 @@ const buttonVariantStyles = {
   tertiary: css`
     color: ${colors.GY1};
     background-color: ${colors.GY5};
-    font-size: 16px;
 
     @media (hover: hover) and (pointer: fine) {
       &:hover:not(:disabled) {
@@ -44,12 +41,15 @@ const buttonVariantStyles = {
 const buttonHeightStyles = {
   large: css`
     height: 62px;
+    font-size: 20px;
   `,
   medium: css`
     height: 55px;
+    font-size: 18px;
   `,
   small: css`
     height: 50px;
+    font-size: 16px;
   `,
 };
 
