@@ -1,5 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react';
 
+import { InvalidState, ValidState } from '@/utils/validation';
+
 export type Props = ComponentPropsWithoutRef<'input'> & {
   value?: string;
   /**
@@ -19,12 +21,4 @@ export type Props = ComponentPropsWithoutRef<'input'> & {
    * @example onClickClear={() => setValue('')}
    */
   onClickClear?: () => void;
-};
-
-export type ValidState = {
-  isValid: true;
-};
-export type InvalidState = {
-  isValid: false;
-  message?: string;
 };

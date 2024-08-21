@@ -1,34 +1,30 @@
-import { ChangeEvent, forwardRef, useState } from 'react';
+import { ChangeEvent, forwardRef } from 'react';
 import { css } from '@emotion/react';
 
 import { IconButton } from '@/components/common/IconButton';
 import { Caption } from '@/components/common/Typography';
 import { colors } from '@/styles/global';
+import { createIsValidInstance } from '@/utils/validation';
 
 import { StyledInput, StyledTextFieldContainer, StyledTextFieldWrapper } from './TextField.styled';
-import { InvalidState, Props, ValidState } from './TextField.types';
+import { Props } from './TextField.types';
 
 export const TextField = forwardRef<HTMLInputElement, Props>(
   (
     { variant = 'filled', value, disabled, validator, onChange, onClickClear, ...inputProps },
     ref
   ) => {
-    const [validState, setValidState] = useState<ValidState | InvalidState>({ isValid: true });
     const hasInput = value ? value.length > 0 : false;
-    const isInvalidInput = validState.isValid === false;
+    const validationState = validator && value ? validator(value) : createIsValidInstance(); // NOTE: validator가 없으면 항상 유효한 상태로 간주
     const canShowClearButton = hasInput && onClickClear && !disabled;
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      if (validator) {
-        setValidState(validator(e.target.value));
-      }
       if (onChange) {
         onChange(e);
       }
     };
 
     const handleClickClear = () => {
-      setValidState({ isValid: true });
       if (onClickClear) {
         onClickClear();
       }
@@ -39,7 +35,7 @@ export const TextField = forwardRef<HTMLInputElement, Props>(
         <StyledTextFieldWrapper
           variant={variant}
           style={
-            isInvalidInput
+            validationState.isValid === false
               ? { outline: `1px solid ${colors.RD}`, ...inputProps.style }
               : inputProps.style
           }
@@ -55,9 +51,9 @@ export const TextField = forwardRef<HTMLInputElement, Props>(
             <IconButton iconName="deleteRounded" size={14} onClick={handleClickClear} css={css``} />
           )}
         </StyledTextFieldWrapper>
-        {isInvalidInput && (
+        {validationState.isValid === false && (
           <Caption color="RD" regularWeight>
-            {validState.message || '올바른 값을 입력해 주세요.'}
+            {validationState.message || '올바른 값을 입력해 주세요.'}
           </Caption>
         )}
       </StyledTextFieldContainer>
