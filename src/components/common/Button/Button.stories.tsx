@@ -1,6 +1,5 @@
-/* eslint-disable no-restricted-exports */
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-
 import { Button } from '.';
 import { FlexBox } from '../FlexBox';
 
@@ -8,159 +7,96 @@ const meta = {
   title: 'components/common/Button',
   component: Button,
   tags: ['autodocs'],
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['CTN', 'grey', 'box'],
+    },
+    disabled: {
+      control: 'boolean',
+    },
+    fontSize: {
+      control: 'select',
+      options: ['medium', 'large'],
+    },
+    height: {
+      control: 'number',
+    },
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Basic: Story = {
-  render: () => (
-    <>
-      <FlexBox flexDir="row" gap={8} alignItems="center" width="70%">
-        <FlexBox
-          flexDir="column"
-          gap={8}
-          justifyContent="space-between"
-          alignItems="center"
-          width="80%"
-        >
-          <Button variant="CTN">다음</Button>
-          <Button variant="CTN" disabled>
-            다음
-          </Button>
-        </FlexBox>
-        <FlexBox
-          flexDir="column"
-          gap={8}
-          justifyContent="space-between"
-          alignItems="center"
-          width="60%"
-        >
-          <Button variant="CTN">일정 생성하기</Button>
-          <Button variant="CTN" disabled>
-            일정 생성하기
-          </Button>
-        </FlexBox>
-        <FlexBox
-          flexDir="column"
-          gap={8}
-          justifyContent="space-between"
-          alignItems="center"
-          width="60%"
-        >
-          <Button variant="grey" fontSize="large">
-            돌아가기
-          </Button>
-          <Button variant="grey" fontSize="large" disabled>
-            돌아가기
-          </Button>
-        </FlexBox>
-      </FlexBox>
-      <FlexBox
-        flexDir="row"
-        gap={8}
-        justifyContent="flex-start"
-        alignItems="center"
-        margin="10px 0 0 0"
-      >
-        <FlexBox flexDir="column" gap={8} alignItems="center" width="70%">
-          <Button variant="grey" height={50} fontSize="medium">
-            비회원으로 시작하기
-          </Button>
-          <Button variant="grey" height={50} fontSize="medium" disabled>
-            비회원으로 시작하기
-          </Button>
-        </FlexBox>
-      </FlexBox>
-      <FlexBox flexDir="row" gap={8} alignItems="center" width="70%" margin="10px 0 0 0">
-        <FlexBox flexDir="column" gap={8} alignItems="center" width="80%">
-          <Button variant="box" height={55} fontSize="medium">
-            전체보기
-          </Button>
-          <Button variant="box" height={55} fontSize="medium" disabled>
-            전체보기
-          </Button>
-        </FlexBox>
-        <FlexBox flexDir="column" gap={8} alignItems="center" width="80%">
-          <Button variant="CTN" height={55} fontSize="medium">
-            전체보기
-          </Button>
-          <Button variant="CTN" height={55} fontSize="medium" disabled>
-            전체보기
-          </Button>
-        </FlexBox>
-      </FlexBox>
-    </>
+const ButtonRow = ({ children }: { children: React.ReactNode }) => (
+  <FlexBox flexDir="row" gap={8} alignItems="center" width="100%" margin="10px 0">
+    {children}
+  </FlexBox>
+);
+
+const ButtonColumn = ({ children }: { children: React.ReactNode }) => (
+  <FlexBox flexDir="column" gap={8} alignItems="center" width="100%">
+    {children}
+  </FlexBox>
+);
+
+const ButtonTemplate: Story = {
+  render: (args) => (
+    <ButtonRow>
+      <ButtonColumn>
+        <Button {...args}>{args.children}</Button>
+        <Button {...args} disabled>
+          {args.children}
+        </Button>
+      </ButtonColumn>
+    </ButtonRow>
   ),
 };
 
 export const CTN: Story = {
-  render: () => (
-    <FlexBox flexDir="row" gap={8} alignItems="center" width="60%">
-      <FlexBox flexDir="column" gap={8} alignItems="center" width="60%">
-        <Button variant="CTN">다음</Button>
-        <Button variant="CTN" disabled>
-          다음
-        </Button>
-      </FlexBox>
-      <FlexBox flexDir="column" gap={8} alignItems="center" width="40%">
-        <Button variant="CTN">일정 생성하기</Button>
-        <Button variant="CTN" disabled>
-          일정 생성하기
-        </Button>
-      </FlexBox>
-    </FlexBox>
-  ),
+  ...ButtonTemplate,
+  args: {
+    variant: 'CTN',
+    children: '다음',
+  },
 };
 
 export const Grey: Story = {
-  render: () => (
-    <FlexBox flexDir="row" gap={8} justifyContent="flex-start" alignItems="center">
-      <FlexBox flexDir="column" gap={8} alignItems="center" width="50%">
-        <Button variant="grey" height={50} fontSize="medium">
-          비회원으로 시작하기
-        </Button>
-        <Button variant="grey" height={50} fontSize="medium" disabled>
-          비회원으로 시작하기
-        </Button>
-      </FlexBox>
-      <FlexBox
-        flexDir="column"
-        gap={8}
-        justifyContent="space-between"
-        alignItems="center"
-        width="20%"
-      >
-        <Button variant="grey" fontSize="large">
-          돌아가기
-        </Button>
-        <Button variant="grey" fontSize="large" disabled>
-          돌아가기
-        </Button>
-      </FlexBox>
-    </FlexBox>
-  ),
+  ...ButtonTemplate,
+  args: {
+    variant: 'grey',
+    fontSize: 'large',
+    children: '돌아가기',
+  },
 };
 
 export const Box: Story = {
+  ...ButtonTemplate,
+  args: {
+    variant: 'box',
+    height: 55,
+    fontSize: 'medium',
+    children: '전체보기',
+  },
+};
+
+export const AllVariants: Story = {
   render: () => (
-    <FlexBox flexDir="row" gap={8} alignItems="center" width="70%">
-      <FlexBox flexDir="column" gap={8} alignItems="center" width="80%">
-        <Button variant="box" height={55} fontSize="medium">
-          전체보기
-        </Button>
-        <Button variant="box" height={55} fontSize="medium" disabled>
-          전체보기
-        </Button>
-      </FlexBox>
-      <FlexBox flexDir="column" gap={8} alignItems="center" width="80%">
-        <Button variant="CTN" height={55} fontSize="medium">
-          전체보기
-        </Button>
-        <Button variant="CTN" height={55} fontSize="medium" disabled>
-          전체보기
-        </Button>
-      </FlexBox>
-    </FlexBox>
+    <>
+      <ButtonRow>
+        <ButtonColumn>
+          <Button variant="CTN">CTN Button</Button>
+          <Button variant="CTN" disabled>CTN Button (Disabled)</Button>
+        </ButtonColumn>
+        <ButtonColumn>
+          <Button variant="grey" fontSize="large">Grey Button</Button>
+          <Button variant="grey" fontSize="large" disabled>Grey Button (Disabled)</Button>
+        </ButtonColumn>
+        <ButtonColumn>
+          <Button variant="box" height={55}>Box Button</Button>
+          <Button variant="box" height={55} disabled>Box Button (Disabled)</Button>
+        </ButtonColumn>
+      </ButtonRow>
+    </>
   ),
 };
