@@ -39,7 +39,39 @@ const ButtonTemplate: Story = {
     </FlexBox>
   ),
 };
+
 export const Basic: Story = {
+  args: {
+    variant: 'primary',
+    height: 'large',
+    children: '다음',
+    disabled: false,
+  },
+  argTypes: {
+    variant: {
+      control: {
+        type: 'inline-radio',
+      },
+      options: ['primary', 'secondary', 'tertiary'],
+    },
+    height: {
+      control: {
+        type: 'inline-radio',
+      },
+      options: ['large', 'medium', 'small'],
+    },
+    disabled: {
+      control: 'boolean',
+    },
+  },
+  render: (args) => (
+    <FlexBox css={css(`width: 393px; `)}>
+      <Button {...args}>{args.children}</Button>
+    </FlexBox>
+  ),
+};
+
+export const Default: Story = {
   args: {
     variant: 'primary',
     height: 'large',
