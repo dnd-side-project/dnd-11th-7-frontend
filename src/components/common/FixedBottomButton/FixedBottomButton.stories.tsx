@@ -25,14 +25,17 @@ export const Basic: Story = {
     >
       <FixedBottomButton>다음</FixedBottomButton>
       <FixedBottomButton disabled>다음</FixedBottomButton>
-      <FixedBottomButton left={<Button>돌아가기</Button>} right={<Button>일정 생성하기</Button>} />
       <FixedBottomButton
-        left={<Button disabled>돌아가기</Button>}
-        right={<Button>일정 생성하기</Button>}
-      />
-      <FixedBottomButton
-        left={<Button>돌아가기</Button>}
-        right={<Button disabled>일정 생성하기</Button>}
+        left={
+          <Button variant="tertiary" height="large">
+            돌아가기
+          </Button>
+        }
+        right={
+          <Button variant="primary" height="large">
+            일정 생성하기
+          </Button>
+        }
       />
     </FlexBox>
   ),
