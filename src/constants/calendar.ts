@@ -1,0 +1,6 @@
+export const CALENDAR = {
+  MAX_MONTHS: 1,
+  MAX_RANGE: 14,
+  MAX_MONTH_DAYS: 30,
+  TOTAL_DAYS: 35,
+};
