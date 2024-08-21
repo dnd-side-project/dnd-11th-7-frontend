@@ -1,5 +1,8 @@
+/* eslint-disable no-restricted-exports */
 import React from 'react';
+import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { Button } from '.';
 import { FlexBox } from '../FlexBox';
 
@@ -7,22 +10,6 @@ const meta = {
   title: 'components/common/Button',
   component: Button,
   tags: ['autodocs'],
-  argTypes: {
-    variant: {
-      control: 'select',
-      options: ['CTN', 'grey', 'box'],
-    },
-    disabled: {
-      control: 'boolean',
-    },
-    fontSize: {
-      control: 'select',
-      options: ['medium', 'large'],
-    },
-    height: {
-      control: 'number',
-    },
-  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -35,68 +22,84 @@ const ButtonRow = ({ children }: { children: React.ReactNode }) => (
 );
 
 const ButtonColumn = ({ children }: { children: React.ReactNode }) => (
-  <FlexBox flexDir="column" gap={8} alignItems="center" width="100%">
+  <FlexBox width="100%" flexDir="column" alignItems="center" gap={8} margin="10px 0">
     {children}
   </FlexBox>
 );
 
 const ButtonTemplate: Story = {
   render: (args) => (
-    <ButtonRow>
+    <FlexBox margin="0 20px" css={css(`width: 393px;`)}>
       <ButtonColumn>
         <Button {...args}>{args.children}</Button>
         <Button {...args} disabled>
           {args.children}
         </Button>
       </ButtonColumn>
-    </ButtonRow>
+    </FlexBox>
   ),
 };
-
-export const CTN: Story = {
-  ...ButtonTemplate,
+export const Basic: Story = {
   args: {
-    variant: 'CTN',
+    variant: 'primary',
+    height: 'large',
     children: '다음',
   },
-};
-
-export const Grey: Story = {
-  ...ButtonTemplate,
-  args: {
-    variant: 'grey',
-    fontSize: 'large',
-    children: '돌아가기',
-  },
-};
-
-export const Box: Story = {
-  ...ButtonTemplate,
-  args: {
-    variant: 'box',
-    height: 55,
-    fontSize: 'medium',
-    children: '전체보기',
-  },
-};
-
-export const AllVariants: Story = {
   render: () => (
     <>
       <ButtonRow>
         <ButtonColumn>
-          <Button variant="CTN">CTN Button</Button>
-          <Button variant="CTN" disabled>CTN Button (Disabled)</Button>
+          <Button variant="primary" height="large">
+            Primary Button
+          </Button>
+          <Button variant="primary" height="large" disabled>
+            (Disabled)
+          </Button>
         </ButtonColumn>
         <ButtonColumn>
-          <Button variant="grey" fontSize="large">Grey Button</Button>
-          <Button variant="grey" fontSize="large" disabled>Grey Button (Disabled)</Button>
+          <Button variant="secondary" height="medium">
+            Secondary Button
+          </Button>
+          <Button variant="secondary" height="medium" disabled>
+            (Disabled)
+          </Button>
         </ButtonColumn>
         <ButtonColumn>
-          <Button variant="box" height={55}>Box Button</Button>
-          <Button variant="box" height={55} disabled>Box Button (Disabled)</Button>
+          <Button variant="tertiary" height="small">
+            Tertiary Button
+          </Button>
+          <Button variant="tertiary" height="small" disabled>
+            (Disabled)
+          </Button>
         </ButtonColumn>
       </ButtonRow>
     </>
   ),
+};
+
+export const Primary: Story = {
+  ...ButtonTemplate,
+  args: {
+    variant: 'primary',
+    height: 'large',
+    children: '다음',
+  },
+};
+
+export const Secondary: Story = {
+  ...ButtonTemplate,
+  args: {
+    variant: 'secondary',
+    height: 'medium',
+    children: '돌아가기',
+  },
+};
+
+export const Tertiary: Story = {
+  ...ButtonTemplate,
+  args: {
+    variant: 'tertiary',
+    height: 'small',
+    children: '비회원으로 시작하기',
+  },
 };
