@@ -1,11 +1,12 @@
 /* eslint-disable no-restricted-exports */
+import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { AppLayout } from '@/components/common/AppLayout';
 import { Button } from '@/components/common/Button';
+import { FlexBox } from '@/components/common/FlexBox';
 
 import { FixedBottomButton } from '.';
-
 const meta = {
   title: 'components/common/FixedBottomButton',
   component: FixedBottomButton,

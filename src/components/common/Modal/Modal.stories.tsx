@@ -41,7 +41,9 @@ export const Basic: Story = {
           height="100vh"
           margin="auto"
         >
-          <Button onClick={openModal}>모달</Button>
+          <Button variant="primary" height="large" onClick={openModal}>
+            모달
+          </Button>
 
           <Modal
             isOpen={isOpen}
@@ -52,7 +54,9 @@ export const Basic: Story = {
           >
             <FlexBox flexDir="column" gap={10}>
               <Icon name="jjakkak1" size={40} />
-              <Button onClick={closeModal}>확인</Button>
+              <Button variant="primary" height="large" onClick={closeModal}>
+                확인
+              </Button>
             </FlexBox>
           </Modal>
         </FlexBox>
