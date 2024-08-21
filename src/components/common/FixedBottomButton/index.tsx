@@ -16,7 +16,7 @@ export const FixedBottomButton = forwardRef<HTMLButtonElement, Props>(
             {right}
           </FlexBox>
         ) : (
-          <Button ref={ref} {...props}>
+          <Button variant="primary" height="large" ref={ref} {...props}>
             {children}
           </Button>
         )}
