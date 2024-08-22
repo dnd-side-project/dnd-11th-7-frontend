@@ -10,4 +10,5 @@ export const Container = styled.div`
   margin: auto;
   bottom: 0;
   border: none;
+  z-index: 10;
 `;
