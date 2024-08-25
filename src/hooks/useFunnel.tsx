@@ -1,6 +1,5 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement, useCallback, useState } from 'react';
 
-import { FlexBox } from '@/components/common/FlexBox';
 import { FunnelProgressContext } from '@/contexts/FunnelProgressContext';
 
 type StepNames<T> = readonly T[];
@@ -12,24 +11,27 @@ type StepProps<T> = {
 export const useFunnel = <T,>(stepNames: StepNames<T>) => {
   const [step, setStep] = useState(stepNames[0]);
 
-  const Funnel = ({ children }: { children: ReactElement[] }) => {
-    const stepComponentIndex = children.findIndex((child) => child.props.name === step);
-    const StepComponent = children[stepComponentIndex];
+  const FunnelComponent = useCallback(
+    ({ children }: { children: ReactElement[] }) => {
+      const stepComponentIndex = children.findIndex((child) => child.props.name === step);
+      const StepComponent = children[stepComponentIndex];
 
-    return (
-      <FunnelProgressContext.Provider
-        value={{ progress: stepComponentIndex + 1, maxProgress: children.length }}
-      >
-        {StepComponent}
-      </FunnelProgressContext.Provider>
-    );
-  };
+      return (
+        <FunnelProgressContext.Provider
+          value={{ progress: stepComponentIndex + 1, maxProgress: children.length }}
+        >
+          {StepComponent}
+        </FunnelProgressContext.Provider>
+      );
+    },
+    [step]
+  );
 
-  const Step = ({ children }: StepProps<T>) => {
-    return <FlexBox>{children}</FlexBox>;
-  };
+  const Step = useCallback(({ children }: StepProps<T>) => {
+    return <>{children}</>;
+  }, []);
 
-  Funnel.Step = Step;
+  const Funnel = Object.assign(FunnelComponent, { Step });
 
   return { Funnel, setStep };
 };
