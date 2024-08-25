@@ -16,36 +16,41 @@ export const NewMeeting = () => {
     <Funnel>
       <Funnel.Step name="카테고리">
         <CategoryForm
-          onNext={() => setStep('모임이름')}
           onPrev={() => {
             /* TODO navigate */
           }}
+          onNext={() => setStep('모임이름')}
         />
       </Funnel.Step>
+
       <Funnel.Step name="모임이름">
         <MeetingNameForm
-          onNext={() => setStep('일정수집기한')}
           onPrev={() => setStep('카테고리')}
+          onNext={() => setStep('일정수집기한')}
         />
       </Funnel.Step>
+
       <Funnel.Step name="일정수집기한">
-        <PeriodForm onNext={() => setStep('모임인원수')} onPrev={() => setStep('모임이름')} />
+        <PeriodForm onPrev={() => setStep('모임이름')} onNext={() => setStep('모임인원수')} />
       </Funnel.Step>
+
       <Funnel.Step name="모임인원수">
-        <MemberForm onNext={() => setStep('익명여부')} onPrev={() => setStep('일정수집기한')} />
+        <MemberForm onPrev={() => setStep('일정수집기한')} onNext={() => setStep('익명여부')} />
       </Funnel.Step>
+
       <Funnel.Step name="익명여부">
         <AnonymousForm
-          onNext={() => setStep('일정입력마감기한')}
           onPrev={() => setStep('모임인원수')}
+          onNext={() => setStep('일정입력마감기한')}
         />
       </Funnel.Step>
+
       <Funnel.Step name="일정입력마감기한">
         <DeadlineForm
+          onPrev={() => setStep('익명여부')}
           onNext={() => {
             /* TODO navigate */
           }}
-          onPrev={() => setStep('익명여부')}
         />
       </Funnel.Step>
     </Funnel>
