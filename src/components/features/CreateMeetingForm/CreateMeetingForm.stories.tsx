@@ -8,10 +8,10 @@ import { useFunnel } from '@/hooks/useFunnel';
 import {
   AnonymousForm,
   CategoryForm,
-  DeadlineForm,
+  DueDateForm,
   MeetingNameForm,
-  MemberForm,
-  PeriodForm,
+  MemberCountForm,
+  MeetingDateRangeForm,
 } from '.';
 
 const meta = {
@@ -43,11 +43,17 @@ export const Basic: Story = {
           </Funnel.Step>
 
           <Funnel.Step name="일정수집기한">
-            <PeriodForm onPrev={() => setStep('모임이름')} onNext={() => setStep('모임인원수')} />
+            <MeetingDateRangeForm
+              onPrev={() => setStep('모임이름')}
+              onNext={() => setStep('모임인원수')}
+            />
           </Funnel.Step>
 
           <Funnel.Step name="모임인원수">
-            <MemberForm onPrev={() => setStep('일정수집기한')} onNext={() => setStep('익명여부')} />
+            <MemberCountForm
+              onPrev={() => setStep('일정수집기한')}
+              onNext={() => setStep('익명여부')}
+            />
           </Funnel.Step>
 
           <Funnel.Step name="익명여부">
@@ -58,7 +64,7 @@ export const Basic: Story = {
           </Funnel.Step>
 
           <Funnel.Step name="일정입력마감기한">
-            <DeadlineForm onPrev={() => setStep('익명여부')} onNext={() => {}} />
+            <DueDateForm onPrev={() => setStep('익명여부')} onNext={() => {}} />
           </Funnel.Step>
         </Funnel>
       </AppLayout>

@@ -10,7 +10,7 @@ import { CreateMeetingFormBaseProps } from './types';
 
 type Props = CreateMeetingFormBaseProps;
 
-export const PeriodForm = ({ onNext, onPrev }: Props) => {
+export const MeetingDateRangeForm = ({ onNext, onPrev }: Props) => {
   const { progress, maxProgress } = useFunnelProgressContext();
   const [selectedStartDate, setSelectedStartDate] = useState<Dayjs | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Dayjs | null>(null);

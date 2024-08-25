@@ -10,7 +10,7 @@ import { CreateMeetingFormBaseProps } from './types';
 
 type Props = CreateMeetingFormBaseProps;
 
-export const MemberForm = ({ onNext, onPrev }: Props) => {
+export const MemberCountForm = ({ onNext, onPrev }: Props) => {
   const { progress, maxProgress } = useFunnelProgressContext();
   const [memberCount, setMemberCount] = useState(2);
 

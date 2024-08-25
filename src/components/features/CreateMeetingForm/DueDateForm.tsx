@@ -10,9 +10,9 @@ import { CreateMeetingFormBaseProps } from './types';
 
 type Props = CreateMeetingFormBaseProps;
 
-export const DeadlineForm = ({ onNext, onPrev }: Props) => {
+export const DueDateForm = ({ onNext, onPrev }: Props) => {
   const { progress, maxProgress } = useFunnelProgressContext();
-  const [selectedDeadline, setSelectedDeadline] = useState('오늘'); // TODO 인터페이스 정의 필요
+  const [selectedDueDate, setSelectedDueDate] = useState('오늘'); // TODO 인터페이스 정의 필요
 
   return (
     <>
@@ -21,7 +21,7 @@ export const DeadlineForm = ({ onNext, onPrev }: Props) => {
         title={`일정 입력 마감 기한을\n기입해 주세요`}
         content={
           <FlexBox width="100%" padding="78px 0">
-            <Switch selectedValue={selectedDeadline} onChange={setSelectedDeadline}>
+            <Switch selectedValue={selectedDueDate} onChange={setSelectedDueDate}>
               <Switch.Button label="오늘" value="오늘" />
               <Switch.Button label="내일" value="내일" />
               <Switch.Button label="3일" value="3일" />
