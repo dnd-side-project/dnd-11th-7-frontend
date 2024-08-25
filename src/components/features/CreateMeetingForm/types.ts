@@ -1,4 +1,8 @@
 export type CreateMeetingFormBaseProps = {
-  onNext: (data?: unknown) => void;
+  onNext: () => void;
   onPrev: () => void;
+};
+
+export type FormData<T> = {
+  context: { state: T; setState: (newState: T) => void };
 };
