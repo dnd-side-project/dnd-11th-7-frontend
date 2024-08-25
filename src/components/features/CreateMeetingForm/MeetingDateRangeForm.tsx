@@ -1,19 +1,32 @@
 import { useState } from 'react';
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
 import { Calendar } from '@/components/common/Calendar';
 import { FixedBottomButton } from '@/components/common/FixedBottomButton';
 import { FormLayout } from '@/components/common/FormLayout';
 import { useFunnelProgressContext } from '@/hooks/useFunnelProgressContext';
+import { MeetingForm } from '@/types/meeting';
 
-import { CreateMeetingFormBaseProps } from './types';
+import { CreateMeetingFormBaseProps, FormData } from './types';
 
-type Props = CreateMeetingFormBaseProps;
+type Props<T> = CreateMeetingFormBaseProps & FormData<T>;
 
-export const MeetingDateRangeForm = ({ onNext, onPrev }: Props) => {
+export const MeetingDateRangeForm = ({
+  context,
+  onNext,
+  onPrev,
+}: Props<Pick<MeetingForm, 'meetingStartDate' | 'meetingEndDate'>>) => {
   const { progress, maxProgress } = useFunnelProgressContext();
-  const [selectedStartDate, setSelectedStartDate] = useState<Dayjs | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Dayjs | null>(null);
+  const { state, setState: setMeetingDateFormData } = context;
+  const { meetingStartDate: meetingStartDateFormData, meetingEndDate: meetingEndDateFormData } =
+    state;
+
+  const [selectedStartDate, setSelectedStartDate] = useState<Dayjs | null>(() =>
+    !!meetingStartDateFormData === true ? dayjs(meetingStartDateFormData) : null
+  );
+  const [selectedEndDate, setSelectedEndDate] = useState<Dayjs | null>(() =>
+    !!meetingEndDateFormData === true ? dayjs(meetingEndDateFormData) : null
+  );
 
   const handleDateChange = (start: Dayjs | null, end: Dayjs | null) => {
     setSelectedStartDate(start);
@@ -35,7 +48,16 @@ export const MeetingDateRangeForm = ({ onNext, onPrev }: Props) => {
         }
       />
       <FixedBottomButton
-        onClick={() => onNext({ start: selectedStartDate, end: selectedEndDate })}
+        onClick={() => {
+          onNext();
+          setMeetingDateFormData({
+            meetingStartDate: dayjs(selectedStartDate).format('YYYY-MM-DD'),
+            meetingEndDate:
+              selectedEndDate === null
+                ? dayjs(selectedStartDate).format('YYYY-MM-DD')
+                : dayjs(selectedEndDate).format('YYYY-MM-DD'),
+          });
+        }}
         disabled={selectedStartDate === null && selectedEndDate === null}
       >
         다음

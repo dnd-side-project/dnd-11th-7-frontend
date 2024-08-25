@@ -4,33 +4,37 @@ import { Chip } from '@/components/common/Chip';
 import { FixedBottomButton } from '@/components/common/FixedBottomButton';
 import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
-import { categories } from '@/constants/meetingForm';
+import { categories, categoryIdMap } from '@/constants/meetingForm';
 import { useFunnelProgressContext } from '@/hooks/useFunnelProgressContext';
+import { MeetingForm } from '@/types/meeting';
 
-import { CreateMeetingFormBaseProps } from './types';
+import { CreateMeetingFormBaseProps, FormData } from './types';
 
-type Props = CreateMeetingFormBaseProps;
+type Props<T> = CreateMeetingFormBaseProps & FormData<T>;
 
 const MIN_SELECT_COUNT = 1;
 const MAX_SELECT_COUNT = 3;
 
-export const CategoryForm = ({ onNext, onPrev }: Props) => {
+export const CategoryForm = ({ context, onNext, onPrev }: Props<MeetingForm['categoryIds']>) => {
   const { progress, maxProgress } = useFunnelProgressContext();
-  const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
+  const { state: categoryIdsFormData, setState: setCategoryIdsFormData } = context;
 
-  const canClick = (chipValue: string) => {
+  const [selectedCategoryIds, setSelectedCategoryIds] = useState<number[]>(categoryIdsFormData);
+
+  const canClick = (chipValue: number) => {
     return (
-      (!selectedCategory.includes(chipValue) && selectedCategory.length < MAX_SELECT_COUNT) ||
-      (selectedCategory.includes(chipValue) && selectedCategory.length === MAX_SELECT_COUNT) ||
-      selectedCategory.length < MAX_SELECT_COUNT
+      (!selectedCategoryIds.includes(chipValue) && selectedCategoryIds.length < MAX_SELECT_COUNT) ||
+      (selectedCategoryIds.includes(chipValue) &&
+        selectedCategoryIds.length === MAX_SELECT_COUNT) ||
+      selectedCategoryIds.length < MAX_SELECT_COUNT
     );
   };
 
-  const handleClickChip = (chipValue: string) => {
+  const handleClickChip = (chipValue: number) => {
     if (!canClick(chipValue)) return;
-    return selectedCategory.includes(chipValue)
-      ? setSelectedCategory(selectedCategory.filter((selected) => selected !== chipValue))
-      : setSelectedCategory([...selectedCategory, chipValue]);
+    return selectedCategoryIds.includes(chipValue)
+      ? setSelectedCategoryIds(selectedCategoryIds.filter((selected) => selected !== chipValue))
+      : setSelectedCategoryIds([...selectedCategoryIds, chipValue]);
   };
 
   return (
@@ -46,9 +50,12 @@ export const CategoryForm = ({ onNext, onPrev }: Props) => {
                 <Chip
                   key={category}
                   component="button"
-                  variant={selectedCategory.includes(category) ? 'primary' : 'dimmed'}
-                  onClick={() => handleClickChip(category)}
-                  disabled={!canClick(category)}
+                  variant={
+                    selectedCategoryIds.includes(categoryIdMap[category]) ? 'filled' : 'dimmed'
+                  }
+                  value={categoryIdMap[category]}
+                  onClick={() => handleClickChip(categoryIdMap[category])}
+                  disabled={!canClick(categoryIdMap[category])}
                 >
                   {category}
                 </Chip>
@@ -58,8 +65,11 @@ export const CategoryForm = ({ onNext, onPrev }: Props) => {
         }
       />
       <FixedBottomButton
-        disabled={selectedCategory.length < MIN_SELECT_COUNT}
-        onClick={() => onNext(selectedCategory)}
+        disabled={selectedCategoryIds.length < MIN_SELECT_COUNT}
+        onClick={() => {
+          onNext();
+          setCategoryIdsFormData(selectedCategoryIds);
+        }}
       >
         다음
       </FixedBottomButton>

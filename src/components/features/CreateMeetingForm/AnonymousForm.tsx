@@ -5,14 +5,17 @@ import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
 import { Switch } from '@/components/common/Switch';
 import { useFunnelProgressContext } from '@/hooks/useFunnelProgressContext';
+import { MeetingForm } from '@/types/meeting';
 
-import { CreateMeetingFormBaseProps } from './types';
+import { CreateMeetingFormBaseProps, FormData } from './types';
 
-type Props = CreateMeetingFormBaseProps;
+type Props<T> = CreateMeetingFormBaseProps & FormData<T>;
 
-export const AnonymousForm = ({ onNext, onPrev }: Props) => {
+export const AnonymousForm = ({ context, onNext, onPrev }: Props<MeetingForm['isAnonymous']>) => {
   const { progress, maxProgress } = useFunnelProgressContext();
-  const [isAnonymous, setIsAnonymous] = useState(false);
+  const { state: isAnonymousFormData, setState: setIsAnonymousFormData } = context;
+
+  const [isAnonymous, setIsAnonymous] = useState(isAnonymousFormData);
 
   return (
     <>
@@ -37,7 +40,14 @@ export const AnonymousForm = ({ onNext, onPrev }: Props) => {
           </FlexBox>
         }
       />
-      <FixedBottomButton onClick={onNext}>다음</FixedBottomButton>
+      <FixedBottomButton
+        onClick={() => {
+          onNext();
+          setIsAnonymousFormData(isAnonymous);
+        }}
+      >
+        다음
+      </FixedBottomButton>
     </>
   );
 };

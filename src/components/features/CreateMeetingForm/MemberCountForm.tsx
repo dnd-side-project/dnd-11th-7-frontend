@@ -5,14 +5,21 @@ import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
 import { Slider } from '@/components/common/Slider';
 import { useFunnelProgressContext } from '@/hooks/useFunnelProgressContext';
+import { MeetingForm } from '@/types/meeting';
 
-import { CreateMeetingFormBaseProps } from './types';
+import { CreateMeetingFormBaseProps, FormData } from './types';
 
-type Props = CreateMeetingFormBaseProps;
+type Props<T> = CreateMeetingFormBaseProps & FormData<T>;
 
-export const MemberCountForm = ({ onNext, onPrev }: Props) => {
+export const MemberCountForm = ({
+  context,
+  onNext,
+  onPrev,
+}: Props<MeetingForm['numberOfPeople']>) => {
   const { progress, maxProgress } = useFunnelProgressContext();
-  const [memberCount, setMemberCount] = useState(2);
+  const { state: memberCountFormData, setState: setMemberCountFormData } = context;
+
+  const [memberCount, setMemberCount] = useState(memberCountFormData);
 
   return (
     <>
@@ -32,7 +39,14 @@ export const MemberCountForm = ({ onNext, onPrev }: Props) => {
           </FlexBox>
         }
       />
-      <FixedBottomButton onClick={() => onNext(memberCount)}>다음</FixedBottomButton>
+      <FixedBottomButton
+        onClick={() => {
+          onNext();
+          setMemberCountFormData(memberCount);
+        }}
+      >
+        다음
+      </FixedBottomButton>
     </>
   );
 };
