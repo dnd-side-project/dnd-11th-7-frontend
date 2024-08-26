@@ -1,10 +1,8 @@
 /* eslint-disable no-restricted-exports */
-import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { AppLayout } from '@/components/common/AppLayout';
 import { Button } from '@/components/common/Button';
-import { FlexBox } from '@/components/common/FlexBox';
 
 import { FixedBottomButton } from '.';
 const meta = {
@@ -28,14 +26,7 @@ export const Basic: Story = {
 
 export const Dual: Story = {
   render: () => (
-    <FlexBox
-      flexDir="column"
-      alignItems="center"
-      gap={10}
-      css={css(`width: 393px; margin: 0 20px;`)}
-    >
-      <FixedBottomButton>다음</FixedBottomButton>
-      <FixedBottomButton disabled>다음</FixedBottomButton>
+    <AppLayout>
       <FixedBottomButton
         left={
           <Button variant="tertiary" height="large">
@@ -48,6 +39,6 @@ export const Dual: Story = {
           </Button>
         }
       />
-    </FlexBox>
+    </AppLayout>
   ),
 };
