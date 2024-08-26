@@ -5,7 +5,6 @@ import { AppLayout } from '@/components/common/AppLayout';
 import { Button } from '@/components/common/Button';
 
 import { FixedBottomButton } from '.';
-
 const meta = {
   title: 'components/common/FixedBottomButton',
   component: FixedBottomButton,
@@ -29,8 +28,16 @@ export const Dual: Story = {
   render: () => (
     <AppLayout>
       <FixedBottomButton
-        left={<Button disabled>돌아가기</Button>}
-        right={<Button>일정 생성하기</Button>}
+        left={
+          <Button variant="tertiary" height="large">
+            돌아가기
+          </Button>
+        }
+        right={
+          <Button variant="primary" height="large">
+            일정 생성하기
+          </Button>
+        }
       />
     </AppLayout>
   ),

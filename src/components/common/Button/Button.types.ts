@@ -2,12 +2,15 @@ import { ComponentPropsWithoutRef } from 'react';
 
 export type Props = {
   /**
-   * Disabled state of the button.
-   * @default 'false'
+   * The variant of the button.
    */
-  disabled?: boolean;
+  variant: 'primary' | 'secondary' | 'tertiary';
+  /**
+   * The height of the button.
+   */
+  height: 'large' | 'medium' | 'small';
   /**
    * Optional children for the button, typically a string.
    */
-  children?: React.ReactNode;
+  children: React.ReactNode;
 } & ComponentPropsWithoutRef<'button'>;
