@@ -24,3 +24,8 @@ filters:
       - /BUGFIX/
     events: [pull_request]
     targets: [title]
+  - label: refactor
+    regexs:
+      - /REFACTOR/
+    events: [issues, pull_request]
+    targets: [title]
