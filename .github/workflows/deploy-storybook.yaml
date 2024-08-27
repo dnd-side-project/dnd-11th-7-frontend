@@ -1,0 +1,31 @@
+name: deploy-storybook
+
+on:
+  pull_request:
+    types:
+      - closed
+    paths:
+      - 'components/**'
+
+jobs:
+  deploy-storybook:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: install packages
+        run: yarn
+
+      - name: deploy with chromatic
+        id: chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: storybook deploy alert webhook
+        uses: tsickert/discord-webhook@v5.3.0
+        with:
+          webhook-url: ${{ secrets.WEBHOOK_URL }}
+          content: '✅ PR " ${{ github.event.pull_request.title}} " 의 변경 사항이 Storybook에 배포되었어요! 👉🏻 ${{ steps.chromatic.outputs.storybookUrl }}'
