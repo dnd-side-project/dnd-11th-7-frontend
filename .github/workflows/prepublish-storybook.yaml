@@ -3,7 +3,7 @@ name: prepublish-storybook
 on:
   pull_request:
     paths:
-      - 'components/**'
+      - 'src/components/**'
     types: [opened, reopened, synchronize]
     branches: ['main']
   workflow_dispatch:
