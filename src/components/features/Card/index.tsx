@@ -6,7 +6,7 @@ import { Props } from './Card.types';
 import { Icon } from '../../common/Icon';
 
 export const Card = forwardRef<HTMLDivElement, Props>(
-  ({ emojiPosition = 'top-right', children, ...props }, ref) => {
+  ({ emojiPosition = 'none', children, ...props }, ref) => {
     return (
       <StyledCardContainer ref={ref} {...props}>
         {emojiPosition !== 'none' && (

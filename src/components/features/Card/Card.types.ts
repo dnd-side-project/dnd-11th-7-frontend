@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef } from 'react';
 export type Props = {
   /**
    * The emoji position of the card
-   * @default 'top-right'
+   * @default 'none'
    */
   emojiPosition?: 'none' | 'top-right' | 'top-left';
   /**
