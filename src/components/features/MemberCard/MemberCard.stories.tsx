@@ -1,7 +1,6 @@
 /* eslint-disable no-restricted-exports */
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { AppLayout } from '@/components/common/AppLayout';
 import { FlexBox } from '@/components/common/FlexBox';
 import { Member } from '@/components/common/Member';
 
