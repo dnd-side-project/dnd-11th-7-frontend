@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { createIsInvalidInstance, createIsValidInstance } from '@/utils/validation';
+
 import { TextField } from '.';
 
 const meta = {
@@ -35,11 +37,11 @@ export const Basic: Story = {
   },
   render: (args) => {
     const [value, setValue] = useState('');
-    const validator = (target: string) => {
-      if (target.length > 10) {
-        return { isValid: false, message: '10글자까지 입력 가능합니다.' };
+    const validator = (value: string) => {
+      if (value.length > 10) {
+        return createIsInvalidInstance('10글자까지 입력 가능합니다.');
       }
-      return { isValid: true };
+      return createIsValidInstance();
     };
 
     const handleChange = (newValue: string) => {
