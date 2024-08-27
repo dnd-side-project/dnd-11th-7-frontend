@@ -1,4 +1,4 @@
-name: prepublish-storybook
+name: Prepublish Storybook
 
 on:
   pull_request:
