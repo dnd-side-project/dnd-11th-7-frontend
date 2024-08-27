@@ -1,20 +1,14 @@
-name: check_pull_request
+name: prepublish-storybook
 
 on:
   pull_request:
+    paths:
+      - 'components/**'
     types: [opened, reopened, synchronize]
     branches: ['main']
   workflow_dispatch:
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: yarn
-      - run: yarn run lint
-        working-directory: .
-
   storybookpreview:
     runs-on: ubuntu-latest
     steps:
@@ -33,4 +27,4 @@ jobs:
       - name: comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
-          message: '🎉 Storybook 미리보기: ${{ steps.chromatic.outputs.storybookUrl }}'
+          message: '👀 코드리뷰 전! Storybook 미리보기: ${{ steps.chromatic.outputs.storybookUrl }}'
