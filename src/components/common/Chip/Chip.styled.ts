@@ -31,7 +31,8 @@ const chipVariantStyles = {
   `,
 };
 
-export const StyledChip = styled.span<Props>`
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const StyledChip = styled.span<Props<any>>`
   all: unset;
   padding: 6px 12px;
   border-radius: 999px;

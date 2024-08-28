@@ -83,6 +83,7 @@ export const ChipButton: Story = {
             <Chip
               component="button"
               variant={selected.includes(category) ? 'filled' : 'dimmed'}
+              value={category}
               onClick={() => handleToggle(category)}
             >
               {category}

@@ -9,11 +9,25 @@ import { GroupProps, Props } from './Chip.types';
 /**
  * @description button으로 사용하는 경우 component='button' 적용해 주세요.
  */
-export const Chip = ({ component = 'span', variant = 'filled', children, ...props }: Props) => {
+export const Chip = <T,>({
+  component = 'span',
+  variant = 'filled',
+  value,
+  children,
+  ...props
+}: Props<T>) => {
   return (
-    <StyledChip as={component} component={component} variant={variant} {...props}>
-      {children}
-    </StyledChip>
+    <>
+      {component === 'button' ? (
+        <StyledChip as="button" component="button" variant={variant} value={value} {...props}>
+          {children}
+        </StyledChip>
+      ) : (
+        <StyledChip as="span" component="span" variant={variant} {...props}>
+          {children}
+        </StyledChip>
+      )}
+    </>
   );
 };
 
