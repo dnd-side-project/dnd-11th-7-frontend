@@ -11,7 +11,8 @@ import { GroupProps, Props } from './Chip.types';
  */
 export const Chip = <T,>({
   component = 'span',
-  variant = 'filled',
+  variant = 'primary',
+  shape = 'rounded',
   value,
   children,
   ...props
@@ -19,11 +20,18 @@ export const Chip = <T,>({
   return (
     <>
       {component === 'button' ? (
-        <StyledChip as="button" component="button" variant={variant} value={value} {...props}>
+        <StyledChip
+          as="button"
+          component="button"
+          variant={variant}
+          shape={shape}
+          value={value}
+          {...props}
+        >
           {children}
         </StyledChip>
       ) : (
-        <StyledChip as="span" component="span" variant={variant} {...props}>
+        <StyledChip as="span" component="span" variant={variant} shape={shape} {...props}>
           {children}
         </StyledChip>
       )}

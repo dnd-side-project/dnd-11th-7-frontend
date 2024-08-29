@@ -4,7 +4,14 @@ type CompProps<T> =
   | ({ component?: 'span'; value?: never } & ComponentPropsWithoutRef<'span'>)
   | ({ component?: 'button'; value?: T } & ComponentPropsWithoutRef<'button'>);
 type ChipCustomProps = {
-  variant?: 'filled' | 'dimmed' | 'greyFilled';
+  /**
+   * @default 'primary'
+   */
+  variant?: 'primary' | 'secondary' | 'primaryReverse' | 'grey' | 'greyWeak' | 'dimmed';
+  /**
+   * @default 'rounded'
+   */
+  shape?: 'rounded' | 'rectangle';
 };
 export type Props<T> = ChipCustomProps & CompProps<T>;
 
