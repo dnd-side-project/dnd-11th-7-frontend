@@ -15,4 +15,7 @@ type ChipCustomProps = {
 };
 export type Props<T> = ChipCustomProps & CompProps<T>;
 
-export type GroupProps = ComponentPropsWithRef<'div'>;
+export type GroupProps = GroupCustomProps & ComponentPropsWithRef<'div'>;
+type GroupCustomProps = {
+  type?: 'wrap' | 'slide';
+};

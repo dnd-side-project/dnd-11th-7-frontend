@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import { colors, weights } from '@/styles/global';
 
-import { Props } from './Chip.types';
+import { GroupProps, Props } from './Chip.types';
 
 const chipStyles = {
   span: css`
@@ -57,14 +57,47 @@ const chipShapeStyles = {
     border-radius: 4px;
   `,
 };
+const groupTypeStyles = {
+  wrap: css`
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px 6px;
+  `,
+  slide: css`
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    white-space: nowrap;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 32px;
+      height: 100%;
+      background: linear-gradient(to left, white, transparent);
+      pointer-events: none;
+    }
+  `,
+};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const StyledChip = styled.span<Props<any>>`
   all: unset;
   font-weight: ${weights.semibold};
   border-radius: 999px;
+  user-select: none;
 
   ${({ shape = 'rounded' }) => chipShapeStyles[shape]};
   ${({ component = 'span' }) => chipStyles[component]};
   ${({ variant = 'primary' }) => chipVariantStyles[variant]};
+`;
+
+export const StyledChipGroup = styled.div<GroupProps>`
+  ${({ type = 'wrap' }) => groupTypeStyles[type]};
 `;

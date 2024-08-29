@@ -221,7 +221,7 @@ export const ChipButton: Story = {
   },
 };
 
-export const ChipGroup: Story = {
+export const ChipWrapGroup: Story = {
   render: () => (
     <>
       <Caption>Case 1: 칩이 한 줄에 배치되는 경우</Caption>
@@ -242,5 +242,17 @@ export const ChipGroup: Story = {
           ))}
       </Chip.Group>
     </>
+  ),
+};
+
+export const ChipSlideGroup: Story = {
+  render: () => (
+    <Chip.Group type="slide">
+      {Array(30)
+        .fill(0)
+        .map((_, index) => (
+          <Chip>{`Chip ${index}`}</Chip>
+        ))}
+    </Chip.Group>
   ),
 };
