@@ -38,7 +38,7 @@ export const Basic: Story = {
       control: {
         type: 'inline-radio',
       },
-      options: ['primary', 'secondary', 'primaryReverse', 'dimmed', 'grey'],
+      options: ['primary', 'secondary', 'primaryReverse', 'dimmed', 'grey', 'greyWeak'],
     },
     shape: {
       control: {
