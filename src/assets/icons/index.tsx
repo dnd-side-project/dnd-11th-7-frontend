@@ -14,6 +14,7 @@ import Jjakkak6 from './jjakkak-6.svg?react';
 import Jjakkak7 from './jjakkak-7.svg?react';
 import Jjakkak8 from './jjakkak-8.svg?react';
 import Jjakkak9 from './jjakkak-9.svg?react';
+import JjakkakBody from './jjakkak-body.svg?react';
 import JjakkakCircle1 from './jjakkak-circle-1.svg?react';
 import JjakkakCircle2 from './jjakkak-circle-2.svg?react';
 import JjakkakFill1 from './jjakkak-fill-1.svg?react';
@@ -26,6 +27,7 @@ import JjakkakFill6 from './jjakkak-fill-6.svg?react';
 import JjakkakFill7 from './jjakkak-fill-7.svg?react';
 import JjakkakFill8 from './jjakkak-fill-8.svg?react';
 import JjakkakFill9 from './jjakkak-fill-9.svg?react';
+import JjakkakHands from './jjakkak-hands.svg?react';
 import JjakkakIllust from './jjakkak-illust.svg?react';
 import JjakkakText from './jjakkak-text.svg?react';
 import JjakkaksIllust from './jjakkaks-illust.svg?react';
@@ -76,6 +78,8 @@ export const IconMap = {
   jjakkakCircle1: JjakkakCircle1,
   jjkakkakCircle2: JjakkakCircle2,
   jjakkakText: JjakkakText,
+  jjakkakBody: JjakkakBody,
+  jjakkakHands: JjakkakHands,
 };
 
 export type IconName = keyof typeof IconMap;
