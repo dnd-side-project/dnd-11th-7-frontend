@@ -5,9 +5,9 @@ import { colors } from '@/styles/global';
 export const StyeldButton = styled.button`
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   width: 40%;
   min-width: 108px;
-  max-width: 170px;
   height: 60px;
   align-items: center;
   justify-content: center;

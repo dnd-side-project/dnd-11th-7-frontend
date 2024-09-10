@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { FixedBottomButton } from '@/components/common/FixedBottomButton';
 import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
@@ -8,8 +10,9 @@ import { CreateMeetingFormBaseProps } from './types';
 
 type Props = CreateMeetingFormBaseProps;
 
-export const MemberForm = ({ onNext, onPrev }: Props) => {
+export const MemberCountForm = ({ onNext, onPrev }: Props) => {
   const { progress, maxProgress } = useFunnelProgressContext();
+  const [memberCount, setMemberCount] = useState(2);
 
   return (
     <>
@@ -19,12 +22,17 @@ export const MemberForm = ({ onNext, onPrev }: Props) => {
         description="최대 10명까지 선택 가능합니다."
         content={
           <FlexBox width="100%" height="100%" padding="60px 0 0 0" justifyContent="flex-start">
-            {/* TODO state 연결 */}
-            <Slider value={2} max={10} min={2} showBubble onChange={() => {}} />
+            <Slider
+              value={memberCount}
+              max={10}
+              min={2}
+              showBubble
+              onChange={(e) => setMemberCount(Number(e.target.value))}
+            />
           </FlexBox>
         }
       />
-      <FixedBottomButton onClick={onNext}>다음</FixedBottomButton>
+      <FixedBottomButton onClick={() => onNext(memberCount)}>다음</FixedBottomButton>
     </>
   );
 };

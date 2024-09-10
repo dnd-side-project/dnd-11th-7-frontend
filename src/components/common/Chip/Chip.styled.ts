@@ -14,6 +14,10 @@ const chipStyles = {
   button: css`
     cursor: pointer;
     font-size: 14px;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   `,
 };
 const chipVariantStyles = {

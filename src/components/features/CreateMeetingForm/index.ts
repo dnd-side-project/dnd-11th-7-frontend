@@ -1,6 +1,6 @@
 export { CategoryForm } from './CategoryForm';
 export { MeetingNameForm } from './MeetingNameForm';
-export { PeriodForm } from './PeriodForm';
-export { MemberForm } from './MemberForm';
+export { MeetingDateRangeForm } from './MeetingDateRangeForm';
+export { MemberCountForm } from './MemberCountForm';
 export { AnonymousForm } from './AnonymousForm';
-export { DeadlineForm } from './DeadlineForm';
+export { DueDateForm } from './DueDateForm';

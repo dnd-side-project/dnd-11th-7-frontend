@@ -10,29 +10,22 @@ import { CreateMeetingFormBaseProps } from './types';
 
 type Props = CreateMeetingFormBaseProps;
 
-export const AnonymousForm = ({ onNext, onPrev }: Props) => {
+export const DueDateForm = ({ onNext, onPrev }: Props) => {
   const { progress, maxProgress } = useFunnelProgressContext();
-  const [isAnonymous, setIsAnonymous] = useState(false);
+  const [selectedDueDate, setSelectedDueDate] = useState('오늘'); // TODO 인터페이스 정의 필요
 
   return (
     <>
       <FormLayout
         header={<FormLayout.Header progress={progress} maxProgress={maxProgress} onPrev={onPrev} />}
-        title={`멤버들의 일정을\n어떻게 수집할까요?`}
-        description="익명 여부를 선택해 주세요"
+        title={`일정 입력 마감 기한을\n기입해 주세요`}
         content={
-          <FlexBox width="100%" padding="60px 0">
-            <Switch selectedValue={isAnonymous} onChange={setIsAnonymous}>
-              <Switch.Button
-                label="실명"
-                value={false}
-                img={<img src="/images/btn-jjakkak-3.svg" />}
-              />
-              <Switch.Button
-                label="익명"
-                value={true}
-                img={<img src="/images/btn-anonymous.svg" />}
-              />
+          <FlexBox width="100%" padding="78px 0">
+            <Switch selectedValue={selectedDueDate} onChange={setSelectedDueDate}>
+              <Switch.Button label="오늘" value="오늘" />
+              <Switch.Button label="내일" value="내일" />
+              <Switch.Button label="3일" value="3일" />
+              <Switch.Button label="5일" value="5일" />
             </Switch>
           </FlexBox>
         }
