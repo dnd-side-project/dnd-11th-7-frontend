@@ -32,13 +32,18 @@ export const Basic: Story = {
       <AppLayout>
         <Funnel>
           <Funnel.Step name="카테고리">
-            <CategoryForm onPrev={() => {}} onNext={() => setStep('모임이름')} />
+            <CategoryForm
+              onPrev={() => {}}
+              onNext={() => setStep('모임이름')}
+              context={{ state: [], setState: () => {} }}
+            />
           </Funnel.Step>
 
           <Funnel.Step name="모임이름">
             <MeetingNameForm
               onPrev={() => setStep('카테고리')}
               onNext={() => setStep('일정수집기한')}
+              context={{ state: '', setState: () => {} }}
             />
           </Funnel.Step>
 
@@ -46,6 +51,7 @@ export const Basic: Story = {
             <MeetingDateRangeForm
               onPrev={() => setStep('모임이름')}
               onNext={() => setStep('모임인원수')}
+              context={{ state: { meetingStartDate: '', meetingEndDate: '' }, setState: () => {} }}
             />
           </Funnel.Step>
 
@@ -53,6 +59,7 @@ export const Basic: Story = {
             <MemberCountForm
               onPrev={() => setStep('일정수집기한')}
               onNext={() => setStep('익명여부')}
+              context={{ state: 0, setState: () => {} }}
             />
           </Funnel.Step>
 
@@ -60,11 +67,16 @@ export const Basic: Story = {
             <AnonymousForm
               onPrev={() => setStep('모임인원수')}
               onNext={() => setStep('일정입력마감기한')}
+              context={{ state: false, setState: () => {} }}
             />
           </Funnel.Step>
 
           <Funnel.Step name="일정입력마감기한">
-            <DueDateForm onPrev={() => setStep('익명여부')} onNext={() => {}} />
+            <DueDateForm
+              onPrev={() => setStep('익명여부')}
+              onNext={() => {}}
+              context={{ state: '', setState: () => {} }}
+            />
           </Funnel.Step>
         </Funnel>
       </AppLayout>
