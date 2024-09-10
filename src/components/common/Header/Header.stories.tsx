@@ -50,7 +50,7 @@ export const LeftMiddleRight: Story = {
     <Header
       left={<IconButton iconName="back" />}
       middle={<Progress min={0} max={10} value={6} />}
-      right={<Chip variant="greyFilled">1/3</Chip>}
+      right={<Chip variant="grey">1/3</Chip>}
     />
   ),
 };

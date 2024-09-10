@@ -46,7 +46,7 @@ export const CategoryForm = ({ onNext, onPrev }: Props) => {
                 <Chip
                   key={category}
                   component="button"
-                  variant={selectedCategory.includes(category) ? 'filled' : 'dimmed'}
+                  variant={selectedCategory.includes(category) ? 'primary' : 'dimmed'}
                   onClick={() => handleClickChip(category)}
                   disabled={!canClick(category)}
                 >

@@ -1,9 +1,6 @@
 import { forwardRef } from 'react';
-import { css } from '@emotion/react';
 
-import { FlexBox } from '@/components/common/FlexBox';
-
-import { StyledChip } from './Chip.styled';
+import { StyledChip, StyledChipGroup } from './Chip.styled';
 import { GroupProps, Props } from './Chip.types';
 
 /**
@@ -11,7 +8,8 @@ import { GroupProps, Props } from './Chip.types';
  */
 export const Chip = <T,>({
   component = 'span',
-  variant = 'filled',
+  variant = 'primary',
+  shape = 'rounded',
   value,
   children,
   ...props
@@ -19,11 +17,18 @@ export const Chip = <T,>({
   return (
     <>
       {component === 'button' ? (
-        <StyledChip as="button" component="button" variant={variant} value={value} {...props}>
+        <StyledChip
+          as="button"
+          component="button"
+          variant={variant}
+          shape={shape}
+          value={value}
+          {...props}
+        >
           {children}
         </StyledChip>
       ) : (
-        <StyledChip as="span" component="span" variant={variant} {...props}>
+        <StyledChip as="span" component="span" variant={variant} shape={shape} {...props}>
           {children}
         </StyledChip>
       )}
@@ -31,19 +36,11 @@ export const Chip = <T,>({
   );
 };
 
-const Group = forwardRef<HTMLDivElement, GroupProps>(({ children }, ref) => {
+const Group = forwardRef<HTMLDivElement, GroupProps>(({ type = 'wrap', children }, ref) => {
   return (
-    <FlexBox
-      flexDir="row"
-      gap="12px 6px"
-      flexWrap="wrap"
-      css={css`
-        width: fit-content;
-      `}
-      ref={ref}
-    >
+    <StyledChipGroup type={type} ref={ref}>
       {children}
-    </FlexBox>
+    </StyledChipGroup>
   );
 });
 

@@ -20,7 +20,8 @@ export const Basic: Story = {
   args: {
     children: '예시',
     component: 'span',
-    variant: 'filled',
+    variant: 'primary',
+    shape: 'rounded',
   },
   argTypes: {
     children: {
@@ -37,25 +38,150 @@ export const Basic: Story = {
       control: {
         type: 'inline-radio',
       },
-      options: ['filled', 'greyFilled', 'dimmed'],
+      options: ['primary', 'secondary', 'primaryReverse', 'dimmed', 'grey', 'greyWeak'],
+    },
+    shape: {
+      control: {
+        type: 'inline-radio',
+      },
+      options: ['rounded', 'rectangle'],
     },
   },
   render: (args) => <Chip {...args}>{args.children}</Chip>,
 };
 
-export const ChipDisplay: Story = {
+export const RoundedChipDisplay: Story = {
   render: () => (
     <FlexBox gap={10} alignItems="flex-start">
       <Chip.Group>
+        <Chip>primary</Chip>
         <Chip>조율중</Chip>
         <Chip>일정 확정</Chip>
       </Chip.Group>
       <Chip.Group>
-        <Chip variant="greyFilled">1/5</Chip>
-        <Chip variant="greyFilled">2/5</Chip>
-        <Chip variant="greyFilled">3/5</Chip>
-        <Chip variant="greyFilled">4/5</Chip>
-        <Chip variant="greyFilled">5/5</Chip>
+        <Chip variant="secondary">secondary</Chip>
+        <Chip variant="secondary">승조</Chip>
+        <Chip variant="secondary">태웅</Chip>
+        <Chip variant="secondary">세빈</Chip>
+        <Chip variant="secondary">지현</Chip>
+        <Chip variant="secondary">채영</Chip>
+        <Chip variant="secondary">경욱</Chip>
+      </Chip.Group>
+      <Chip.Group>
+        <Chip variant="primaryReverse">primaryReverse</Chip>
+        <Chip variant="primaryReverse">승조</Chip>
+        <Chip variant="primaryReverse">태웅</Chip>
+        <Chip variant="primaryReverse">세빈</Chip>
+        <Chip variant="primaryReverse">지현</Chip>
+        <Chip variant="primaryReverse">채영</Chip>
+        <Chip variant="primaryReverse">경욱</Chip>
+      </Chip.Group>
+      <Chip.Group>
+        <Chip variant="greyWeak">greyWeak</Chip>
+        <Chip variant="greyWeak">승조</Chip>
+        <Chip variant="greyWeak">태웅</Chip>
+        <Chip variant="greyWeak">세빈</Chip>
+        <Chip variant="greyWeak">지현</Chip>
+        <Chip variant="greyWeak">채영</Chip>
+        <Chip variant="greyWeak">경욱</Chip>
+      </Chip.Group>
+      <Chip.Group>
+        <Chip variant="grey">grey</Chip>
+        <Chip variant="grey">1/5</Chip>
+        <Chip variant="grey">2/5</Chip>
+        <Chip variant="grey">3/5</Chip>
+        <Chip variant="grey">4/5</Chip>
+        <Chip variant="grey">5/5</Chip>
+      </Chip.Group>
+      <Chip.Group>
+        <Chip variant="dimmed">dimmed</Chip>
+        <Chip variant="dimmed">주로</Chip>
+        <Chip variant="dimmed">버튼에</Chip>
+        <Chip variant="dimmed">쓰는</Chip>
+        <Chip variant="dimmed">버라이언트</Chip>
+      </Chip.Group>
+    </FlexBox>
+  ),
+};
+
+export const RectangleChipDisplay: Story = {
+  render: () => (
+    <FlexBox gap={10} alignItems="flex-start">
+      <Chip.Group>
+        <Chip shape="rectangle">primary</Chip>
+        <Chip shape="rectangle">1순위</Chip>
+        <Chip shape="rectangle">2순위</Chip>
+        <Chip shape="rectangle">3순위</Chip>
+      </Chip.Group>
+      <Chip.Group>
+        <Chip shape="rectangle" variant="secondary">
+          secondary
+        </Chip>
+        <Chip shape="rectangle" variant="secondary">
+          1순위
+        </Chip>
+        <Chip shape="rectangle" variant="secondary">
+          2순위
+        </Chip>
+        <Chip shape="rectangle" variant="secondary">
+          3순위
+        </Chip>
+      </Chip.Group>
+      <Chip.Group>
+        <Chip shape="rectangle" variant="primaryReverse">
+          primaryReverse
+        </Chip>
+        <Chip shape="rectangle" variant="primaryReverse">
+          1순위
+        </Chip>
+        <Chip shape="rectangle" variant="primaryReverse">
+          2순위
+        </Chip>
+        <Chip shape="rectangle" variant="primaryReverse">
+          3순위
+        </Chip>
+      </Chip.Group>
+      <Chip.Group>
+        <Chip shape="rectangle" variant="greyWeak">
+          greyWeak
+        </Chip>
+        <Chip shape="rectangle" variant="greyWeak">
+          1순위
+        </Chip>
+        <Chip shape="rectangle" variant="greyWeak">
+          2순위
+        </Chip>
+        <Chip shape="rectangle" variant="greyWeak">
+          3순위
+        </Chip>
+      </Chip.Group>
+      <Chip.Group>
+        <Chip shape="rectangle" variant="grey">
+          grey
+        </Chip>
+        <Chip shape="rectangle" variant="grey">
+          1순위
+        </Chip>
+        <Chip shape="rectangle" variant="grey">
+          2순위
+        </Chip>
+        <Chip shape="rectangle" variant="grey">
+          3순위
+        </Chip>
+      </Chip.Group>
+      <Chip.Group>
+        <Chip shape="rectangle" variant="dimmed">
+          dimmed
+        </Chip>
+        <Chip shape="rectangle" variant="dimmed">
+          1순위
+        </Chip>
+        <Chip shape="rectangle" variant="dimmed">
+          2순위
+        </Chip>
+        <Chip shape="rectangle" variant="dimmed">
+          3순위
+        </Chip>
       </Chip.Group>
     </FlexBox>
   ),
@@ -82,7 +208,7 @@ export const ChipButton: Story = {
           {categories.map((category) => (
             <Chip
               component="button"
-              variant={selected.includes(category) ? 'filled' : 'dimmed'}
+              variant={selected.includes(category) ? 'primary' : 'dimmed'}
               value={category}
               onClick={() => handleToggle(category)}
             >
@@ -95,7 +221,7 @@ export const ChipButton: Story = {
   },
 };
 
-export const ChipGroup: Story = {
+export const ChipWrapGroup: Story = {
   render: () => (
     <>
       <Caption>Case 1: 칩이 한 줄에 배치되는 경우</Caption>
@@ -116,5 +242,17 @@ export const ChipGroup: Story = {
           ))}
       </Chip.Group>
     </>
+  ),
+};
+
+export const ChipSlideGroup: Story = {
+  render: () => (
+    <Chip.Group type="slide">
+      {Array(30)
+        .fill(0)
+        .map((_, index) => (
+          <Chip>{`Chip ${index}`}</Chip>
+        ))}
+    </Chip.Group>
   ),
 };

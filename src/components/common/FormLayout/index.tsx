@@ -27,7 +27,7 @@ const FormLayoutHeader = ({ progress, maxProgress, onPrev }: HeaderProps) => {
     <Header
       left={<IconButton iconName="back" onClick={onPrev} />}
       middle={<Progress min={0} max={maxProgress} value={progress} />}
-      right={<Chip variant="greyFilled">{`${progress}/${maxProgress}`}</Chip>}
+      right={<Chip variant="grey">{`${progress}/${maxProgress}`}</Chip>}
     />
   );
 };

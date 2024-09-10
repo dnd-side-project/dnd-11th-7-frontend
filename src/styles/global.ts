@@ -12,6 +12,7 @@ export const colors = {
   P2: '#DDDAFF',
   P3: '#F3F2FF',
   yellow: '#FFF279',
+  lightYellow: '#FFF8B6',
   hover: '#6456FF',
   RD: '#FF4D4D',
 };
