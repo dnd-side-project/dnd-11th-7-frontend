@@ -61,6 +61,7 @@ const groupTypeStyles = {
   wrap: css`
     width: fit-content;
     display: flex;
+    justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 12px 6px;
