@@ -4,7 +4,7 @@ import { Colors } from '@/styles/global';
 export type Props = {
   name: IconName;
   /**
-   * @default 'BK'
+   * @default 'purple'
    */
   color?: Colors;
   /**

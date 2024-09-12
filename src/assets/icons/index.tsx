@@ -35,6 +35,9 @@ import Kakaotalk1 from './kakaotalk-1.svg?react';
 import Kakaotalk2 from './kakaotalk-2.svg?react';
 import Left from './left.svg?react';
 import Link from './link.svg?react';
+import Next from './next.svg?react';
+import Plus from './plus.svg?react';
+import Prev from './prev.svg?react';
 import Right from './right.svg?react';
 import User from './user.svg?react';
 
@@ -52,6 +55,9 @@ export const IconMap = {
   circle1: Circle1,
   circle2: Circle2,
   close: Close,
+  next: Next,
+  prev: Prev,
+  plus: Plus,
   /* 째깍이 */
   jjakkak1: Jjakkak1,
   jjakkak2: Jjakkak2,

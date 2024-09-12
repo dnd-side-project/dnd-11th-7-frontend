@@ -3,7 +3,7 @@ import { colors } from '@/styles/global';
 
 import { Props } from './Icon.types';
 
-export const Icon = ({ name, color = 'BK', size = 20, ...props }: Props) => {
+export const Icon = ({ name, color = 'purple', size = 20, ...props }: Props) => {
   const IconSVGComponent = IconMap[name];
   const width = typeof size === 'number' ? size : size.width;
   const height = typeof size === 'number' ? size : size.height;
