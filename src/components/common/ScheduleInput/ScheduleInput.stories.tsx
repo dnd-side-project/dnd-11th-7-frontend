@@ -39,7 +39,11 @@ const ScheduleInputWrapper: React.FC<{ startDate: string; endDate: string }> = (
 
   return (
     <AppLayout>
-      <FlexBox css={css(`width: 100%; height: 100vh;`)} justifyContent="center" alignItems="center">
+      <FlexBox
+        css={css(`width: 100%; height: 100vh; padding: 20px 0;`)}
+        justifyContent="center"
+        alignItems="center"
+      >
         <ScheduleInput
           startDate={dates.startDate}
           endDate={dates.endDate}

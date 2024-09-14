@@ -4,12 +4,14 @@ import { colors } from '@/styles/global';
 
 export const StyledCardContainer = styled.div`
   width: 90%;
-  max-width: 300px;
+  height: auto;
+  min-height: 80vh;
   border: 1px solid ${colors.GY6};
   border-radius: 16px;
   padding: 17px;
   background-color: ${colors.WH};
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
+  overflow-y: scroll;
 `;
 
 export const StyledDayContainer = styled.div`
