@@ -7,7 +7,6 @@ export const StyledTimeBoxContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: 560px;
-  touch-action: none;
 `;
 
 export const TimeBoxSelector = styled.div<{
@@ -20,6 +19,7 @@ export const TimeBoxSelector = styled.div<{
   height: 35px;
   background-color: ${(props) => (props.isSelected ? colors.purple : colors.GY6)};
   cursor: pointer;
+  touch-action: none;
   border-left: 0.5px solid ${colors.WH};
   border-right: 0.5px solid ${colors.WH};
   border-bottom: 1px ${colors.WH} ${(props) => (props.isLast ? 'solid' : 'dashed')};
