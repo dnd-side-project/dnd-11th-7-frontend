@@ -53,10 +53,31 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
       }
     };
 
+    const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+      if (isDragging) {
+        const touch = e.touches[0];
+        const element = document.elementFromPoint(touch.clientX, touch.clientY);
+
+        if (element) {
+          const rowIndex = parseInt(element.getAttribute('data-row-index') || '-1', 10);
+          const colIndex = parseInt(element.getAttribute('data-col-index') || '-1', 10);
+
+          if (rowIndex !== -1 && colIndex !== -1) {
+            handleMove(rowIndex, colIndex);
+          }
+        }
+      }
+    };
     const handleEnd = () => setIsDragging(false);
 
     return (
-      <StyledCardContainer ref={ref} onMouseUp={handleEnd} onTouchEnd={handleEnd} {...props}>
+      <StyledCardContainer
+        ref={ref}
+        onMouseUp={handleEnd}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleEnd}
+        {...props}
+      >
         <StyledDayContainer>
           <FlexBox width="10%" justifyContent="center" alignItems="flex-start">
             {!isFirstPage && <Icon name="prev" onClick={movePrev} />}
@@ -92,6 +113,7 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
                 <TimeBox
                   key={date.format('YYYY-MM-DD')}
                   selectedSlots={timeSlots[dateKey] || []}
+                  onTimeSlotClick={(rowIndex: number) => onTimeSlotClick(rowIndex, colIndex)}
                   onDragStart={(rowIndex: number | React.DragEvent<HTMLDivElement>) =>
                     handleDragStart(rowIndex, colIndex)
                   }

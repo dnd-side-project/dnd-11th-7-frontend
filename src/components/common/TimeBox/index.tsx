@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useCallback, useState, useEffect, useRef } from 'react';
 
 import { StyledTimeBoxContainer, TimeBoxSelector } from './TimeBox.styled';
 import { Props } from './TimeBox.type';
@@ -10,36 +10,68 @@ export const TimeBox = forwardRef<HTMLDivElement, Props>(
       onDragStart = () => {},
       onDragMove = () => {},
       onDragEnd = () => {},
+      onTimeSlotClick = () => {},
       ...props
     },
     ref
   ) => {
-    const handleMouseDown = (index: number) => {
-      if (typeof onDragStart === 'function') {
+    const innerRef = useRef<HTMLDivElement>(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const touchStartTime = useRef<number>(0);
+    const lastTouchedIndex = useRef<number | null>(null);
+
+    const handleTouchStart = useCallback(
+      (index: number) => {
+        touchStartTime.current = Date.now();
+        lastTouchedIndex.current = index;
+        setIsDragging(false);
         onDragStart(index);
-      }
-    };
+      },
+      [onDragStart]
+    );
 
-    const handleMouseEnter = (index: number) => {
-      onDragMove(index);
-    };
+    const handleTouchMove = useCallback(
+      (event: TouchEvent) => {
+        const touch = event.touches[0];
+        const element = document.elementFromPoint(touch.clientX, touch.clientY) as HTMLElement;
+        const index = element?.getAttribute('data-index');
+        if (index !== null) {
+          const newIndex = parseInt(index, 10);
+          if (newIndex !== lastTouchedIndex.current) {
+            lastTouchedIndex.current = newIndex;
+            onDragMove(newIndex);
+          }
+        }
+      },
+      [onDragMove]
+    );
 
-    const handleTouchStart = (index: number) => {
-      if (typeof onDragStart === 'function') {
-        onDragStart(index);
-      }
-    };
+    const handleTouchEnd = useCallback(
+      (event: TouchEvent) => {
+        if (!isDragging && lastTouchedIndex.current !== null) {
+          onTimeSlotClick(lastTouchedIndex.current);
+        }
+        setIsDragging(false);
+        onDragEnd();
+      },
+      [isDragging, onTimeSlotClick, onDragEnd]
+    );
 
-    const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
-      if (typeof onDragStart === 'function') {
-        onDragStart(event);
+    useEffect(() => {
+      const container = innerRef.current;
+      if (container) {
+        container.addEventListener('touchmove', handleTouchMove, { passive: true });
+        container.addEventListener('touchend', handleTouchEnd);
+        return () => {
+          container.removeEventListener('touchmove', handleTouchMove);
+          container.removeEventListener('touchend', handleTouchEnd);
+        };
       }
-    };
+    }, [handleTouchMove, handleTouchEnd]);
 
     return (
       <StyledTimeBoxContainer
-        ref={ref}
-        onDragStart={handleDragStart}
+        ref={innerRef}
         onMouseUp={onDragEnd}
         onTouchEnd={onDragEnd}
         {...props}
@@ -59,12 +91,9 @@ export const TimeBox = forwardRef<HTMLDivElement, Props>(
               isFirst={isGroupStart}
               isLast={isGroupEnd}
               isSelected={isSelected}
-              onMouseDown={() => handleMouseDown(index)}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onTouchStart={(e) => {
-                e.preventDefault();
-                handleTouchStart(index);
-              }}
+              onMouseDown={() => onDragStart(index)}
+              onMouseEnter={() => onDragMove(index)}
+              onTouchStart={() => handleTouchStart(index)}
             />
           );
         })}
