@@ -1,4 +1,4 @@
-import { useState, forwardRef } from 'react';
+import { forwardRef } from 'react';
 
 import { StyledTimeBoxContainer, TimeBoxSelector } from './TimeBox.styled';
 import { Props } from './TimeBox.type';
@@ -7,15 +7,16 @@ export const TimeBox = forwardRef<HTMLDivElement, Props>(
   (
     {
       selectedSlots,
-      onTimeSlotClick,
+      onTimeSlotClick = () => {},
       onDragStart = () => {},
       onDragMove = () => {},
       onDragEnd = () => {},
-      isDragging,
+      ...props
     },
     ref
   ) => {
     const handleMouseDown = (index: number) => {
+      onTimeSlotClick(index);
       onDragStart(index);
     };
 
@@ -24,11 +25,12 @@ export const TimeBox = forwardRef<HTMLDivElement, Props>(
     };
 
     const handleTouchStart = (index: number) => {
+      onTimeSlotClick(index);
       onDragStart(index);
     };
 
     return (
-      <StyledTimeBoxContainer ref={ref} onMouseUp={onDragEnd} onTouchEnd={onDragEnd}>
+      <StyledTimeBoxContainer ref={ref} onMouseUp={onDragEnd} onTouchEnd={onDragEnd} {...props}>
         {Array.from({ length: 16 }).map((_, index) => {
           const isSelected = selectedSlots[index] || false;
           const prevSlot = selectedSlots[index - 1] || false;

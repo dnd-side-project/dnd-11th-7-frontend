@@ -1,11 +1,14 @@
 import { ComponentPropsWithoutRef } from 'react';
-import { Dayjs } from 'dayjs';
 
 export type Props = {
   /**
    * An array of boolean values representing the selection state of each time slot.
    */
   selectedSlots: boolean[];
+  /**
+   * Function called when a time slot is clicked or drag starts.
+   */
+  onTimeSlotClick?: (index: number) => void;
   /**
    * Optional function called when dragging starts.
    */
@@ -18,12 +21,4 @@ export type Props = {
    * Optional function when dragging ends.
    */
   onDragEnd?: () => void;
-  /**
-   *  Optional boolean for drag state.
-   */
-  isDragging: boolean;
-  /**
-   * Function to handle time slot click
-   */
-  onTimeSlotClick?: (index: number) => void;
 } & ComponentPropsWithoutRef<'div'>;

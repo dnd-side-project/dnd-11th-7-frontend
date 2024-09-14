@@ -29,5 +29,5 @@ export type Props = {
   /**
    * Function to handle time slot click
    */
-  onTimeSlotClick?: (rowIndex: number, colIndex: number) => void;
+  onTimeSlotClick: (rowIndex: number, colIndex: number) => void;
 } & ComponentPropsWithoutRef<'div'>;

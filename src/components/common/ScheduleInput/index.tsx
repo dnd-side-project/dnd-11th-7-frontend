@@ -1,6 +1,5 @@
-import { useState, forwardRef, useCallback } from 'react';
+import { useState, forwardRef } from 'react';
 import dayjs from 'dayjs';
-import { css } from '@emotion/react';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 
@@ -79,15 +78,14 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
           <StyledTimeBoxContainer>
             {currentDates.map((date, colIndex) => {
               const dateKey = date.format('YYYY-MM-DD');
-              const selectedSlots = timeSlots[dateKey] || [];
 
               return (
                 <TimeBox
                   key={date.format('YYYY-MM-DD')}
                   selectedSlots={timeSlots[dateKey] || []}
-                  onTimeSlotClick={(rowIndex) => onTimeSlotClick(rowIndex, colIndex)}
+                  onTimeSlotClick={(rowIndex: number) => onTimeSlotClick(rowIndex, colIndex)}
                   onDragStart={(rowIndex) => handleStart(rowIndex, colIndex)}
-                  onDragMove={(rowIndex) => handleMove(rowIndex, colIndex)}
+                  onDragMove={(rowIndex: number) => handleMove(rowIndex, colIndex)}
                   onDragEnd={handleEnd}
                 />
               );

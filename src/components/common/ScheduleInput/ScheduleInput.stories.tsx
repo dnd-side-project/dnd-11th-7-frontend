@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-exports */
 import { css } from '@emotion/react';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { useSchedule } from '@/hooks/useSchedule';
@@ -23,7 +23,7 @@ const ScheduleInputWrapper: React.FC<{ startDate: string; endDate: string }> = (
   startDate,
   endDate,
 }) => {
-  const [dates, setDates] = useState({ startDate, endDate });
+  const [dates, _] = useState({ startDate, endDate });
 
   const {
     currentDates,
