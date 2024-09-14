@@ -61,7 +61,10 @@ export const TimeBox = forwardRef<HTMLDivElement, Props>(
               isSelected={isSelected}
               onMouseDown={() => handleMouseDown(index)}
               onMouseEnter={() => handleMouseEnter(index)}
-              onTouchStart={() => handleTouchStart(index)}
+              onTouchStart={(e) => {
+                e.preventDefault();
+                handleTouchStart(index);
+              }}
             />
           );
         })}
