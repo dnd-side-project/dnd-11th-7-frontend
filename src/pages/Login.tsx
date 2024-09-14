@@ -3,6 +3,8 @@ import { css } from '@emotion/react';
 import { FlexBox } from '@/components/common/FlexBox';
 import { Icon } from '@/components/common/Icon';
 import { Head3 } from '@/components/common/Typography';
+import { KakaoLoginButton } from '@/components/features/KakaoLoginButton';
+import { ENV } from '@/lib/env';
 
 export const Login = () => {
   return (
@@ -36,9 +38,8 @@ export const Login = () => {
         </FlexBox>
       </FlexBox>
 
-      {/* TODO : 카카오 로그인 버튼 컴포넌트 구현하기 */}
-      <FlexBox padding="0 20px" margin="0 0 94px 0">
-        <img src="/icons/kakao_login.png" alt="login" />
+      <FlexBox width="100%" padding="0 20px" margin="0 0 94px 0">
+        <KakaoLoginButton href={`${ENV.API_BASE_URL}/auth/oauth2/kakao`} />
       </FlexBox>
     </FlexBox>
   );
