@@ -4,17 +4,14 @@ import { StyledTimeBoxContainer, TimeBoxSelector } from './TimeBox.styled';
 import { Props } from './TimeBox.type';
 
 export const TimeBox = forwardRef<HTMLDivElement, Props>(
-  (
-    {
-      selectedSlots,
-      onDragStart = () => {},
-      onDragMove = () => {},
-      onDragEnd = () => {},
-      onTimeSlotClick = () => {},
-      ...props
-    },
-    ref
-  ) => {
+  ({
+    selectedSlots,
+    onDragStart = () => {},
+    onDragMove = () => {},
+    onDragEnd = () => {},
+    onTimeSlotClick = () => {},
+    ...props
+  }) => {
     const innerRef = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState(false);
     const touchStartTime = useRef<number>(0);
@@ -46,16 +43,13 @@ export const TimeBox = forwardRef<HTMLDivElement, Props>(
       [onDragMove]
     );
 
-    const handleTouchEnd = useCallback(
-      (event: TouchEvent) => {
-        if (!isDragging && lastTouchedIndex.current !== null) {
-          onTimeSlotClick(lastTouchedIndex.current);
-        }
-        setIsDragging(false);
-        onDragEnd();
-      },
-      [isDragging, onTimeSlotClick, onDragEnd]
-    );
+    const handleTouchEnd = useCallback(() => {
+      if (!isDragging && lastTouchedIndex.current !== null) {
+        onTimeSlotClick(lastTouchedIndex.current);
+      }
+      setIsDragging(false);
+      onDragEnd();
+    }, [isDragging, onTimeSlotClick, onDragEnd]);
 
     useEffect(() => {
       const container = innerRef.current;
