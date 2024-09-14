@@ -92,7 +92,6 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
                 <TimeBox
                   key={date.format('YYYY-MM-DD')}
                   selectedSlots={timeSlots[dateKey] || []}
-                  onTimeSlotClick={(rowIndex: number) => onTimeSlotClick(rowIndex, colIndex)}
                   onDragStart={(rowIndex: number | React.DragEvent<HTMLDivElement>) =>
                     handleDragStart(rowIndex, colIndex)
                   }

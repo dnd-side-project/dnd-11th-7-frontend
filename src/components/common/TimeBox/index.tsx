@@ -7,7 +7,6 @@ export const TimeBox = forwardRef<HTMLDivElement, Props>(
   (
     {
       selectedSlots,
-      onTimeSlotClick = () => {},
       onDragStart = () => {},
       onDragMove = () => {},
       onDragEnd = () => {},
@@ -16,7 +15,6 @@ export const TimeBox = forwardRef<HTMLDivElement, Props>(
     ref
   ) => {
     const handleMouseDown = (index: number) => {
-      onTimeSlotClick(index);
       if (typeof onDragStart === 'function') {
         onDragStart(index);
       }
@@ -27,7 +25,6 @@ export const TimeBox = forwardRef<HTMLDivElement, Props>(
     };
 
     const handleTouchStart = (index: number) => {
-      onTimeSlotClick(index);
       if (typeof onDragStart === 'function') {
         onDragStart(index);
       }

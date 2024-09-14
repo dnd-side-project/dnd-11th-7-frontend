@@ -32,38 +32,38 @@ export const useSchedule = (startDateStr: string, endDateStr: string) => {
   }, [updateDates]);
 
   const initializeTimeSlots = useCallback(
-    (date: dayjs.Dayjs) => {
-      const dateKey = date.format('YYYY-MM-DD');
+    (dates: dayjs.Dayjs[]) => {
       setTimeSlots((prevSlots) => {
-        if (!prevSlots[dateKey]) {
-          return {
-            ...prevSlots,
-            [dateKey]: Array(TOTAL_TIME).fill(false),
-          };
-        }
-        return prevSlots;
+        const newSlots = { ...prevSlots };
+        dates.forEach((date) => {
+          const dateKey = date.format('YYYY-MM-DD');
+          if (!newSlots[dateKey]) {
+            newSlots[dateKey] = Array(TOTAL_TIME).fill(false);
+          }
+        });
+        return newSlots;
       });
     },
     [TOTAL_TIME]
   );
 
   useEffect(() => {
-    currentDates.forEach(initializeTimeSlots);
+    initializeTimeSlots(currentDates);
   }, [currentDates, initializeTimeSlots]);
 
   const moveNext = useCallback(() => {
-    const newStartDate = currentStartDate.add(1, 'day');
-    if (newStartDate.add(MAX_DATE - 1, 'day').isSameOrBefore(endDate)) {
-      setCurrentStartDate(newStartDate);
-    }
-  }, [currentStartDate, endDate, MAX_DATE]);
+    setCurrentStartDate((prev) => {
+      const newStartDate = prev.add(1, 'day');
+      return newStartDate.add(MAX_DATE - 1, 'day').isSameOrBefore(endDate) ? newStartDate : prev;
+    });
+  }, [endDate, MAX_DATE]);
 
   const movePrev = useCallback(() => {
-    const newStartDate = currentStartDate.subtract(1, 'day');
-    if (newStartDate.isSameOrAfter(startDate)) {
-      setCurrentStartDate(newStartDate);
-    }
-  }, [currentStartDate, startDate]);
+    setCurrentStartDate((prev) => {
+      const newStartDate = prev.subtract(1, 'day');
+      return newStartDate.isSameOrAfter(startDate) ? newStartDate : prev;
+    });
+  }, [startDate]);
 
   const handleTimeSlotClick = useCallback(
     (row: number, col: number) => {
