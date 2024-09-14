@@ -22,7 +22,7 @@ const ScheduleInputWrapper: React.FC<{ startDate: string; endDate: string }> = (
   startDate,
   endDate,
 }) => {
-  const [dates, _] = useState({ startDate, endDate });
+  const [dates] = useState({ startDate, endDate });
 
   const {
     currentDates,
@@ -62,21 +62,21 @@ export const Basic: Story = {
   render: (args) => <ScheduleInputWrapper startDate={args.startDate} endDate={args.endDate} />,
 };
 
-export const oneDaySchedule: Story = {
+export const OneDaySchedule: Story = {
   args: {
     startDate: '2024-09-01',
     endDate: '2024-09-01',
   },
   render: (args) => <ScheduleInputWrapper startDate={args.startDate} endDate={args.endDate} />,
 };
-export const twoDaySchedule: Story = {
+export const TwoDaySchedule: Story = {
   args: {
     startDate: '2024-09-01',
     endDate: '2024-09-02',
   },
   render: (args) => <ScheduleInputWrapper startDate={args.startDate} endDate={args.endDate} />,
 };
-export const threeDaySchedule: Story = {
+export const ThreeDaySchedule: Story = {
   args: {
     startDate: '2024-09-01',
     endDate: '2024-09-03',

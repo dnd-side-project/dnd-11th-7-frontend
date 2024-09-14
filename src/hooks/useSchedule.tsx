@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
@@ -9,67 +9,80 @@ dayjs.extend(isSameOrAfter);
 export const useSchedule = (startDateStr: string, endDateStr: string) => {
   const MAX_DATE = 4;
   const TOTAL_TIME = 16;
-  const startDate = dayjs(startDateStr);
-  const endDate = dayjs(endDateStr);
+  const startDate = useMemo(() => dayjs(startDateStr), [startDateStr]);
+  const endDate = useMemo(() => dayjs(endDateStr), [endDateStr]);
 
   const [currentStartDate, setCurrentStartDate] = useState(startDate);
   const [currentDates, setCurrentDates] = useState<dayjs.Dayjs[]>([]);
   const [timeSlots, setTimeSlots] = useState<{ [key: string]: boolean[] }>({});
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
-  const updateDates = () => {
+  const updateDates = useCallback(() => {
     const dates: dayjs.Dayjs[] = [];
     let date = currentStartDate;
     for (let i = 0; i < MAX_DATE && date.isSameOrBefore(endDate); i++) {
       dates.push(date);
       date = date.add(1, 'day');
     }
-
     setCurrentDates(dates);
-  };
+  }, [currentStartDate, endDate, MAX_DATE]);
 
   useEffect(() => {
     updateDates();
-  }, [currentStartDate]);
+  }, [updateDates]);
 
-  const initializeTimeSlots = (date: dayjs.Dayjs) => {
-    const dateKey = date.format('YYYY-MM-DD');
-    if (!timeSlots[dateKey]) {
-      setTimeSlots((prevSlots) => ({
-        ...prevSlots,
-        [dateKey]: Array(TOTAL_TIME).fill(false),
-      }));
-    }
-  };
+  const initializeTimeSlots = useCallback(
+    (date: dayjs.Dayjs) => {
+      const dateKey = date.format('YYYY-MM-DD');
+      setTimeSlots((prevSlots) => {
+        if (!prevSlots[dateKey]) {
+          return {
+            ...prevSlots,
+            [dateKey]: Array(TOTAL_TIME).fill(false),
+          };
+        }
+        return prevSlots;
+      });
+    },
+    [TOTAL_TIME]
+  );
 
   useEffect(() => {
     currentDates.forEach(initializeTimeSlots);
-  }, [currentDates]);
+  }, [currentDates, initializeTimeSlots]);
 
-  const moveNext = () => {
+  const moveNext = useCallback(() => {
     const newStartDate = currentStartDate.add(1, 'day');
     if (newStartDate.add(MAX_DATE - 1, 'day').isSameOrBefore(endDate)) {
       setCurrentStartDate(newStartDate);
     }
-  };
+  }, [currentStartDate, endDate, MAX_DATE]);
 
-  const movePrev = () => {
+  const movePrev = useCallback(() => {
     const newStartDate = currentStartDate.subtract(1, 'day');
     if (newStartDate.isSameOrAfter(startDate)) {
       setCurrentStartDate(newStartDate);
     }
-  };
+  }, [currentStartDate, startDate]);
 
-  const handleTimeSlotClick = (row: number, col: number) => {
-    const dateKey = currentDates[col].format('YYYY-MM-DD');
-    setTimeSlots((prevSlots) => ({
-      ...prevSlots,
-      [dateKey]: prevSlots[dateKey].map((time, index) => (index === row ? !time : time)),
-    }));
-    setSelectedTime(`${row + 9 < 10 ? '0' : ''}${row + 9}:00`);
-  };
+  const handleTimeSlotClick = useCallback(
+    (row: number, col: number) => {
+      const dateKey = currentDates[col].format('YYYY-MM-DD');
+      setTimeSlots((prevSlots) => ({
+        ...prevSlots,
+        [dateKey]: prevSlots[dateKey].map((time, index) => (index === row ? !time : time)),
+      }));
+      setSelectedTime(`${row + 9 < 10 ? '0' : ''}${row + 9}:00`);
+    },
+    [currentDates]
+  );
 
-  const getSelectedTimeRanges = () => {
+  const formatTime = useCallback((hour: number) => {
+    const formattedHour = (hour + 9).toString().padStart(2, '0');
+    return `${formattedHour}:00`;
+  }, []);
+
+  const getSelectedTimeRanges = useCallback(() => {
     const selectedRanges: string[] = [];
 
     Object.entries(timeSlots).forEach(([dateKey, slots]) => {
@@ -93,12 +106,7 @@ export const useSchedule = (startDateStr: string, endDateStr: string) => {
     });
 
     return selectedRanges;
-  };
-
-  const formatTime = (hour: number) => {
-    const formattedHour = (hour + 9).toString().padStart(2, '0');
-    return `${formattedHour}:00`;
-  };
+  }, [timeSlots, formatTime]);
 
   return {
     currentDates,
