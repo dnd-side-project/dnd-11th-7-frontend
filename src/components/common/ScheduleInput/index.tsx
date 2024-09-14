@@ -38,6 +38,15 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
       onTimeSlotClick(rowIndex, colIndex);
     };
 
+    const handleDragStart = (
+      rowIndex: number | React.DragEvent<HTMLDivElement>,
+      colIndex: number
+    ) => {
+      if (typeof rowIndex === 'number') {
+        handleStart(rowIndex, colIndex);
+      }
+    };
+
     const handleMove = (rowIndex: number, colIndex: number) => {
       if (isDragging) {
         onTimeSlotClick(rowIndex, colIndex);
@@ -84,7 +93,9 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
                   key={date.format('YYYY-MM-DD')}
                   selectedSlots={timeSlots[dateKey] || []}
                   onTimeSlotClick={(rowIndex: number) => onTimeSlotClick(rowIndex, colIndex)}
-                  onDragStart={(rowIndex) => handleStart(rowIndex, colIndex)}
+                  onDragStart={(rowIndex: number | React.DragEvent<HTMLDivElement>) =>
+                    handleDragStart(rowIndex, colIndex)
+                  }
                   onDragMove={(rowIndex: number) => handleMove(rowIndex, colIndex)}
                   onDragEnd={handleEnd}
                 />

@@ -1,7 +1,9 @@
+/* eslint-disable no-restricted-exports */
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { TimeBox } from '.';
 import { FlexBox } from '@/components/common/FlexBox';
+
+import { TimeBox } from '.';
 
 const meta = {
   title: 'components/common/TimeBox',

@@ -12,7 +12,7 @@ export type Props = {
   /**
    * Optional function called when dragging starts.
    */
-  onDragStart?: (index: number) => void;
+  onDragStart?: (index: number) => void | React.DragEventHandler<HTMLDivElement>;
   /**
    * Optional function for drag movement.
    */
