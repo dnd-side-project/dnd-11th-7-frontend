@@ -6,7 +6,7 @@ import { AppLayout } from '../../common/AppLayout';
 import { FlexBox } from '../../common/FlexBox';
 
 const meta = {
-  title: 'components/features/Card',
+  title: 'components/common/Card',
   component: Card,
   tags: ['autodocs'],
 } satisfies Meta<typeof Card>;
