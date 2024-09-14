@@ -6,7 +6,6 @@ export const StyledTimeBoxContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 100px;
   height: 560px;
 `;
 
