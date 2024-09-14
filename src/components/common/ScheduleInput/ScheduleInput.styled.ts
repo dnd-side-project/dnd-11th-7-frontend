@@ -12,6 +12,7 @@ export const StyledCardContainer = styled.div`
   background-color: ${colors.WH};
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
   overflow-y: scroll;
+  touch-action: none;
 `;
 
 export const StyledDayContainer = styled.div`

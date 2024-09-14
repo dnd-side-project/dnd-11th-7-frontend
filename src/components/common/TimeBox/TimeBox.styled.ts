@@ -7,6 +7,7 @@ export const StyledTimeBoxContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: 560px;
+  touch-action: none;
 `;
 
 export const TimeBoxSelector = styled.div<{

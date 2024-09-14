@@ -13,18 +13,17 @@ export const TimeBox = forwardRef<HTMLDivElement, Props>(
     ...props
   }) => {
     const innerRef = useRef<HTMLDivElement>(null);
-    const [isDragging, setIsDragging] = useState(false);
-    const touchStartTime = useRef<number>(0);
+    const [, setIsDragging] = useState(false);
     const lastTouchedIndex = useRef<number | null>(null);
 
     const handleTouchStart = useCallback(
       (index: number) => {
-        touchStartTime.current = Date.now();
         lastTouchedIndex.current = index;
         setIsDragging(false);
+        onTimeSlotClick(index);
         onDragStart(index);
       },
-      [onDragStart]
+      [onDragStart, onTimeSlotClick]
     );
 
     const handleTouchMove = useCallback(
@@ -44,12 +43,9 @@ export const TimeBox = forwardRef<HTMLDivElement, Props>(
     );
 
     const handleTouchEnd = useCallback(() => {
-      if (!isDragging && lastTouchedIndex.current !== null) {
-        onTimeSlotClick(lastTouchedIndex.current);
-      }
       setIsDragging(false);
       onDragEnd();
-    }, [isDragging, onTimeSlotClick, onDragEnd]);
+    }, [onDragEnd]);
 
     useEffect(() => {
       const container = innerRef.current;
