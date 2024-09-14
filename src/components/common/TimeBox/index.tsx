@@ -4,7 +4,17 @@ import { StyledTimeBoxContainer, TimeBoxSelector } from './TimeBox.styled';
 import { Props } from './TimeBox.type';
 
 export const TimeBox = forwardRef<HTMLDivElement, Props>(
-  ({ selectedSlots, onTimeSlotClick, onDragStart, onDragMove, onDragEnd, isDragging }, ref) => {
+  (
+    {
+      selectedSlots,
+      onTimeSlotClick,
+      onDragStart = () => {},
+      onDragMove = () => {},
+      onDragEnd = () => {},
+      isDragging,
+    },
+    ref
+  ) => {
     const handleMouseDown = (index: number) => {
       onDragStart(index);
     };

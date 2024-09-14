@@ -22,22 +22,11 @@ const timeBoxVariations = [
   { slots: [true, true, false, true] },
 ];
 
-const dummyFunction = () => {};
-
 export const Basic: Story = {
   render: () => (
     <FlexBox flexDir="row" alignItems="flex-start" width="250px">
       {timeBoxVariations.map(({ slots }, index) => (
-        <TimeBox
-          key={index}
-          selectedSlots={slots}
-          onTimeSlotClick={dummyFunction}
-          onDragStart={dummyFunction}
-          onDragMove={dummyFunction}
-          onDragEnd={dummyFunction}
-          isDragging={false}
-          colIndex={index}
-        />
+        <TimeBox key={index} selectedSlots={slots} isDragging={false} />
       ))}
     </FlexBox>
   ),
