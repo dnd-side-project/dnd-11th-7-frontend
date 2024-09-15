@@ -27,8 +27,11 @@ export const StyledCharInput = styled.input`
   font-weight: 500;
   border: none;
   border-bottom: 2px solid ${colors.GY5};
+  border-radius: 0;
   color: ${colors.BK};
   background-color: ${colors.GY6};
+  -webkit-appearance: none;
+  appearance: none;
 
   &:focus {
     outline: none;
