@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 import { css } from '@emotion/react';
+
 import dayjs from 'dayjs';
 
 import {
@@ -13,6 +14,7 @@ import { Props } from './Calendar.types';
 
 import { useCalendar } from '../../../hooks/useCalendar';
 import { Icon } from '../Icon';
+import { CALENDAR } from '../../../constants/calendar';
 
 export const Calendar = forwardRef<HTMLDivElement, Props>(
   ({ startDate, endDate, onDateChange, ...props }, ref) => {
@@ -24,15 +26,6 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(
       generateDates,
       isCurrentMonth,
     } = useCalendar({ startDate, endDate, onDateChange });
-
-    const handleDateClick =
-      (date: dayjs.Dayjs, isDisabled: boolean, isCurrentMonth: boolean) =>
-      (e: React.MouseEvent | React.TouchEvent) => {
-        e.preventDefault();
-        if (!isDisabled && isCurrentMonth) {
-          handleDateSelect(date);
-        }
-      };
 
     return (
       <StyledCalendarContainer ref={ref} {...props}>
@@ -65,9 +58,9 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(
           {generateDates().map(({ date, isCurrentMonth, isDisabled, ...props }) => (
             <StyledDateButton
               key={date.toString()}
-              isDisabled={isDisabled}
-              onTouchEnd={handleDateClick(date, isDisabled, isCurrentMonth)}
-              onClick={handleDateClick(date, isDisabled, isCurrentMonth)}
+              isDisabled={isDisabled || date.isAfter(today.add(CALENDAR.MAX_MONTH_DAYS, 'day'))}
+              onTouchEnd={() => !isDisabled && handleDateSelect(date)}
+              onClick={() => !isDisabled && handleDateSelect(date)}
               isPast={date.isBefore(today, 'day')}
               isPrevMonth={!isCurrentMonth && date.isBefore(currentMonth.startOf('month'))}
               isNextMonth={!isCurrentMonth && date.isAfter(currentMonth.endOf('month'))}
