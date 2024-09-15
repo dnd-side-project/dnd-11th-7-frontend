@@ -3,7 +3,7 @@ import dayjs, { Dayjs } from 'dayjs';
 
 import { CALENDAR } from '@/constants/calendar';
 
-import { Props } from './Calendar.types';
+import { Props } from '../components/common/Calendar/Calendar.types';
 
 export const useCalendar = ({ startDate, endDate, onDateChange }: Props) => {
   const [currentMonth, setCurrentMonth] = useState(dayjs());
@@ -88,6 +88,7 @@ export const useCalendar = ({ startDate, endDate, onDateChange }: Props) => {
   };
 
   return {
+    today,
     currentMonth,
     handleDateChange,
     handleDateSelect,

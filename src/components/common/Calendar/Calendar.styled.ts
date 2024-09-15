@@ -50,11 +50,20 @@ export const StyledDateButton = styled.button<ButtonProps>`
   border-radius: 100%;
   cursor: ${({ isDisabled }) => (isDisabled ? 'not-allowed' : 'pointer')};
   font-size: 16px;
-  color: ${({ isSelected, isInRange }) =>
-    isSelected ? colors.WH : isInRange ? colors.WH : colors.BK};
+  color: ${({ isSelected, isDisabled, isNextMonth, isPrevMonth, isInRange, isPast }) =>
+    isPast || isDisabled || isNextMonth || isPrevMonth
+      ? colors.GY4
+      : isSelected || isInRange
+        ? colors.WH
+        : colors.BK};
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   z-index: 1;
+  opacity: ${({ isNextMonth, isPrevMonth }) => (isNextMonth || isPrevMonth ? 0.5 : 1)};
+
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 `;

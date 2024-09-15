@@ -42,4 +42,19 @@ export type ButtonProps = {
    * @default false
    */
   isDisabled: boolean;
+  /**
+   * Whether the date is in the past.
+   * @default false
+   */
+  isPast: boolean;
+  /**
+   * Whether the date belongs to the next month.
+   * @default false
+   */
+  isNextMonth: boolean;
+  /**
+   * Whether the date belongs to the previous month.
+   * @default false
+   */
+  isPrevMonth: boolean;
 } & ComponentPropsWithoutRef<'button'>;
