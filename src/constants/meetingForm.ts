@@ -17,3 +17,14 @@ export const categories = [
   '봉사',
   '기타',
 ] as const;
+
+export const categoryIdMap: Record<(typeof categories)[number], number> = {
+  학교: 1,
+  친구: 2,
+  팀플: 3,
+  회의: 4,
+  스터디: 5,
+  취미: 6,
+  봉사: 7,
+  기타: 8,
+} as const;

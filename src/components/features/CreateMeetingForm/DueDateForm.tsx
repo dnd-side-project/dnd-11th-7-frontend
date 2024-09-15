@@ -1,18 +1,34 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import dayjs from 'dayjs';
 
 import { FixedBottomButton } from '@/components/common/FixedBottomButton';
 import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
 import { Switch } from '@/components/common/Switch';
 import { useFunnelProgressContext } from '@/hooks/useFunnelProgressContext';
+import { MeetingForm } from '@/types/meeting';
 
-import { CreateMeetingFormBaseProps } from './types';
+import { CreateMeetingFormBaseProps, FormData } from './types';
 
-type Props = CreateMeetingFormBaseProps;
+type Props<T> = CreateMeetingFormBaseProps & FormData<T>;
 
-export const DueDateForm = ({ onNext, onPrev }: Props) => {
+export const DueDateForm = ({ context, onNext, onPrev }: Props<MeetingForm['dueDateTime']>) => {
   const { progress, maxProgress } = useFunnelProgressContext();
-  const [selectedDueDate, setSelectedDueDate] = useState('오늘'); // TODO 인터페이스 정의 필요
+  const { state: dueDateTime, setState: setDueDateTime } = context;
+
+  const [selectedDueDate, setSelectedDueDate] = useState(dueDateTime);
+
+  const accessDate = dayjs().format('YYYY-MM-DDTHH'); // NOTE: 해당 페이지의 접속 날짜를 기준으로 +n일을 계산하기 위함
+  const endDateOf = useMemo(
+    () => ({
+      // TODO 유틸화
+      오늘: dayjs(accessDate).endOf('day').format('YYYY-MM-DDTHH:mm:ss'),
+      내일: dayjs(accessDate).add(1, 'day').endOf('day').format('YYYY-MM-DDTHH:mm:ss'),
+      '3일': dayjs(accessDate).add(3, 'day').endOf('day').format('YYYY-MM-DDTHH:mm:ss'),
+      '5일': dayjs(accessDate).add(5, 'day').endOf('day').format('YYYY-MM-DDTHH:mm:ss'),
+    }),
+    [accessDate]
+  );
 
   return (
     <>
@@ -22,15 +38,23 @@ export const DueDateForm = ({ onNext, onPrev }: Props) => {
         content={
           <FlexBox width="100%" padding="78px 0">
             <Switch selectedValue={selectedDueDate} onChange={setSelectedDueDate}>
-              <Switch.Button label="오늘" value="오늘" />
-              <Switch.Button label="내일" value="내일" />
-              <Switch.Button label="3일" value="3일" />
-              <Switch.Button label="5일" value="5일" />
+              <Switch.Button label="오늘" value={endDateOf['오늘']} />
+              <Switch.Button label="내일" value={endDateOf['내일']} />
+              <Switch.Button label="3일" value={endDateOf['3일']} />
+              <Switch.Button label="5일" value={endDateOf['5일']} />
             </Switch>
           </FlexBox>
         }
       />
-      <FixedBottomButton onClick={onNext}>다음</FixedBottomButton>
+      <FixedBottomButton
+        onClick={() => {
+          setDueDateTime(selectedDueDate);
+          onNext();
+        }}
+        disabled={!selectedDueDate}
+      >
+        다음
+      </FixedBottomButton>
     </>
   );
 };
