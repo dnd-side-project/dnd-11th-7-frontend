@@ -61,7 +61,7 @@ export const StyledDateButton = styled.button<ButtonProps>`
   align-items: center;
   position: relative;
   z-index: 1;
-  opacity: ${({ isNextMonth }) => (isNextMonth ? 0.5 : 1)};
+  opacity: ${({ isNextMonth, isPrevMonth }) => (isNextMonth || isPrevMonth ? 0.5 : 1)};
 
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
