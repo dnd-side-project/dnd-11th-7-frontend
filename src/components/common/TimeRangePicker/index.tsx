@@ -53,7 +53,7 @@ export const TimeRangePicker = forwardRef<HTMLDivElement, Props>(
         onTouchEnd={onDragEnd}
         {...props}
       >
-        {Array.from({ length: 16 }).map((_, index) => {
+        {Array.from({ length: 15 }).map((_, index) => {
           const isSelected = selectedSlots[index] || false;
           const prevSlot = selectedSlots[index - 1] || false;
           const nextSlot = selectedSlots[index + 1] || false;

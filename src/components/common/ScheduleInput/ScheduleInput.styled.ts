@@ -5,20 +5,20 @@ import { colors } from '@/styles/global';
 export const StyledCardContainer = styled.div`
   width: 90%;
   height: auto;
-  min-height: 80vh;
   border: 1px solid ${colors.GY6};
   border-radius: 16px;
-  padding: 17px;
+  padding: 17px 17px 23px 17px;
   background-color: ${colors.WH};
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
   overflow-y: scroll;
 `;
 
 export const StyledDayContainer = styled.div`
-  display: flex;
   width: 100%;
-  margin-bottom: 28px;
+  display: flex;
   justify-content: space-between;
+  background-color: ${colors.WH};
+  padding-bottom: 28px;
 `;
 
 export const StyledTimeContainer = styled.div`
@@ -27,7 +27,7 @@ export const StyledTimeContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding-right: 10px;
-  justify-content: space-around;
+  margin-bottom: 20px;
   align-items: center;
 `;
 
@@ -36,12 +36,4 @@ export const StyledTimeBoxContainer = styled.div`
   display: flex;
   flex: 1;
   padding-right: 10%;
-`;
-
-export const StyledTimeLabel = styled.div`
-  width: 10%;
-  text-align: center;
-  color: ${colors.GY6};
-  display: flex;
-  justify-content: center;
 `;

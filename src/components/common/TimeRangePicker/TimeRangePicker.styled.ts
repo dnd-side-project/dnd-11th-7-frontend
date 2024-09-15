@@ -6,7 +6,7 @@ export const StyledTimeBoxContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 560px;
+  height: 525px;
 `;
 
 export const TimeBoxSelector = styled.div<{
@@ -30,7 +30,7 @@ export const TimeBoxSelector = styled.div<{
       if (props.isLast) return '0 0 8px 8px';
     }
     if (props.index === 0) return '8px 8px 0 0';
-    if (props.index === 15) return '0 0 8px 8px';
+    if (props.index === 14) return '0 0 8px 8px';
     return '0';
   }};
 `;

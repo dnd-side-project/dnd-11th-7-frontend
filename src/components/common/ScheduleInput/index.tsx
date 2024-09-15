@@ -1,4 +1,5 @@
 import { useState, forwardRef, useRef, useCallback } from 'react';
+import { css } from '@emotion/react';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
@@ -11,7 +12,6 @@ import {
   StyledDayContainer,
   StyledTimeContainer,
   StyledTimeBoxContainer,
-  StyledTimeLabel,
 } from './ScheduleInput.styled';
 import { Props } from './ScheduleInput.type';
 
@@ -81,14 +81,17 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
           </FlexBox>
         </StyledDayContainer>
 
-        <FlexBox flexDir="row" height="560px">
+        <FlexBox flexDir="row" height="525px">
           <StyledTimeContainer>
             {Array.from({ length: 16 }).map((_, rowIndex) => (
-              <StyledTimeLabel key={rowIndex}>
-                <Caption regularWeight color="GY3">
-                  {9 + rowIndex}
-                </Caption>
-              </StyledTimeLabel>
+              <Caption
+                key={rowIndex}
+                regularWeight
+                color="GY3"
+                css={css(`margin-bottom: ${rowIndex !== 15 ? `${18 + rowIndex * 0.04}px` : '0'};`)}
+              >
+                {9 + rowIndex}
+              </Caption>
             ))}
           </StyledTimeContainer>
           <StyledTimeBoxContainer>
