@@ -1,8 +1,6 @@
 import { forwardRef } from 'react';
 import { css } from '@emotion/react';
 
-import dayjs from 'dayjs';
-
 import {
   StyledDateHeader,
   StyledWeekHeader,
@@ -12,9 +10,9 @@ import {
 } from './Calendar.styled';
 import { Props } from './Calendar.types';
 
+import { CALENDAR } from '../../../constants/calendar';
 import { useCalendar } from '../../../hooks/useCalendar';
 import { Icon } from '../Icon';
-import { CALENDAR } from '../../../constants/calendar';
 
 export const Calendar = forwardRef<HTMLDivElement, Props>(
   ({ startDate, endDate, onDateChange, ...props }, ref) => {
