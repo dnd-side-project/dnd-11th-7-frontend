@@ -24,7 +24,7 @@ export const ScheduleCard = forwardRef<HTMLDivElement, Props>(
           </Caption>
           <Body2 color={variant === 'default' ? 'purple' : 'WH'}>{dateTime}</Body2>
           {attendees && attendees.length > 0 && (
-            <StyledMemberInfoContainer>
+            <StyledMemberInfoContainer attendees={attendees}>
               <Chip.Group type="slide">
                 {attendees.map((item, index) => (
                   <Chip key={index} variant={variant === 'default' ? 'primary' : 'secondary'}>

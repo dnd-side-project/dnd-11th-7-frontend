@@ -24,7 +24,7 @@ export const StyledMemberCardContainer = styled.div<Pick<Props, 'variant'>>`
   ${({ variant = 'default' }) => memberCardStyles[variant]};
 `;
 
-export const StyledMemberInfoContainer = styled.div<Props>`
+export const StyledMemberInfoContainer = styled.div<{ attendees: string[] }>`
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
