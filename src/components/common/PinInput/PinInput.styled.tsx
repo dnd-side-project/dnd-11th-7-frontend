@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { colors } from '@/styles/global';
+
 import { Caption } from '../Typography/index';
 
 export const StyledInputContainer = styled.div`
@@ -20,6 +21,7 @@ export const StyledCharContainer = styled.div`
 
 export const StyledCharInput = styled.input`
   width: 30px;
+  height: 100%;
   text-align: center;
   font-size: 24px;
   font-weight: 500;
