@@ -57,8 +57,11 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(
             <StyledDateButton
               key={date.toString()}
               isDisabled={isDisabled || date.isAfter(today.add(CALENDAR.MAX_MONTH_DAYS, 'day'))}
-              onTouchEnd={() => !isDisabled && handleDateSelect(date)}
-              onClick={() => !isDisabled && handleDateSelect(date)}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                handleDateSelect(date);
+              }}
+              onClick={() => handleDateSelect(date)}
               isPast={date.isBefore(today, 'day')}
               isPrevMonth={!isCurrentMonth && date.isBefore(currentMonth.startOf('month'))}
               isNextMonth={!isCurrentMonth && date.isAfter(currentMonth.endOf('month'))}
