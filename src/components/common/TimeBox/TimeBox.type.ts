@@ -21,4 +21,8 @@ export type Props = {
    * Optional function when dragging ends.
    */
   onDragEnd?: () => void;
+  /**
+   *  column index
+   */
+  colIndex: number;
 } & ComponentPropsWithoutRef<'div'>;

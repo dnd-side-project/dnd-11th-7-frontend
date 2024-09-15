@@ -1,4 +1,4 @@
-import { useState, forwardRef } from 'react';
+import { useState, forwardRef, useRef, useCallback } from 'react';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
@@ -27,57 +27,43 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
     ref
   ) => {
     const [isDragging, setIsDragging] = useState(false);
+    const lastTouchedCell = useRef<{ row: number; col: number } | null>(null);
 
     const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
 
     const isFirstPage = currentDates[0]?.isSameOrBefore(dayjs(startDate));
     const isLastPage = currentDates[currentDates.length - 1]?.isSameOrAfter(dayjs(endDate));
 
-    const handleStart = (rowIndex: number, colIndex: number) => {
-      setIsDragging(true);
-      onTimeSlotClick(rowIndex, colIndex);
-    };
+    const handleStart = useCallback(
+      (rowIndex: number | React.DragEvent<HTMLDivElement>, colIndex: number) => {
+        const index = typeof rowIndex === 'number' ? rowIndex : 0;
+        setIsDragging(true);
+        lastTouchedCell.current = { row: index, col: colIndex };
+        onTimeSlotClick(index, colIndex);
+      },
+      [onTimeSlotClick]
+    );
 
-    const handleDragStart = (
-      rowIndex: number | React.DragEvent<HTMLDivElement>,
-      colIndex: number
-    ) => {
-      if (typeof rowIndex === 'number') {
-        handleStart(rowIndex, colIndex);
-      }
-    };
-
-    const handleMove = (rowIndex: number, colIndex: number) => {
-      if (isDragging) {
-        onTimeSlotClick(rowIndex, colIndex);
-      }
-    };
-
-    const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-      if (isDragging) {
-        const touch = e.touches[0];
-        const element = document.elementFromPoint(touch.clientX, touch.clientY);
-
-        if (element) {
-          const rowIndex = parseInt(element.getAttribute('data-row-index') || '-1', 10);
-          const colIndex = parseInt(element.getAttribute('data-col-index') || '-1', 10);
-
-          if (rowIndex !== -1 && colIndex !== -1) {
-            handleMove(rowIndex, colIndex);
+    const handleMove = useCallback(
+      (rowIndex: number, colIndex: number) => {
+        if (isDragging && lastTouchedCell.current) {
+          const { row: lastRow, col: lastCol } = lastTouchedCell.current;
+          if (lastRow !== rowIndex || lastCol !== colIndex) {
+            onTimeSlotClick(rowIndex, colIndex);
+            lastTouchedCell.current = { row: rowIndex, col: colIndex };
           }
         }
-      }
-    };
-    const handleEnd = () => setIsDragging(false);
+      },
+      [isDragging, onTimeSlotClick]
+    );
+
+    const handleEnd = useCallback(() => {
+      setIsDragging(false);
+      lastTouchedCell.current = null;
+    }, []);
 
     return (
-      <StyledCardContainer
-        ref={ref}
-        onMouseUp={handleEnd}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleEnd}
-        {...props}
-      >
+      <StyledCardContainer ref={ref} onMouseUp={handleEnd} onTouchEnd={handleEnd} {...props}>
         <StyledDayContainer>
           <FlexBox width="10%" justifyContent="center" alignItems="flex-start">
             {!isFirstPage && <Icon name="prev" onClick={movePrev} />}
@@ -115,10 +101,11 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
                   selectedSlots={timeSlots[dateKey] || []}
                   onTimeSlotClick={(rowIndex: number) => onTimeSlotClick(rowIndex, colIndex)}
                   onDragStart={(rowIndex: number | React.DragEvent<HTMLDivElement>) =>
-                    handleDragStart(rowIndex, colIndex)
+                    handleStart(rowIndex, colIndex)
                   }
                   onDragMove={(rowIndex: number) => handleMove(rowIndex, colIndex)}
                   onDragEnd={handleEnd}
+                  colIndex={colIndex}
                 />
               );
             })}

@@ -26,7 +26,7 @@ export const Basic: Story = {
   render: () => (
     <FlexBox flexDir="row" alignItems="flex-start" width="250px">
       {timeBoxVariations.map(({ slots }, index) => (
-        <TimeBox key={index} selectedSlots={slots} />
+        <TimeBox key={index} selectedSlots={slots} colIndex={index} />
       ))}
     </FlexBox>
   ),
