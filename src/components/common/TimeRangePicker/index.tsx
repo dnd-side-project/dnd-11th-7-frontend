@@ -1,9 +1,9 @@
 import { forwardRef, useCallback, useRef, useEffect } from 'react';
 
-import { StyledTimeBoxContainer, TimeBoxSelector } from './TimeBox.styled';
-import { Props } from './TimeBox.type';
+import { StyledTimeBoxContainer, TimeBoxSelector } from './TimeRangePicker.styled';
+import { Props } from './TimeRangePicker.type';
 
-export const TimeBox = forwardRef<HTMLDivElement, Props>(
+export const TimeRangePicker = forwardRef<HTMLDivElement, Props>(
   ({
     selectedSlots,
     onDragStart = () => {},
@@ -29,7 +29,6 @@ export const TimeBox = forwardRef<HTMLDivElement, Props>(
         const element = document.elementFromPoint(touch.clientX, touch.clientY) as HTMLElement;
         const rowIndex = parseInt(element?.getAttribute('data-row-index') || '-1', 10);
         const touchedColIndex = parseInt(element?.getAttribute('data-col-index') || '-1', 10);
-
         if (rowIndex !== -1 && touchedColIndex !== -1) {
           onDragMove(rowIndex);
         }

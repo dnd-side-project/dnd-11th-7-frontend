@@ -16,7 +16,7 @@ import {
 import { Props } from './ScheduleInput.type';
 
 import { Icon } from '../../common/Icon';
-import { TimeBox } from '../../common/TimeBox';
+import { TimeRangePicker } from '../../common/TimeRangePicker';
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
@@ -96,7 +96,7 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
               const dateKey = date.format('YYYY-MM-DD');
 
               return (
-                <TimeBox
+                <TimeRangePicker
                   key={date.format('YYYY-MM-DD')}
                   selectedSlots={timeSlots[dateKey] || []}
                   onTimeSlotClick={(rowIndex: number) => onTimeSlotClick(rowIndex, colIndex)}

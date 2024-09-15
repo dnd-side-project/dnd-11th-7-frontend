@@ -3,16 +3,16 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { FlexBox } from '@/components/common/FlexBox';
 
-import { TimeBox } from '.';
+import { TimeRangePicker } from '.';
 
 const meta = {
-  title: 'components/common/TimeBox',
-  component: TimeBox,
+  title: 'components/common/TimeRangePicker',
+  component: TimeRangePicker,
   tags: ['autodocs'],
-} satisfies Meta<typeof TimeBox>;
+} satisfies Meta<typeof TimeRangePicker>;
 
 export default meta;
-type Story = StoryObj<typeof TimeBox>;
+type Story = StoryObj<typeof TimeRangePicker>;
 
 const timeBoxVariations = [
   { slots: [true, false, false, false] },
@@ -26,7 +26,7 @@ export const Basic: Story = {
   render: () => (
     <FlexBox flexDir="row" alignItems="flex-start" width="250px">
       {timeBoxVariations.map(({ slots }, index) => (
-        <TimeBox key={index} selectedSlots={slots} colIndex={index} />
+        <TimeRangePicker key={index} selectedSlots={slots} colIndex={index} />
       ))}
     </FlexBox>
   ),
