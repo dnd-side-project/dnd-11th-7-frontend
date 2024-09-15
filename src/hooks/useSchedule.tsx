@@ -3,12 +3,19 @@ import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 
+import { parseTimeRanges } from '../utils/parseTimeRanges';
+
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
 
-export const useSchedule = (startDateStr: string, endDateStr: string) => {
+export const useSchedule = (
+  startDateStr: string,
+  endDateStr: string,
+  savedRanges: string[] = []
+) => {
   const MAX_DATE = 4;
-  const TOTAL_TIME = 16;
+  const TOTAL_TIME = 15;
+
   const startDate = useMemo(() => dayjs(startDateStr), [startDateStr]);
   const endDate = useMemo(() => dayjs(endDateStr), [endDateStr]);
 
@@ -16,6 +23,8 @@ export const useSchedule = (startDateStr: string, endDateStr: string) => {
   const [currentDates, setCurrentDates] = useState<dayjs.Dayjs[]>([]);
   const [timeSlots, setTimeSlots] = useState<{ [key: string]: boolean[] }>({});
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
+
+  const savedTimeSlots = useMemo(() => parseTimeRanges(savedRanges), [savedRanges]);
 
   const updateDates = useCallback(() => {
     const dates: dayjs.Dayjs[] = [];
@@ -31,21 +40,24 @@ export const useSchedule = (startDateStr: string, endDateStr: string) => {
     updateDates();
   }, [updateDates]);
 
-  const initializeTimeSlots = useCallback(
-    (dates: dayjs.Dayjs[]) => {
-      setTimeSlots((prevSlots) => {
-        const newSlots = { ...prevSlots };
-        dates.forEach((date) => {
-          const dateKey = date.format('YYYY-MM-DD');
-          if (!newSlots[dateKey]) {
-            newSlots[dateKey] = Array(TOTAL_TIME).fill(false);
-          }
-        });
-        return newSlots;
+  const initializeTimeSlots = useCallback((dates: dayjs.Dayjs[]) => {
+    setTimeSlots((prevSlots) => {
+      const newSlots = { ...prevSlots };
+      dates.forEach((date) => {
+        const dateKey = date.format('YYYY-MM-DD');
+        if (!newSlots[dateKey]) {
+          newSlots[dateKey] = Array(TOTAL_TIME).fill(false);
+        }
       });
-    },
-    [TOTAL_TIME]
-  );
+      Object.keys(savedTimeSlots).forEach((dateKey) => {
+        if (newSlots[dateKey]) {
+          newSlots[dateKey] = savedTimeSlots[dateKey];
+        }
+      });
+      return newSlots;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     initializeTimeSlots(currentDates);
