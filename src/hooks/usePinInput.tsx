@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 
 import { PIN } from '@/constants/pin';
 import { englishAndNumberRegex } from '@/utils/regex';
@@ -7,6 +7,7 @@ import { Props } from '../components/common/PinInput/PinInput.types';
 
 export const usePinInput = ({ value, onPinChange }: Props) => {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const [isValid, setIsValid] = useState(true);
 
   const focusInput = (index: number) => {
     if (index >= 0 && index < PIN.LENGTH) {
@@ -17,8 +18,11 @@ export const usePinInput = ({ value, onPinChange }: Props) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     const newChar = e.target.value.slice(-1);
 
-    if (!englishAndNumberRegex(newChar)) return;
-
+    if (newChar && !englishAndNumberRegex(newChar)) {
+      setIsValid(false);
+      return;
+    }
+    setIsValid(true);
     const newPinValue = [...value];
     newPinValue[index] = newChar;
 
@@ -46,5 +50,5 @@ export const usePinInput = ({ value, onPinChange }: Props) => {
     }
   };
 
-  return { inputRefs, focusInput, handleChange, handleKeyDown };
+  return { isValid, inputRefs, focusInput, handleChange, handleKeyDown };
 };
