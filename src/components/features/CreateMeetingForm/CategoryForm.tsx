@@ -51,7 +51,7 @@ export const CategoryForm = ({ context, onNext, onPrev }: Props<MeetingForm['cat
                   key={category}
                   component="button"
                   variant={
-                    selectedCategoryIds.includes(categoryIdMap[category]) ? 'filled' : 'dimmed'
+                    selectedCategoryIds.includes(categoryIdMap[category]) ? 'primary' : 'dimmed'
                   }
                   value={categoryIdMap[category]}
                   onClick={() => handleClickChip(categoryIdMap[category])}
