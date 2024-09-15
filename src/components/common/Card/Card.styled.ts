@@ -36,7 +36,7 @@ const jjakkakHandsStyles = {
 };
 
 export const StyledCardContainer = styled.div<Props>`
-  width: 90%;
+  width: 100%;
   padding: 24px 20px;
   border-radius: 16px;
   background-color: ${colors.WH};

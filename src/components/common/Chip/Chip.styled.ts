@@ -81,7 +81,7 @@ const groupTypeStyles = {
       right: 0;
       width: 32px;
       height: 100%;
-      background: linear-gradient(to left, white, transparent);
+      // background: linear-gradient(to left, white, transparent);
       pointer-events: none;
     }
   `,

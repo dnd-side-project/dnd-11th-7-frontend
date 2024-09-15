@@ -6,7 +6,7 @@ import { AppLayout } from '../../common/AppLayout';
 import { FlexBox } from '../../common/FlexBox';
 
 const meta = {
-  title: 'components/features/Card',
+  title: 'components/common/Card',
   component: Card,
   tags: ['autodocs'],
 } satisfies Meta<typeof Card>;
@@ -30,7 +30,7 @@ export const Basic: Story = {
   },
   render: (args) => (
     <AppLayout>
-      <FlexBox justifyContent="center" alignItems="center" height="100vh">
+      <FlexBox justifyContent="center" alignItems="center" height="100vh" padding={20}>
         <Card {...args} />
       </FlexBox>
     </AppLayout>
