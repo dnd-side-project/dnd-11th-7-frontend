@@ -22,16 +22,9 @@ export const ScheduleCard = forwardRef<HTMLDivElement, Props>(
           >
             {attendeeCount}
           </Caption>
-          <Body2
-            color={variant === 'default' ? 'purple' : 'WH'}
-            css={css`
-              margin-bottom: ${attendees && '6px'};
-            `}
-          >
-            {dateTime}
-          </Body2>
-          <StyledMemberInfoContainer>
-            {attendees.length > 0 && (
+          <Body2 color={variant === 'default' ? 'purple' : 'WH'}>{dateTime}</Body2>
+          {attendees && attendees.length > 0 && (
+            <StyledMemberInfoContainer>
               <Chip.Group type="slide">
                 {attendees.map((item, index) => (
                   <Chip key={index} variant={variant === 'default' ? 'primary' : 'secondary'}>
@@ -39,8 +32,8 @@ export const ScheduleCard = forwardRef<HTMLDivElement, Props>(
                   </Chip>
                 ))}
               </Chip.Group>
-            )}
-          </StyledMemberInfoContainer>
+            </StyledMemberInfoContainer>
+          )}
         </FlexBox>
       </StyledMemberCardContainer>
     );

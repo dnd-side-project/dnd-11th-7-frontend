@@ -33,7 +33,13 @@ export const Basic: Story = {
   },
   render: (args) => (
     <AppLayout>
-      <FlexBox flexDir="column" justifyContent="center" alignItems="center" height="100vh">
+      <FlexBox
+        flexDir="column"
+        justifyContent="center"
+        alignItems="center"
+        height="100vh"
+        padding={20}
+      >
         <Card>
           <ScheduleCard {...args} />
         </Card>

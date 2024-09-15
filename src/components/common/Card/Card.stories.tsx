@@ -30,7 +30,7 @@ export const Basic: Story = {
   },
   render: (args) => (
     <AppLayout>
-      <FlexBox justifyContent="center" alignItems="center" height="100vh">
+      <FlexBox justifyContent="center" alignItems="center" height="100vh" padding={20}>
         <Card {...args} />
       </FlexBox>
     </AppLayout>

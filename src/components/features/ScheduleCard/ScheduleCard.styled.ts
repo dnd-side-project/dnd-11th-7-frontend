@@ -24,9 +24,10 @@ export const StyledMemberCardContainer = styled.div<Pick<Props, 'variant'>>`
   ${({ variant = 'default' }) => memberCardStyles[variant]};
 `;
 
-export const StyledMemberInfoContainer = styled.div`
+export const StyledMemberInfoContainer = styled.div<Props>`
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
+  margin-top: ${({ attendees = [] }) => (attendees ? '6px' : '0px')};
 `;
