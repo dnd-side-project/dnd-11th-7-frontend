@@ -1,10 +1,9 @@
 /* eslint-disable no-restricted-exports */
-import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { ScheduleCard } from '.';
-import { Card } from '../../common/Card/index';
 import { AppLayout } from '../../common/AppLayout/index';
+import { Card } from '../../common/Card/index';
 import { FlexBox } from '../../common/FlexBox/index';
 
 const meta = {
@@ -29,7 +28,7 @@ export const Basic: Story = {
       options: ['default', 'purple'],
     },
     attendees: {
-      control: { type: 'array' },
+      control: { type: 'object' },
     },
   },
   render: (args) => (
