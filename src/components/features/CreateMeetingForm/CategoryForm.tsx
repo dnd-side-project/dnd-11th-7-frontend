@@ -5,7 +5,7 @@ import { FixedBottomButton } from '@/components/common/FixedBottomButton';
 import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
 import { categories, categoryIdMap } from '@/constants/meetingForm';
-import { useFunnelProgressContext } from '@/hooks/useFunnelProgressContext';
+import { useMeetingFormProgressContext } from '@/hooks/useMeetingFormProgressContext';
 import { MeetingForm } from '@/types/meeting';
 
 import { CreateMeetingFormBaseProps, FormData } from './types';
@@ -16,7 +16,7 @@ const MIN_SELECT_COUNT = 1;
 const MAX_SELECT_COUNT = 3;
 
 export const CategoryForm = ({ context, onNext, onPrev }: Props<MeetingForm['categoryIds']>) => {
-  const { progress, maxProgress } = useFunnelProgressContext();
+  const { progress, maxProgress } = useMeetingFormProgressContext();
   const { state: categoryIdsFormData, setState: setCategoryIdsFormData } = context;
 
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<number[]>(categoryIdsFormData);

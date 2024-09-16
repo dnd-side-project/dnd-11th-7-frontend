@@ -5,7 +5,7 @@ import { FixedBottomButton } from '@/components/common/FixedBottomButton';
 import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
 import { Switch } from '@/components/common/Switch';
-import { useFunnelProgressContext } from '@/hooks/useFunnelProgressContext';
+import { useMeetingFormProgressContext } from '@/hooks/useMeetingFormProgressContext';
 import { MeetingForm } from '@/types/meeting';
 
 import { CreateMeetingFormBaseProps, FormData } from './types';
@@ -13,7 +13,7 @@ import { CreateMeetingFormBaseProps, FormData } from './types';
 type Props<T> = CreateMeetingFormBaseProps & FormData<T>;
 
 export const DueDateForm = ({ context, onNext, onPrev }: Props<MeetingForm['dueDateTime']>) => {
-  const { progress, maxProgress } = useFunnelProgressContext();
+  const { progress, maxProgress } = useMeetingFormProgressContext();
   const { state: dueDateTime, setState: setDueDateTime } = context;
 
   const [selectedDueDate, setSelectedDueDate] = useState(dueDateTime);

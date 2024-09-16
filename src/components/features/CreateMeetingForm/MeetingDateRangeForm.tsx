@@ -4,7 +4,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import { Calendar } from '@/components/common/Calendar';
 import { FixedBottomButton } from '@/components/common/FixedBottomButton';
 import { FormLayout } from '@/components/common/FormLayout';
-import { useFunnelProgressContext } from '@/hooks/useFunnelProgressContext';
+import { useMeetingFormProgressContext } from '@/hooks/useMeetingFormProgressContext';
 import { MeetingForm } from '@/types/meeting';
 
 import { CreateMeetingFormBaseProps, FormData } from './types';
@@ -16,7 +16,7 @@ export const MeetingDateRangeForm = ({
   onNext,
   onPrev,
 }: Props<Pick<MeetingForm, 'meetingStartDate' | 'meetingEndDate'>>) => {
-  const { progress, maxProgress } = useFunnelProgressContext();
+  const { progress, maxProgress } = useMeetingFormProgressContext();
   const { state, setState: setMeetingDateFormData } = context;
   const { meetingStartDate: meetingStartDateFormData, meetingEndDate: meetingEndDateFormData } =
     state;

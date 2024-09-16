@@ -4,7 +4,7 @@ import { FixedBottomButton } from '@/components/common/FixedBottomButton';
 import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
 import { TextField } from '@/components/common/TextField';
-import { useFunnelProgressContext } from '@/hooks/useFunnelProgressContext';
+import { useMeetingFormProgressContext } from '@/hooks/useMeetingFormProgressContext';
 import { MeetingForm } from '@/types/meeting';
 import { createIsInvalidInstance, createIsValidInstance } from '@/utils/validation';
 
@@ -15,7 +15,7 @@ type Props<T> = CreateMeetingFormBaseProps & FormData<T>;
 const MAX_MEETING_NAME_LENGTH = 20;
 
 export const MeetingNameForm = ({ context, onNext, onPrev }: Props<MeetingForm['meetingName']>) => {
-  const { progress, maxProgress } = useFunnelProgressContext();
+  const { progress, maxProgress } = useMeetingFormProgressContext();
   const { state: meetingNameFormData, setState: setMeetingNameFormData } = context;
 
   const [meetingName, setMeetingName] = useState(meetingNameFormData);
