@@ -24,14 +24,10 @@ const ScheduleInputWrapper: React.FC<{ startDate: string; endDate: string }> = (
 }) => {
   const [dates] = useState({ startDate, endDate });
 
-  const {
-    currentDates,
-    timeSlots,
-    moveNext,
-    movePrev,
-    handleTimeSlotClick,
-    getSelectedTimeRanges,
-  } = useSchedule(dates.startDate, dates.endDate);
+  const { currentDates, timeSlots, moveNext, movePrev, handleTimeSlotClick } = useSchedule(
+    dates.startDate,
+    dates.endDate
+  );
 
   return (
     <AppLayout>
