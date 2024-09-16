@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 
+import { formatTime } from '../utils/formatTime';
 import { parseTimeRanges } from '../utils/parseTimeRanges';
 
 dayjs.extend(isSameOrBefore);
@@ -89,11 +90,6 @@ export const useSchedule = (
     [currentDates]
   );
 
-  const formatTime = useCallback((hour: number) => {
-    const formattedHour = (hour + 9).toString().padStart(2, '0');
-    return `${formattedHour}:00`;
-  }, []);
-
   const getSelectedTimeRanges = useCallback(() => {
     const selectedRanges: string[] = [];
 
@@ -118,7 +114,7 @@ export const useSchedule = (
     });
 
     return selectedRanges;
-  }, [timeSlots, formatTime]);
+  }, [timeSlots]);
 
   return {
     currentDates,

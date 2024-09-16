@@ -1,6 +1,7 @@
 import { useState, forwardRef, useRef, useCallback } from 'react';
 import { css } from '@emotion/react';
 import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 
@@ -20,6 +21,7 @@ import { TimeRangePicker } from '../../common/TimeRangePicker';
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
+dayjs.locale('ko');
 
 export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
   (
@@ -28,8 +30,6 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
   ) => {
     const [isDragging, setIsDragging] = useState(false);
     const lastTouchedCell = useRef<{ row: number; col: number } | null>(null);
-
-    const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
 
     const isFirstPage = currentDates[0]?.isSameOrBefore(dayjs(startDate));
     const isLastPage = currentDates[currentDates.length - 1]?.isSameOrAfter(dayjs(endDate));
@@ -71,7 +71,7 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
           <FlexBox flexDir="row" width="80%" justifyContent="center">
             {currentDates.map((date, index) => (
               <FlexBox gap={15} width="100%" key={index} justifyContent="center">
-                <Body4>{dayNames[date.day()]}</Body4>
+                <Body4>{date.format('ddd')}</Body4>
                 <Body4>{date.date()}</Body4>
               </FlexBox>
             ))}
