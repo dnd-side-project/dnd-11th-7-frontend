@@ -42,7 +42,7 @@ export const DueDateForm = ({ context, onNext, onPrev }: Props<MeetingForm['dueD
           <FlexBox width="100%" padding="78px 0">
             <Switch selectedValue={selectedDueDate} onChange={setSelectedDueDate}>
               {endDates.map(([label, value]) => (
-                <Switch.Button label={label} value={value} />
+                <Switch.Button key={value} label={label} value={value} />
               ))}
             </Switch>
           </FlexBox>
