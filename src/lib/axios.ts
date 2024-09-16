@@ -1,4 +1,4 @@
-import axios, { type AxiosResponse } from 'axios';
+import axios, { AxiosError } from 'axios';
 
 import { ENV } from './env';
 
@@ -10,22 +10,28 @@ export const instance = axios.create({
   },
 });
 
-export const get = <T>(...args: Parameters<typeof instance.get>) => {
-  return instance.get<T, AxiosResponse<T>>(...args);
-};
+instance.interceptors.response.use(
+  function onFulFilled(response) {
+    return response;
+  },
+  async function onRejected(error: AxiosError) {
+    const originalRequest = error.config;
 
-export const post = <T>(...args: Parameters<typeof instance.post>) => {
-  return instance.post<T, AxiosResponse<T>>(...args);
-};
+    if (error.response?.status === 401 && originalRequest && originalRequest.headers._retry === 0) {
+      try {
+        const response = await instance.get('/auth/reissue'); // 순환 참조 방지 위해 apis 함수 사용 X
+        const newAccessToken = response.headers.Authorization;
+        localStorage.setItem('accessToken', newAccessToken);
 
-export const put = <T>(...args: Parameters<typeof instance.put>) => {
-  return instance.put<T, AxiosResponse<T>>(...args);
-};
+        originalRequest.withCredentials = true;
+        originalRequest.headers.Authorization = newAccessToken;
+        originalRequest.headers._retry = 1;
 
-export const patch = <T>(...args: Parameters<typeof instance.patch>) => {
-  return instance.patch<T, AxiosResponse<T>>(...args);
-};
-
-export const del = <T>(...args: Parameters<typeof instance.delete>) => {
-  return instance.delete<T, AxiosResponse<T>>(...args);
-};
+        return await instance(originalRequest);
+      } catch (reissueError) {
+        alert('로그인이 필요합니다.');
+        return Promise.reject(reissueError);
+      }
+    }
+  }
+);

@@ -1,17 +1,13 @@
-import { KAKAO_LOGIN_URL } from '@/constants/auth';
+import { ComponentPropsWithoutRef } from 'react';
+
+import { FlexBox } from '@/components/common/FlexBox';
+import { Icon } from '@/components/common/Icon';
 
 import { KakaoButtonContainer } from './KakaoLoginButton.styled';
 
-import { FlexBox } from '../../common/FlexBox';
-import { Icon } from '../../common/Icon';
-
-export const KakaoLoginButton = () => {
-  const redirectToKakaoLogin = () => {
-    window.location.href = KAKAO_LOGIN_URL;
-  };
-
+export const KakaoLoginButton = ({ ...props }: ComponentPropsWithoutRef<'a'>) => {
   return (
-    <KakaoButtonContainer onClick={redirectToKakaoLogin}>
+    <KakaoButtonContainer {...props}>
       <FlexBox flexDir="row" alignItems="center" justifyContent="center" gap={8}>
         <Icon name="kakaotalk2" size={18} />
         카카오톡으로 로그인
