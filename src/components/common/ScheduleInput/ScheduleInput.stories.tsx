@@ -23,7 +23,6 @@ const ScheduleInputWrapper: React.FC<{ startDate: string; endDate: string }> = (
   endDate,
 }) => {
   const [dates] = useState({ startDate, endDate });
-  const data = ['2024-09-01 12:00~19:00', '2024-09-01 20:00~21:00'];
 
   const {
     currentDates,
@@ -32,11 +31,7 @@ const ScheduleInputWrapper: React.FC<{ startDate: string; endDate: string }> = (
     movePrev,
     handleTimeSlotClick,
     getSelectedTimeRanges,
-  } = useSchedule(dates.startDate, dates.endDate, data);
-
-  const selectedRanges = getSelectedTimeRanges();
-  //  TODO : 선택된 날짜와 시간이 어떻게 나오는지 확인하기 위한 용도입니다. 머지 되기 전 삭제할 예정입니다.
-  console.log('selectedRanges', selectedRanges);
+  } = useSchedule(dates.startDate, dates.endDate);
 
   return (
     <AppLayout>
