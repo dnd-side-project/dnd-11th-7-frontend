@@ -8,15 +8,15 @@ export type Props = {
   /**
    * Function called when a time slot is clicked or drag starts.
    */
-  onTimeSlotClick?: (index: number) => void;
+  onTimeSlotClick?: (index: number, colIndex: number) => void;
   /**
    * Optional function called when dragging starts.
    */
-  onDragStart?: (index: number) => void | React.DragEventHandler<HTMLDivElement>;
+  onDragStart?: (index: number, colIndex: number) => void;
   /**
    * Optional function for drag movement.
    */
-  onDragMove?: (index: number) => void;
+  onDragMove?: (index: number, colIndex: number) => void;
   /**
    * Optional function when dragging ends.
    */

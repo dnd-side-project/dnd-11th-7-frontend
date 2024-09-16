@@ -102,11 +102,15 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
                 <TimeRangePicker
                   key={date.format('YYYY-MM-DD')}
                   selectedSlots={timeSlots[dateKey] || []}
-                  onTimeSlotClick={(rowIndex: number) => onTimeSlotClick(rowIndex, colIndex)}
+                  onTimeSlotClick={(rowIndex: number, colIndex: number) =>
+                    onTimeSlotClick(rowIndex, colIndex)
+                  }
                   onDragStart={(rowIndex: number | React.DragEvent<HTMLDivElement>) =>
                     handleStart(rowIndex, colIndex)
                   }
-                  onDragMove={(rowIndex: number) => handleMove(rowIndex, colIndex)}
+                  onDragMove={(rowIndex: number, touchedColIndex: number) =>
+                    handleMove(rowIndex, colIndex + touchedColIndex - colIndex)
+                  }
                   onDragEnd={handleEnd}
                   colIndex={colIndex}
                 />

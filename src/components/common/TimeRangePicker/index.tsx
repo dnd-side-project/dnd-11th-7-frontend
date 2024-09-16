@@ -16,9 +16,11 @@ export const TimeRangePicker = forwardRef<HTMLDivElement, Props>(
     const containerRef = useRef<HTMLDivElement>(null);
 
     const onTouchStart = useCallback(
-      (index: number) => {
-        onTimeSlotClick(index);
-        onDragStart(index);
+      (index: number | React.DragEvent<HTMLDivElement>, colIndex: number) => {
+        if (typeof index === 'number') {
+          onTimeSlotClick(index, colIndex);
+          onDragStart && onDragStart(index, colIndex);
+        }
       },
       [onDragStart, onTimeSlotClick]
     );
@@ -30,7 +32,7 @@ export const TimeRangePicker = forwardRef<HTMLDivElement, Props>(
         const rowIndex = parseInt(element?.getAttribute('data-row-index') || '-1', 10);
         const touchedColIndex = parseInt(element?.getAttribute('data-col-index') || '-1', 10);
         if (rowIndex !== -1 && touchedColIndex !== -1) {
-          onDragMove(rowIndex);
+          onDragMove(rowIndex, touchedColIndex);
         }
       },
       [onDragMove]
@@ -70,9 +72,9 @@ export const TimeRangePicker = forwardRef<HTMLDivElement, Props>(
               isFirst={isGroupStart}
               isLast={isGroupEnd}
               isSelected={isSelected}
-              onMouseDown={() => onDragStart(index)}
-              onMouseEnter={() => onDragMove(index)}
-              onTouchStart={() => onTouchStart(index - 1)}
+              onMouseDown={() => onDragStart(index, colIndex)}
+              onMouseEnter={() => onDragMove(index, colIndex)}
+              onTouchStart={() => onTouchStart(index - 1, colIndex)}
             />
           );
         })}
