@@ -13,6 +13,7 @@ import Jjakkak5 from './jjakkak-5.svg?react';
 import Jjakkak6 from './jjakkak-6.svg?react';
 import Jjakkak7 from './jjakkak-7.svg?react';
 import Jjakkak8 from './jjakkak-8.svg?react';
+import Jjakkak9WithStage from './jjakkak-9-with-stage.svg?react';
 import Jjakkak9 from './jjakkak-9.svg?react';
 import JjakkakBody from './jjakkak-body.svg?react';
 import JjakkakCircle1 from './jjakkak-circle-1.svg?react';
@@ -86,6 +87,7 @@ export const IconMap = {
   jjakkakText: JjakkakText,
   jjakkakBody: JjakkakBody,
   jjakkakHands: JjakkakHands,
+  jjakkak9WithStage: Jjakkak9WithStage,
 };
 
 export type IconName = keyof typeof IconMap;
