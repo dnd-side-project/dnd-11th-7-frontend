@@ -3,4 +3,7 @@ export const ENDPOINT = {
     REISSUE: '/auth/reissue',
     CHECK: '/auth/check',
   },
+  MEETING: {
+    CREATE: '/meetings',
+  },
 };
