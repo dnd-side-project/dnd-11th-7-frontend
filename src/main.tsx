@@ -1,14 +1,16 @@
 import React, { Suspense } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
-// eslint-disable-next-line import/order
+import dayjs from 'dayjs';
 import ReactDOM from 'react-dom/client';
-
-import './index.css';
 import { RouterProvider } from 'react-router-dom';
+import 'dayjs/locale/ko';
 
 import { queryClient } from '@/lib/reactQuery.ts';
+import { router } from '@/routes/route';
 
-import { router } from './routes/route';
+import './index.css';
+
+dayjs.locale('ko');
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
