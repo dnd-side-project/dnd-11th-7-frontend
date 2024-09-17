@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import { FlexBox } from '@/components/common/FlexBox';
 import { colors } from '@/styles/global';
 
+import { LeftWrapper, MiddleWrapper, RightWrapper } from './Header.styled';
 import { Props } from './Header.types';
 
 export const Header = ({ left, middle, right }: Props) => {
@@ -21,9 +22,9 @@ export const Header = ({ left, middle, right }: Props) => {
         background-color: ${colors.GY6};
       `}
     >
-      <div>{left}</div>
-      <div>{middle}</div>
-      <div>{right}</div>
+      <LeftWrapper>{left}</LeftWrapper>
+      <MiddleWrapper>{middle}</MiddleWrapper>
+      <RightWrapper>{right}</RightWrapper>
     </FlexBox>
   );
 };
