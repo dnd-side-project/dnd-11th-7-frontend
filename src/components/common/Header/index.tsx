@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 
 import { FlexBox } from '@/components/common/FlexBox';
 import { colors } from '@/styles/global';
 
+import { LeftWrapper, MiddleWrapper, RightWrapper } from './Header.styled';
 import { Props } from './Header.types';
 
 export const Header = ({ left, middle, right }: Props) => {
@@ -28,12 +28,3 @@ export const Header = ({ left, middle, right }: Props) => {
     </FlexBox>
   );
 };
-
-const LeftWrapper = styled.div``;
-const MiddleWrapper = styled.div`
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-`;
-const RightWrapper = styled.div``;
