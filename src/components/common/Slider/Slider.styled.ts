@@ -5,7 +5,7 @@ import { colors } from '@/styles/global';
 import { Props } from './Slider.types';
 
 export const SliderContainer = styled.div`
-  width: 306px;
+  width: 100%;
   position: relative;
   margin: 0 auto 3rem;
 `;
@@ -14,7 +14,7 @@ export const StyledSlider = styled.input<Props>`
   width: 100%;
   height: 5px;
   margin-top: 80px;
-  background: ${({ value = 1, min = 1, max = 10 }) =>
+  background: ${({ value, min, max }) =>
     `linear-gradient(
         to right,
         ${colors.purple} 0%,
@@ -43,7 +43,7 @@ export const SliderLabel = styled.span<Props>`
   margin-top: 8px;
   display: block;
   position: absolute;
-  left: ${({ value = 1, min = 1, max = 10 }) =>
+  left: ${({ value, min, max }) =>
     `calc(${((value - min) * 100) / (max - min)}% + (${8 - (value - min)}px))`};
   transform: translateX(-50%);
 `;
@@ -59,8 +59,8 @@ export const BubbleLabel = styled.div<Props>`
   font-weight: 400;
   text-align: center;
   position: absolute;
-  left: ${({ value = 1, min = 1, max = 10 }) =>
-    `calc(${((value - min) * 100) / (max - min)}% + (${10 - (value - min) / 0.7}px))`};
+  left: ${({ value, min, max }) =>
+    `calc(${((value - min) * 100) / (max - min)}% + (${9 - (value - min) / 0.7}px))`};
   transform: translateX(-50%);
   display: ${({ showBubble = true }) => (showBubble ? 'block' : 'none')};
 
