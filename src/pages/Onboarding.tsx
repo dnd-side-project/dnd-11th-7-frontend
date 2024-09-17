@@ -39,8 +39,13 @@ export const Onboarding = () => {
               비회원으로 시작하기
             </Button>
           )}
-        {/* TODO 로그인 후 리다이렉트할 경로 붙이기 */}
-        <KakaoLoginButton href={`${ENV.API_BASE_URL}/auth/oauth2/kakao`} />
+        <KakaoLoginButton
+          href={
+            isAccessedWithUUID
+              ? `${ENV.API_BASE_URL}/auth/oauth2/kakao?redirect=/${id}` // NOTE: 로그인 후 모임 상세로 이동
+              : `${ENV.API_BASE_URL}/auth/oauth2/kakao?redirect=/meeting` // NOTE: 로그인 후 모임 목록으로 이동
+          }
+        />
       </FlexBox>
     </FlexBox>
   );
