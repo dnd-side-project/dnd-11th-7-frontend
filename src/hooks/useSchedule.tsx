@@ -91,7 +91,7 @@ export const useSchedule = (
   );
 
   const getSelectedTimeRanges = useCallback(() => {
-    const selectedRanges: string[] = [];
+    const selectedRanges: { startTime: string; endTime: string }[] = [];
 
     Object.entries(timeSlots).forEach(([dateKey, slots]) => {
       let startTime: number | null = null;
@@ -102,14 +102,20 @@ export const useSchedule = (
           startTime = index;
         } else if (!isSelected && startTime !== null) {
           endTime = index;
-          selectedRanges.push(`${dateKey} ${formatTime(startTime)}~${formatTime(endTime)}`);
+          selectedRanges.push({
+            startTime: `${dateKey}T${formatTime(startTime)}`,
+            endTime: `${dateKey}T${formatTime(endTime)}`,
+          });
           startTime = null;
           endTime = null;
         }
       });
 
       if (startTime !== null) {
-        selectedRanges.push(`${dateKey} ${formatTime(startTime)}~${formatTime(slots.length)}`);
+        selectedRanges.push({
+          startTime: `${dateKey}T${formatTime(startTime)}`,
+          endTime: `${dateKey}T${formatTime(slots.length)}`,
+        });
       }
     });
 
