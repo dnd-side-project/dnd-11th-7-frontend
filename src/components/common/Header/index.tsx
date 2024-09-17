@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
 import { FlexBox } from '@/components/common/FlexBox';
 import { colors } from '@/styles/global';
@@ -21,9 +22,18 @@ export const Header = ({ left, middle, right }: Props) => {
         background-color: ${colors.GY6};
       `}
     >
-      <div>{left}</div>
-      <div>{middle}</div>
-      <div>{right}</div>
+      <LeftWrapper>{left}</LeftWrapper>
+      <MiddleWrapper>{middle}</MiddleWrapper>
+      <RightWrapper>{right}</RightWrapper>
     </FlexBox>
   );
 };
+
+const LeftWrapper = styled.div``;
+const MiddleWrapper = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+`;
+const RightWrapper = styled.div``;
