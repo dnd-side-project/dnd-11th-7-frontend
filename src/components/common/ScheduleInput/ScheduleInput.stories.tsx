@@ -1,6 +1,5 @@
 /* eslint-disable no-restricted-exports */
 import { useState } from 'react';
-import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { AppLayout } from '@/components/common/AppLayout';
@@ -31,11 +30,7 @@ const ScheduleInputWrapper: React.FC<{ startDate: string; endDate: string }> = (
 
   return (
     <AppLayout>
-      <FlexBox
-        css={css(`width: 100%; height: 100vh; padding: 20px 0;`)}
-        justifyContent="center"
-        alignItems="center"
-      >
+      <FlexBox flexDir="column" width="100%" height="100vh" alignItems="start" padding="80px 20px">
         <ScheduleInput
           startDate={dates.startDate}
           endDate={dates.endDate}

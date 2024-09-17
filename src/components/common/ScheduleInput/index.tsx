@@ -13,6 +13,7 @@ import {
   StyledDayContainer,
   StyledTimeContainer,
   StyledTimeBoxContainer,
+  StyledTimeScrollContainer,
 } from './ScheduleInput.styled';
 import { Props } from './ScheduleInput.type';
 
@@ -81,7 +82,7 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
           </FlexBox>
         </StyledDayContainer>
 
-        <FlexBox flexDir="row" height="525px">
+        <StyledTimeScrollContainer>
           <StyledTimeContainer>
             {Array.from({ length: 16 }).map((_, rowIndex) => (
               <Caption
@@ -117,7 +118,7 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
               );
             })}
           </StyledTimeBoxContainer>
-        </FlexBox>
+        </StyledTimeScrollContainer>
       </StyledCardContainer>
     );
   }
