@@ -42,7 +42,7 @@ export const Summary = ({ data, isSubmitting, onNext, onPrev }: Props) => {
               <FlexBox alignItems="normal" gap={12}>
                 <Chip.Group>
                   {categoryIds.map((id) => (
-                    <Chip>{CATEGORY[id]}</Chip>
+                    <Chip key={id}>{CATEGORY[id]}</Chip>
                   ))}
                 </Chip.Group>
                 <Head2>{meetingName}</Head2>
