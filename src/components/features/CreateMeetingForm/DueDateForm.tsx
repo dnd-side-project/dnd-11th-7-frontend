@@ -14,7 +14,7 @@ type Props<T> = CreateMeetingFormBaseProps & FormData<T>;
 
 export const DueDateForm = ({ context, onNext, onPrev }: Props<MeetingForm['dueDateTime']>) => {
   const { progress, maxProgress } = useMeetingFormProgressContext();
-  const { state: dueDateTime, setState: setDueDateTime } = context;
+  const { state: dueDateTime, setState: setDueDateTime, others: meetingStartDate } = context;
 
   const [selectedDueDate, setSelectedDueDate] = useState(dueDateTime);
 
@@ -29,6 +29,9 @@ export const DueDateForm = ({ context, onNext, onPrev }: Props<MeetingForm['dueD
     }),
     [accessDate]
   );
+  const endDates = Object.entries(endDateOf).filter(([, value]) =>
+    dayjs(value).isBefore(dayjs(meetingStartDate))
+  );
 
   return (
     <>
@@ -38,10 +41,9 @@ export const DueDateForm = ({ context, onNext, onPrev }: Props<MeetingForm['dueD
         content={
           <FlexBox width="100%" padding="78px 0">
             <Switch selectedValue={selectedDueDate} onChange={setSelectedDueDate}>
-              <Switch.Button label="오늘" value={endDateOf['오늘']} />
-              <Switch.Button label="내일" value={endDateOf['내일']} />
-              <Switch.Button label="3일" value={endDateOf['3일']} />
-              <Switch.Button label="5일" value={endDateOf['5일']} />
+              {endDates.map(([label, value]) => (
+                <Switch.Button key={value} label={label} value={value} />
+              ))}
             </Switch>
           </FlexBox>
         }

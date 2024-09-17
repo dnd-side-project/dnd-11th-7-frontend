@@ -93,6 +93,7 @@ export const NewMeeting = () => {
                 type: 'dueDateTime',
                 payload: { ...formData, dueDateTime },
               }),
+            others: formData.meetingStartDate,
           }}
           onPrev={() => setStep('익명여부')}
           onNext={() => {
