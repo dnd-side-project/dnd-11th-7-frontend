@@ -29,7 +29,7 @@ export const NewMeetingShare = () => {
                 iconName="kakaotalk1"
                 label="카카오톡"
                 onClick={() => {
-                  /*TOOD */
+                  /* TODO */
                 }}
               />
               <IconButton
@@ -37,7 +37,7 @@ export const NewMeetingShare = () => {
                 iconName="link"
                 label="링크 복사"
                 onClick={() => {
-                  /*TOOD */
+                  /* TODO */
                 }}
               />
             </FlexBox>
