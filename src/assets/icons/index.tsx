@@ -17,8 +17,6 @@ import Jjakkak8 from './jjakkak-8.svg?react';
 import Jjakkak9WithStage from './jjakkak-9-with-stage.svg?react';
 import Jjakkak9 from './jjakkak-9.svg?react';
 import JjakkakBody from './jjakkak-body.svg?react';
-import JjakkakCircle1 from './jjakkak-circle-1.svg?react';
-import JjakkakCircle2 from './jjakkak-circle-2.svg?react';
 import JjakkakFill1 from './jjakkak-fill-1.svg?react';
 import JjakkakFill10 from './jjakkak-fill-10.svg?react';
 import JjakkakFill2 from './jjakkak-fill-2.svg?react';
@@ -31,6 +29,8 @@ import JjakkakFill8 from './jjakkak-fill-8.svg?react';
 import JjakkakFill9 from './jjakkak-fill-9.svg?react';
 import JjakkakHands from './jjakkak-hands.svg?react';
 import JjakkakIllust from './jjakkak-illust.svg?react';
+import JjakkakLogo1 from './jjakkak-logo-1.svg?react';
+import JjakkakLogo2 from './jjakkak-logo-2.svg?react';
 import JjakkakText from './jjakkak-text.svg?react';
 import JjakkaksIllust from './jjakkaks-illust.svg?react';
 import Kakaotalk1 from './kakaotalk-1.svg?react';
@@ -84,8 +84,8 @@ export const IconMap = {
   jjakkakFill10: JjakkakFill10,
   jjakkakIllust: JjakkakIllust,
   jjakkaksIllust: JjakkaksIllust,
-  jjakkakCircle1: JjakkakCircle1,
-  jjkakkakCircle2: JjakkakCircle2,
+  jjakkakLogo1: JjakkakLogo1,
+  jjakkakLogo2: JjakkakLogo2,
   jjakkakText: JjakkakText,
   jjakkakBody: JjakkakBody,
   jjakkakHands: JjakkakHands,
