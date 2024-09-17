@@ -1,6 +1,5 @@
 /* eslint-disable no-restricted-exports */
 import { useState } from 'react';
-import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { AppLayout } from '@/components/common/AppLayout';
