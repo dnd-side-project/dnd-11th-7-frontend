@@ -1,3 +1,4 @@
+import Add from './add.svg?react';
 import Back from './back.svg?react';
 import Check from './check.svg?react';
 import Circle1 from './circle-1.svg?react';
@@ -44,6 +45,7 @@ import User from './user.svg?react';
 
 export const IconMap = {
   /* 기본 아이콘 */
+  add: Add,
   back: Back,
   deleteRounded: DeleteRounded,
   kakaotalk1: Kakaotalk1,
