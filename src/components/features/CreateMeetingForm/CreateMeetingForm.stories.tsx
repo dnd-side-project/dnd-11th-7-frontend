@@ -75,7 +75,7 @@ export const Basic: Story = {
             <DueDateForm
               onPrev={() => setStep('익명여부')}
               onNext={() => {}}
-              context={{ state: '', setState: () => {} }}
+              context={{ state: '', setState: () => {}, others: '2099-01-01' }}
             />
           </Funnel.Step>
         </Funnel>
