@@ -38,7 +38,15 @@ export const Basic: Story = {
       control: {
         type: 'inline-radio',
       },
-      options: ['primary', 'secondary', 'primaryReverse', 'dimmed', 'grey', 'greyWeak'],
+      options: [
+        'primary',
+        'primaryWeak',
+        'secondary',
+        'primaryReverse',
+        'dimmed',
+        'grey',
+        'greyWeak',
+      ],
     },
     shape: {
       control: {
@@ -57,6 +65,15 @@ export const RoundedChipDisplay: Story = {
         <Chip>primary</Chip>
         <Chip>조율중</Chip>
         <Chip>일정 확정</Chip>
+      </Chip.Group>
+      <Chip.Group>
+        <Chip variant="primaryWeak">primaryWeak</Chip>
+        <Chip variant="primaryWeak">승조</Chip>
+        <Chip variant="primaryWeak">태웅</Chip>
+        <Chip variant="primaryWeak">세빈</Chip>
+        <Chip variant="primaryWeak">지현</Chip>
+        <Chip variant="primaryWeak">채영</Chip>
+        <Chip variant="primaryWeak">경욱</Chip>
       </Chip.Group>
       <Chip.Group>
         <Chip variant="secondary">secondary</Chip>
@@ -112,6 +129,20 @@ export const RectangleChipDisplay: Story = {
         <Chip shape="rectangle">1순위</Chip>
         <Chip shape="rectangle">2순위</Chip>
         <Chip shape="rectangle">3순위</Chip>
+      </Chip.Group>
+      <Chip.Group>
+        <Chip shape="rectangle" variant="primaryWeak">
+          primaryWeak
+        </Chip>
+        <Chip shape="rectangle" variant="primaryWeak">
+          1순위
+        </Chip>
+        <Chip shape="rectangle" variant="primaryWeak">
+          2순위
+        </Chip>
+        <Chip shape="rectangle" variant="primaryWeak">
+          3순위
+        </Chip>
       </Chip.Group>
       <Chip.Group>
         <Chip shape="rectangle" variant="secondary">

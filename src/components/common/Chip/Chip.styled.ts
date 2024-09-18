@@ -27,6 +27,11 @@ const chipVariantStyles = {
     color: ${colors.WH};
     background-color: ${colors.purple};
   `,
+  primaryWeak: css`
+    color: ${colors.GY1};
+    background-color: ${colors.P3};
+    font-weight: ${weights.regular};
+  `,
   secondary: css`
     color: ${colors.purple};
     background-color: ${colors.lightYellow};
