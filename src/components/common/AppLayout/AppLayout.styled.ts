@@ -7,4 +7,5 @@ export const StyledAppLayout = styled.div`
   height: 100vh;
   margin: auto;
   background-color: ${colors.GY6};
+  position: relative;
 `;
