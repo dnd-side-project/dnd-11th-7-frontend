@@ -1,14 +1,15 @@
 import { Schedule } from '@/types/schedule';
 
-export type NickNameFormProps = {
-  value: string;
-  onUpdateNickName: (nickName: string) => void;
+export type FormProps<T> = {
   onNext: () => void;
   onPrev: () => void;
-};
+} & T;
 
-export type ScheduleInputFormProps = {
-  onUpdateSchedule: (schedule: Schedule[]) => void;
-  onNext: () => void;
-  onPrev: () => void;
-};
+export type NickNameFormProps = FormProps<{
+  value: string;
+  setValue: (nickName: string) => void;
+}>;
+
+export type ScheduleInputFormProps = FormProps<{
+  setValue: (schedule: Schedule[]) => void;
+}>;

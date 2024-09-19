@@ -12,7 +12,7 @@ import { ScheduleInputFormProps } from './types';
 import { useSchedule } from '../../../hooks/useSchedule';
 import { ScheduleInput } from '../../common/ScheduleInput/index';
 
-export const ScheduleInputForm = ({ onUpdateSchedule, onNext, onPrev }: ScheduleInputFormProps) => {
+export const ScheduleInputForm = ({ setValue, onNext, onPrev }: ScheduleInputFormProps) => {
   // TODO: API로 받은 시작일/마지막 날짜 입력
   const [dates] = useState({ startDate: '2024-09-01', endDate: '2024-09-05' });
 
@@ -27,7 +27,7 @@ export const ScheduleInputForm = ({ onUpdateSchedule, onNext, onPrev }: Schedule
 
   const updatedSchedule = getSelectedTimeRanges();
 
-  onUpdateSchedule(updatedSchedule);
+  setValue(updatedSchedule);
 
   return (
     <>

@@ -31,7 +31,7 @@ export const Basic: Story = {
               onPrev={() => {}}
               onNext={() => setStep('일정입력')}
               value=""
-              onUpdateNickName={() => {}}
+              setValue={() => {}}
             />
           </Funnel.Step>
 
@@ -39,7 +39,7 @@ export const Basic: Story = {
             <ScheduleInputForm
               onPrev={() => setStep('닉네임설정')}
               onNext={() => {}}
-              onUpdateSchedule={() => {}}
+              setValue={() => {}}
             />
           </Funnel.Step>
         </Funnel>
