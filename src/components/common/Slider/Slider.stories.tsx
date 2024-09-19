@@ -21,20 +21,23 @@ export const Basic: Story = {
   },
   argTypes: {
     min: {
-      control: { type: 'number', min: 0, max: 10, step: 1 },
+      control: { type: 'number', min: 2, max: 10, step: 1 },
     },
     max: {
-      control: { type: 'number', min: 0, max: 10, step: 1 },
+      control: { type: 'number', min: 2, max: 10, step: 1 },
     },
     showBubble: {
       control: { type: 'boolean' },
     },
   },
   render: (args) => {
-    const [value, setValue] = useState<number>(1);
+    const [value, setValue] = useState<number>(2);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValue(Number(event.target.value));
+      const newValue = Number(event.target.value);
+      if (newValue >= 2) {
+        setValue(newValue);
+      }
     };
 
     return <Slider {...args} value={value} onChange={handleChange} />;
