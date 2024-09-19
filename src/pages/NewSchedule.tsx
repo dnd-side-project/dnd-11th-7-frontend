@@ -26,7 +26,7 @@ export const NewSchedule = () => {
           onPrev={() => {}}
           onNext={() => setStep('일정입력')}
           value={newSchedule.nickName}
-          onUpdateNickName={(value: string) => updateSchedule('nickName', value)}
+          setValue={(value: string) => updateSchedule('nickName', value)}
         />
       </Funnel.Step>
 
@@ -34,7 +34,7 @@ export const NewSchedule = () => {
         <ScheduleInputForm
           onPrev={() => setStep('닉네임설정')}
           onNext={() => {}}
-          onUpdateSchedule={(value: Schedule[]) => updateSchedule('dateOfScheduleList', value)}
+          setValue={(value: Schedule[]) => updateSchedule('dateOfScheduleList', value)}
         />
       </Funnel.Step>
     </Funnel>
