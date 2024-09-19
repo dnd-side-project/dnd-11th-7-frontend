@@ -22,7 +22,8 @@ export const TimeBoxSelector = styled.div<{
   touch-action: none;
   border-left: 0.5px solid ${colors.WH};
   border-right: 0.5px solid ${colors.WH};
-  border-bottom: 1px ${colors.WH} ${(props) => (props.isLast ? 'solid' : 'dashed')};
+  border-bottom: 1px ${colors.WH}
+    ${(props) => (props.isLast || props.index === 14 ? 'solid' : 'dashed')};
   border-radius: ${(props) => {
     if (props.isSelected) {
       if (props.isFirst && props.isLast) return '8px';
