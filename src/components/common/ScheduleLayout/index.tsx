@@ -23,10 +23,12 @@ export const ScheduleLayout = ({
           left={<IconButton iconName="jjakkakText" size={130} iconColor="WH" />}
           right={<IconButton iconName="user" size={28} iconColor="WH" />}
         />
-        <FlexBox width="100%" alignItems="flex-start" gap={2} padding="10px 20px 0px 20px">
+        <FlexBox width="100%" alignItems="normal" gap={2} padding="10px 20px 0px 20px">
           <Chip.Group type="slide">
-            {categories.map((item: string) => (
-              <Chip variant="primaryReverse">{item}</Chip>
+            {categories.map((item: string, index: number) => (
+              <Chip key={index} variant="primaryReverse">
+                {item}
+              </Chip>
             ))}
           </Chip.Group>
           <Head3 color="WH" style={{ padding: '10px 0 0 0' }}>
