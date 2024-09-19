@@ -7,7 +7,14 @@ type ChipCustomProps = {
   /**
    * @default 'primary'
    */
-  variant?: 'primary' | 'secondary' | 'primaryReverse' | 'grey' | 'greyWeak' | 'dimmed';
+  variant?:
+    | 'primary'
+    | 'primaryWeak'
+    | 'secondary'
+    | 'primaryReverse'
+    | 'grey'
+    | 'greyWeak'
+    | 'dimmed';
   /**
    * @default 'rounded'
    */
