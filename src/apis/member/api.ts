@@ -17,6 +17,7 @@ export const member = {
    */
   check: async (accessToken: string) => {
     const response = await instance.get<CheckResponse>(ENDPOINT.MEMBER.CHECK, {
+      withCredentials: true,
       headers: { Authorization: accessToken },
     });
     return response.data;
