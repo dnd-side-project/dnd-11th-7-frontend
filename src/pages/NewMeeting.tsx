@@ -1,11 +1,16 @@
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+
+import { mutations } from '@/apis';
 import {
-  CategoryForm,
   MeetingNameForm,
   AnonymousForm,
   DueDateForm,
   MemberCountForm,
   MeetingDateRangeForm,
+  CategoryForm,
 } from '@/components/features/CreateMeetingForm';
+import { Summary } from '@/components/features/CreateMeetingForm/Summary';
 import { meetingStepNames } from '@/constants/meetingForm';
 import { useFunnel } from '@/hooks/useFunnel';
 import { useMeetingFormState } from '@/hooks/useMeetingFormState';
@@ -13,6 +18,18 @@ import { useMeetingFormState } from '@/hooks/useMeetingFormState';
 export const NewMeeting = () => {
   const { Funnel, setStep } = useFunnel(meetingStepNames);
   const [formData, dispatch] = useMeetingFormState();
+
+  const navigate = useNavigate();
+  const { mutateAsync: createMeeting, isPending: isSubmitting } = useMutation({
+    ...mutations.meeting.createMeeting,
+    onSuccess: ({ meetingUuid }) => {
+      navigate('/meeting/share', { state: { meetingUuid } });
+    },
+  });
+
+  const handleSubmitMeeting = async () => {
+    await createMeeting(formData);
+  };
 
   return (
     <Funnel>
@@ -96,9 +113,16 @@ export const NewMeeting = () => {
             others: formData.meetingStartDate,
           }}
           onPrev={() => setStep('익명여부')}
-          onNext={() => {
-            /* TODO navigate */
-          }}
+          onNext={() => setStep('입력확인')}
+        />
+      </Funnel.Step>
+
+      <Funnel.Step name="입력확인">
+        <Summary
+          data={formData}
+          isSubmitting={isSubmitting}
+          onPrev={() => setStep('일정입력마감기한')}
+          onNext={handleSubmitMeeting}
         />
       </Funnel.Step>
     </Funnel>

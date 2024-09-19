@@ -5,6 +5,7 @@ import { Login } from '@/pages/Login';
 import { LoginFailure } from '@/pages/LoginFailure';
 import { LoginSuccess } from '@/pages/LoginSuccess';
 import { NewMeeting } from '@/pages/NewMeeting';
+import { NewMeetingShare } from '@/pages/NewMeetingShare';
 
 import { PrivateRoute } from './PrivateRoute';
 
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
                 <NewMeeting />
               </PrivateRoute>
             ),
+          },
+          {
+            path: 'share',
+            element: <NewMeetingShare />,
           },
         ],
       },

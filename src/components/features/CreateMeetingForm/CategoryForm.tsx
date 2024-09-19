@@ -4,7 +4,7 @@ import { Chip } from '@/components/common/Chip';
 import { FixedBottomButton } from '@/components/common/FixedBottomButton';
 import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
-import { categories, categoryIdMap } from '@/constants/meetingForm';
+import { CATEGORY, categories } from '@/constants/meetingForm';
 import { useMeetingFormProgressContext } from '@/hooks/useMeetingFormProgressContext';
 import { MeetingForm } from '@/types/meeting';
 
@@ -50,12 +50,10 @@ export const CategoryForm = ({ context, onNext, onPrev }: Props<MeetingForm['cat
                 <Chip
                   key={category}
                   component="button"
-                  variant={
-                    selectedCategoryIds.includes(categoryIdMap[category]) ? 'primary' : 'dimmed'
-                  }
-                  value={categoryIdMap[category]}
-                  onClick={() => handleClickChip(categoryIdMap[category])}
-                  disabled={!canClick(categoryIdMap[category])}
+                  variant={selectedCategoryIds.includes(CATEGORY[category]) ? 'primary' : 'dimmed'}
+                  value={CATEGORY[category]}
+                  onClick={() => handleClickChip(CATEGORY[category])}
+                  disabled={!canClick(CATEGORY[category])}
                 >
                   {category}
                 </Chip>
