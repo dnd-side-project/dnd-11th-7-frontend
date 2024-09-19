@@ -7,6 +7,7 @@ export const instance = axios.create({
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
+    _retry: '0',
   },
 });
 
@@ -16,16 +17,19 @@ instance.interceptors.response.use(
   },
   async function onRejected(error: AxiosError) {
     const originalRequest = error.config;
-
-    if (error.response?.status === 401 && originalRequest && originalRequest.headers._retry === 0) {
+    if (
+      error.response?.status === 401 &&
+      originalRequest &&
+      originalRequest.headers._retry === '0'
+    ) {
       try {
-        const response = await instance.get('/auth/reissue'); // 순환 참조 방지 위해 apis 함수 사용 X
+        const response = await instance.get('/auth/reissue', { withCredentials: true }); // 순환 참조 방지 위해 apis 함수 사용 X
         const newAccessToken = response.headers.Authorization;
         localStorage.setItem('accessToken', newAccessToken);
 
         originalRequest.withCredentials = true;
         originalRequest.headers.Authorization = newAccessToken;
-        originalRequest.headers._retry = 1;
+        originalRequest.headers._retry = '1';
 
         return await instance(originalRequest);
       } catch (reissueError) {
