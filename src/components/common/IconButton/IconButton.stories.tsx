@@ -4,6 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { iconNames } from '@/assets/icons';
 import { FlexBox } from '@/components/common/FlexBox';
 import { Caption } from '@/components/common/Typography';
+import { colorNames } from '@/styles/global';
 
 import { IconButton } from '.';
 
@@ -20,6 +21,7 @@ export const Basic: Story = {
   args: {
     variant: 'default',
     iconName: 'link',
+    iconColor: 'GY1',
     label: '',
   },
   argTypes: {
@@ -30,6 +32,10 @@ export const Basic: Story = {
     iconName: {
       control: { type: 'select' },
       options: iconNames,
+    },
+    iconColor: {
+      control: { type: 'select' },
+      options: colorNames,
     },
     label: {
       control: { type: 'text' },

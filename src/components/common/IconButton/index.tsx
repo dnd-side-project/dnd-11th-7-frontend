@@ -9,12 +9,13 @@ export const IconButton = ({
   iconName,
   size = 28,
   label,
+  iconColor = 'GY1',
   ...buttonProps
 }: Props) => {
   return (
     <StyledButton {...buttonProps}>
       <IconWrapper variant={variant}>
-        <Icon name={iconName} size={size} color="GY1" />
+        <Icon name={iconName} size={size} color={iconColor} />
       </IconWrapper>
       {label && (
         <Body2 regularWeight color="GY3">
