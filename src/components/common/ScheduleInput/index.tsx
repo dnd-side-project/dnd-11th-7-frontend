@@ -17,8 +17,8 @@ import {
 } from './ScheduleInput.styled';
 import { Props } from './ScheduleInput.type';
 
-import { Icon } from '../../common/Icon';
 import { TimeRangePicker } from '../../common/TimeRangePicker';
+import { IconButton } from '../IconButton';
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
@@ -67,7 +67,7 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
       <StyledCardContainer ref={ref} onMouseUp={handleEnd} onTouchEnd={handleEnd} {...props}>
         <StyledDayContainer>
           <FlexBox width="10%" justifyContent="center" alignItems="flex-start">
-            {!isFirstPage && <Icon name="prev" onClick={movePrev} />}
+            {!isFirstPage && <IconButton iconName="prev" size={20} onClick={movePrev} />}
           </FlexBox>
           <FlexBox flexDir="row" width="80%" justifyContent="center">
             {currentDates.map((date, index) => (
@@ -78,7 +78,7 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
             ))}
           </FlexBox>
           <FlexBox width="10%" justifyContent="center">
-            {!isLastPage && <Icon name="next" color="purple" onClick={moveNext} />}
+            {!isLastPage && <IconButton iconName="next" size={20} onClick={moveNext} />}
           </FlexBox>
         </StyledDayContainer>
 
