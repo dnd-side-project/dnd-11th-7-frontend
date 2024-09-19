@@ -38,6 +38,7 @@ export const ScheduleInputForm = ({ setValue, onNext, onPrev }: ScheduleInputFor
             middle={<Body2>일정 입력</Body2>}
           />
         }
+        // TODO : title 없는 경우 수정
         title=""
         content={
           <FlexBox

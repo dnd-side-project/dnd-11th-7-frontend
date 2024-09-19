@@ -23,6 +23,7 @@ export const NewSchedule = () => {
     <Funnel>
       <Funnel.Step name="닉네임설정">
         <NickNameForm
+          // TODO : 일정 목록 페이지로 Navigate
           onPrev={() => {}}
           onNext={() => setStep('일정입력')}
           value={newSchedule.nickName}

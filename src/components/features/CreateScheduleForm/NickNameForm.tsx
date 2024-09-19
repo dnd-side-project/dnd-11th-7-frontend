@@ -12,7 +12,7 @@ import { NickNameFormProps } from './types';
 
 const MAX_NICKNAME_LENGTH = 10;
 
-export const NickNameForm = ({ value, onNext }: NickNameFormProps) => {
+export const NickNameForm = ({ value, onPrev, onNext }: NickNameFormProps) => {
   const [nickName, setNickName] = useState(value);
   const isFieldEmpty = nickName.length === 0;
 
@@ -26,7 +26,7 @@ export const NickNameForm = ({ value, onNext }: NickNameFormProps) => {
   return (
     <>
       <FormLayout
-        header={<Header left={<IconButton iconName="back" />} />}
+        header={<Header left={<IconButton iconName="back" onClick={onPrev} />} />}
         title={`닉네임을\n입력해 주세요`}
         description={`${MAX_NICKNAME_LENGTH}글자까지 입력 가능합니다.`}
         content={
