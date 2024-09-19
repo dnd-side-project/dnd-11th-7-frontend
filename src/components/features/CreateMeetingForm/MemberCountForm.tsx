@@ -11,6 +11,8 @@ import { CreateMeetingFormBaseProps, FormData } from './types';
 
 type Props<T> = CreateMeetingFormBaseProps & FormData<T>;
 
+const MIN_MEMBER_COUNT = 2;
+
 export const MemberCountForm = ({
   context,
   onNext,
@@ -21,6 +23,12 @@ export const MemberCountForm = ({
 
   const [memberCount, setMemberCount] = useState(memberCountFormData);
 
+  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (Number(e.target.value) >= MIN_MEMBER_COUNT) {
+      setMemberCount(Number(e.target.value));
+    }
+  };
+
   return (
     <>
       <FormLayout
@@ -29,13 +37,7 @@ export const MemberCountForm = ({
         description="최대 10명까지 선택 가능합니다."
         content={
           <FlexBox width="100%" height="100%" padding="60px 0 0 0" justifyContent="flex-start">
-            <Slider
-              value={memberCount}
-              max={10}
-              min={2}
-              showBubble
-              onChange={(e) => setMemberCount(Number(e.target.value))}
-            />
+            <Slider value={memberCount} max={10} min={0} showBubble onChange={handleSliderChange} />
           </FlexBox>
         }
       />

@@ -59,7 +59,7 @@ export const Basic: Story = {
             <MemberCountForm
               onPrev={() => setStep('일정수집기한')}
               onNext={() => setStep('익명여부')}
-              context={{ state: 0, setState: () => {} }}
+              context={{ state: 2, setState: () => {} }}
             />
           </Funnel.Step>
 
