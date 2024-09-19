@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-exports */
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { newScheduleStepNames } from '@/constants/meetingForm';
+import { newScheduleStepNames } from '@/constants/scheduleFrom';
 import { useFunnel } from '@/hooks/useFunnel';
 
 import { NickNameForm } from './NickNameForm';
@@ -39,7 +39,6 @@ export const Basic: Story = {
             <ScheduleInputForm
               onPrev={() => setStep('닉네임설정')}
               onNext={() => {}}
-              value={[]}
               onUpdateSchedule={() => {}}
             />
           </Funnel.Step>
