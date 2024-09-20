@@ -68,8 +68,8 @@ export const TotalSchedule = () => {
                 <ScheduleCard
                   variant="purple"
                   attendeeCount="6명중 3명"
-                  dateTime="ㅇㅇ"
-                  attendees={['세빈', '세빈', '세빈', '세빈']}
+                  dateTime="2024.08.03(토) 13:00"
+                  attendees={['세빈']}
                 />
               </FlexBox>
             </FlexBox>
