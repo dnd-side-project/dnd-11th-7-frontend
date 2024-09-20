@@ -6,5 +6,5 @@ export const LoginFailure = () => {
     alert('서버에 문제가 생겼어요. 다시 로그인해 주세요.');
   }, []);
 
-  return <Navigate to="/login" replace />;
+  return <Navigate to="/" replace />;
 };
