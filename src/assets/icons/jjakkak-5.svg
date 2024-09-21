@@ -3,6 +3,6 @@
 <circle cx="97.6728" cy="98.6826" r="68.6337" fill="currentColor"/>
 <ellipse cx="20.4513" cy="21.2087" rx="20.4513" ry="21.2087" transform="matrix(-1 0 0 1 136.992 26.5156)" fill="white"/>
 <ellipse cx="20.83" cy="21.2087" rx="20.83" ry="21.2087" transform="matrix(-1 0 0 1 96.082 26.5156)" fill="white"/>
-<ellipse cx="11.3618" cy="12.8767" rx="11.3618" ry="12.8767" transform="matrix(-1 0 0 1 81.2656 28.6523)" fill="currentColor"/>
-<ellipse cx="11.3618" cy="12.8767" rx="11.3618" ry="12.8767" transform="matrix(-1 0 0 1 123.008 28.6523)" fill="currentColor"/>
+<ellipse cx="11.3618" cy="12.8767" rx="11.3618" ry="12.8767" transform="matrix(-1 0 0 1 81.2656 28.6523)" fill="black"/>
+<ellipse cx="11.3618" cy="12.8767" rx="11.3618" ry="12.8767" transform="matrix(-1 0 0 1 123.008 28.6523)" fill="black"/>
 </svg>
