@@ -21,7 +21,7 @@ export const NewMeetingShare = () => {
     <>
       <FormLayout
         header={<BlankSpace />}
-        title={`모임이 생성되었어요!\n링크를 공유하고, 모두가\n가능한 시간을 간편하게 모아보세요.`}
+        title={`모임이 생성되었어요!\n링크를 공유하고, 모두가\n가능한 시간을 간편하게 모아보세요`}
         content={
           <FlexBox width="100%" alignItems="center" gap={48} margin="0 0 82px 0">
             <Icon name="jjakkak9WithStage" width="68%" height="100%" />
