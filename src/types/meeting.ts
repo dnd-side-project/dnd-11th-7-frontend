@@ -30,7 +30,6 @@ export type MeetingForm = {
     dueDateTime: '2024-09-16T23:59:59';
     numberOfPeople: 6;
     isAnonymous: false;
-    leaderName: '정승조';
   }
 */
 export type Meeting = {
@@ -43,5 +42,4 @@ export type Meeting = {
   dueDateTime: string;
   numberOfPeople: number;
   isAnonymous: boolean;
-  leaderName: string;
 };
