@@ -13,4 +13,6 @@ export const StyledScheduleLayoutContainer = styled.div`
     rgba(133, 123, 255, 0.9) 60%,
     ${colors.GY6} 100%
   );
+  background-size: 100% 350px;
+  background-repeat: no-repeat;
 `;
