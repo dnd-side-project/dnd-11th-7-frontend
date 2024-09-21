@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
+import { Button } from '@/components/common/Button';
 import { FixedBottomButton } from '@/components/common/FixedBottomButton';
 import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
@@ -8,18 +9,19 @@ import { Icon } from '@/components/common/Icon';
 import { IconButton } from '@/components/common/IconButton';
 
 export const NewMeetingShare = () => {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const meetingUuid = state?.meetingUuid;
 
   if (Boolean(meetingUuid) === false) {
-    return <Navigate to="/" />;
+    return <Navigate to="/" />; // TODO 랜딩 페이지로 이동 (현재 /는 로그인페이지)
   }
 
   return (
     <>
       <FormLayout
         header={<BlankSpace />}
-        title={`링크를 공유하고, 모두가\n가능한 시간을 간편하게 확인하세요`}
+        title={`모임이 생성되었어요!\n링크를 공유하고, 모두가\n가능한 시간을 간편하게 모아보세요.`}
         content={
           <FlexBox width="100%" alignItems="center" gap={48} margin="0 0 82px 0">
             <Icon name="jjakkak9WithStage" width="68%" height="100%" />
@@ -44,7 +46,18 @@ export const NewMeetingShare = () => {
           </FlexBox>
         }
       />
-      <FixedBottomButton>완료</FixedBottomButton>
+      <FixedBottomButton
+        left={
+          <Button variant="secondary" height="large" onClick={() => navigate('/meeting')}>
+            나의 모임 보기
+          </Button>
+        }
+        right={
+          <Button variant="primary" height="large" onClick={() => navigate(`/${meetingUuid}`)}>
+            내 일정 입력하기
+          </Button>
+        }
+      />
     </>
   );
 };
