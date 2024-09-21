@@ -9,4 +9,8 @@ export const member = {
     queryKey: ['check', accessToken],
     queryFn: () => memberApi.check(accessToken),
   }),
+  meetings: {
+    queryKey: ['members', 'meetings'],
+    queryFn: memberApi.meetings,
+  },
 } as const;
