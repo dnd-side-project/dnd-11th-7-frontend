@@ -3,8 +3,8 @@
 <ellipse cx="112.225" cy="136.672" rx="56.9163" ry="56.6288" fill="currentColor"/>
 <ellipse cx="21.9895" cy="22.804" rx="21.9895" ry="22.804" transform="matrix(-1 0 0 1 156.316 63.3672)" fill="white"/>
 <ellipse cx="22.3967" cy="22.804" rx="22.3967" ry="22.804" transform="matrix(-1 0 0 1 112.336 63.3672)" fill="white"/>
-<ellipse cx="12.2164" cy="13.8453" rx="12.2164" ry="13.8453" transform="matrix(-1 0 0 1 96.4102 65.666)" fill="currentColor"/>
-<ellipse cx="12.2164" cy="13.8453" rx="12.2164" ry="13.8453" transform="matrix(-1 0 0 1 141.266 65.666)" fill="currentColor"/>
+<ellipse cx="12.2164" cy="13.8453" rx="12.2164" ry="13.8453" transform="matrix(-1 0 0 1 96.4102 65.666)" fill="black"/>
+<ellipse cx="12.2164" cy="13.8453" rx="12.2164" ry="13.8453" transform="matrix(-1 0 0 1 141.266 65.666)" fill="black"/>
 <circle cx="202.689" cy="140.637" r="18.6272" fill="currentColor" stroke="white" stroke-width="6.89894"/>
 <circle cx="22.1777" cy="140.637" r="18.6272" fill="currentColor" stroke="white" stroke-width="6.89894"/>
 </svg>

@@ -10,6 +10,6 @@
 <circle cx="136.362" cy="192.856" r="15.8949" fill="currentColor" stroke="white" stroke-width="8.41"/>
 <circle cx="91.6758" cy="124.576" r="18.5976" fill="white"/>
 <circle cx="129.402" cy="124.576" r="18.5976" fill="white"/>
-<circle cx="98.5803" cy="124.84" r="10.6272" fill="currentColor"/>
-<circle cx="136.842" cy="124.84" r="10.6272" fill="currentColor"/>
+<circle cx="98.5803" cy="124.84" r="10.6272" fill="black"/>
+<circle cx="136.842" cy="124.84" r="10.6272" fill="black"/>
 </svg>
