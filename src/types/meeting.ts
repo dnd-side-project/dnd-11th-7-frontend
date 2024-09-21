@@ -6,7 +6,7 @@
     "meetingEndDate" : "2024-08-29",
     "numberOfPeople" : 6,
     "isAnonymous" : false,
-    "voteEndDate" : "2024-08-26T23:59:59"
+    "dueDateTime" : "2024-08-26T23:59:59"
   }
  */
 export type MeetingForm = {
@@ -17,4 +17,31 @@ export type MeetingForm = {
   numberOfPeople: number;
   isAnonymous: boolean;
   dueDateTime: string;
+};
+
+/**
+ * @example {
+    categoryNames: ['학교'];
+    meetingId: 3;
+    meetingUuid: 'ee8c95fd';
+    meetingName: 'DND 11기 7조 회의';
+    meetingStartDate: '2024-09-17';
+    meetingEndDate: '2024-09-27';
+    dueDateTime: '2024-09-16T23:59:59';
+    numberOfPeople: 6;
+    isAnonymous: false;
+    leaderName: '정승조';
+  }
+*/
+export type Meeting = {
+  categoryNames: string[];
+  meetingId: number;
+  meetingUuid: string;
+  meetingName: string;
+  meetingStartDate: string;
+  meetingEndDate: string;
+  dueDateTime: string;
+  numberOfPeople: number;
+  isAnonymous: boolean;
+  leaderName: string;
 };
