@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { App } from '@/App';
 import { LoginFailure } from '@/pages/LoginFailure';
 import { LoginSuccess } from '@/pages/LoginSuccess';
+import { Meeting } from '@/pages/Meeting';
 import { NewMeeting } from '@/pages/NewMeeting';
 import { NewMeetingShare } from '@/pages/NewMeetingShare';
 import { Onboarding } from '@/pages/Onboarding';
@@ -28,6 +29,14 @@ export const router = createBrowserRouter([
       {
         path: 'meeting',
         children: [
+          {
+            index: true,
+            element: (
+              <PrivateRoute>
+                <Meeting />
+              </PrivateRoute>
+            ),
+          },
           {
             path: 'new',
             element: (
