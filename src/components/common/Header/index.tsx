@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 
 import { FlexBox } from '@/components/common/FlexBox';
+import { colors } from '@/styles/global';
 
 import { LeftWrapper, MiddleWrapper, RightWrapper } from './Header.styled';
 import { Props } from './Header.types';
@@ -18,7 +19,7 @@ export const Header = ({ left, middle, right, backgroundColor = 'GY6' }: Props) 
         position: sticky;
         top: 0;
         z-index: 50;
-        background-color: ${backgroundColor};
+        background-color: ${colors[backgroundColor]};
       `}
     >
       <LeftWrapper>{left}</LeftWrapper>
