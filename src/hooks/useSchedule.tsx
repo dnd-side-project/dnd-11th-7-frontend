@@ -12,7 +12,7 @@ dayjs.extend(isSameOrAfter);
 export const useSchedule = (
   startDateStr: string,
   endDateStr: string,
-  savedRanges: string[] = []
+  savedRanges: { startTime: string; endTime: string }[] = []
 ) => {
   const MAX_DATE = 4;
   const TOTAL_TIME = 15;
@@ -44,17 +44,20 @@ export const useSchedule = (
   const initializeTimeSlots = useCallback((dates: dayjs.Dayjs[]) => {
     setTimeSlots((prevSlots) => {
       const newSlots = { ...prevSlots };
+
       dates.forEach((date) => {
         const dateKey = date.format('YYYY-MM-DD');
         if (!newSlots[dateKey]) {
           newSlots[dateKey] = Array(TOTAL_TIME).fill(false);
         }
       });
+
       Object.keys(savedTimeSlots).forEach((dateKey) => {
         if (newSlots[dateKey]) {
           newSlots[dateKey] = savedTimeSlots[dateKey];
         }
       });
+
       return newSlots;
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
