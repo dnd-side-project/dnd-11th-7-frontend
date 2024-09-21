@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   max-width: 430px;
-  position: absolute;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 82px;
-  margin: auto;
-  bottom: 0;
-  border: none;
-  z-index: 10;
+  z-index: 999;
 `;
