@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { queries } from '@/apis';
 import { IconName } from '@/assets/icons';
@@ -16,6 +16,7 @@ import { isPastDate } from '@/utils/isPastDate';
 
 export const MeetingDetail = () => {
   const { uuid } = useParams();
+  const navigate = useNavigate();
 
   const { data: meetingData } = useSuspenseQuery(queries.member.info(uuid as string));
   const { data: scheduleData } = useSuspenseQuery(queries.member.times(uuid as string));
@@ -55,14 +56,20 @@ export const MeetingDetail = () => {
               </>
             )}
           </FlexBox>
-          {/* TODO: 입력 페이지/전체보기 페이지 연결 */}
           <FlexBox flexDir="row" gap={10} padding="20px 0 0 0">
-            <Button variant="primary" height="medium">
+            <Button variant="primary" height="medium" onClick={() => navigate(`/${uuid}/new`)}>
               일정 입력하기
             </Button>
             <Button
               variant={scheduleData.meetingTimeList.length === 0 ? 'tertiary' : 'primary'}
               height="medium"
+              onClick={() => {
+                if (scheduleData.meetingTimeList.length === 0) {
+                  return;
+                } else if (scheduleData.meetingTimeList.length !== 0) {
+                  navigate(`/${uuid}/totalTime`);
+                }
+              }}
             >
               전체보기
             </Button>
@@ -73,17 +80,17 @@ export const MeetingDetail = () => {
         <Card>
           <FlexBox justifyContent="flex-start" alignItems="start" gap={10}>
             <Chip variant="primaryWeak" shape="rectangle">
-              {memberData.anonymousStatus ? '실명' : '익명'}
+              {memberData.isAnonymous ? '익명' : '실명'}
             </Chip>
             <FlexBox flexDir="row" flexWrap="wrap" justifyContent="flex-start" gap={10}>
               {memberData.participantInfoList.map((member, index) => (
                 <Member
                   key={index}
-                  isSubmitted={member.votedStatus}
-                  isLeader={member.leaderStatus}
+                  isSubmitted={member.isAssigned}
+                  isLeader={member.isLeader}
                   iconName={`jjakkak${index + 1}` as IconName}
                 >
-                  {member.nickname}
+                  {memberData.isAnonymous ? `멤버${index + 1}` : member.nickname}
                 </Member>
               ))}
             </FlexBox>
@@ -91,8 +98,12 @@ export const MeetingDetail = () => {
         </Card>
       </FlexBox>
       <FlexBox padding="14px">
-        {/* TODO: 수정 페이지 연결 */}
-        <Body3 regularWeight color="GY4">
+        <Body3
+          regularWeight
+          color="GY4"
+          onClick={() => navigate(`/${uuid}/edit`)}
+          style={{ cursor: 'pointer' }}
+        >
           일정 수정하기
         </Body3>
       </FlexBox>
