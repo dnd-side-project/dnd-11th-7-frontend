@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import { App } from '@/App';
+import { EditSchedule } from '@/pages/EditSchedule';
 import { LoginFailure } from '@/pages/LoginFailure';
 import { LoginSuccess } from '@/pages/LoginSuccess';
 import { Meeting } from '@/pages/Meeting';
@@ -67,11 +68,15 @@ export const router = createBrowserRouter([
             element: <NewSchedule />,
           },
           {
+            path: 'edit',
+            element: <EditSchedule />,
+          },
+          {
             path: 'share',
             element: <PinRelease />,
           },
           {
-            path: 'detail',
+            path: 'totalTime',
             element: <TotalSchedule />,
           },
         ],
