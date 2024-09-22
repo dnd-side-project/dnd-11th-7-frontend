@@ -39,6 +39,7 @@ export const ScheduleLayout = ({
             {meetingStartDate} - {meetingEndDate}
           </Body3>
           <FlexBox alignItems="normal" width="73%" margin="20px 0 5px 0">
+            {/* TODO : 길이가 길어지는 경우 flex 조절 필요 */}
             <SpeechBubble>{dueDateTime}</SpeechBubble>
           </FlexBox>
         </FlexBox>

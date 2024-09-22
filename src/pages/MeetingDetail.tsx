@@ -33,7 +33,7 @@ export const MeetingDetail = () => {
           ? '일정을 입력해주세요.'
           : isPastDate(meetingData.dueDateTime)
             ? '째깍! 완벽한 시간이 도착했습니다!'
-            : '일정을 입력중이에요.'
+            : '째깍! 딱 맞는 시간을 찾기 위해 일정을 수집하고 있어요.'
       }
     >
       <FlexBox width="100%" padding="30px 20px 10px 20px">
