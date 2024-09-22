@@ -26,12 +26,12 @@ export type MeetingTimeList = {
 
 export type ParticipantsResponse = {
   numberOfPeople: number;
-  anonymousStatus: boolean;
+  isAnonymous: boolean;
   participantInfoList: Participant[];
 };
 
 export type Participant = {
   nickname: string;
-  votedStatus: boolean;
-  leaderStatus: boolean;
+  isAssigned: boolean;
+  isLeader: boolean;
 };
