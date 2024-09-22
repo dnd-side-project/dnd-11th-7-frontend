@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { css } from '@emotion/react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
