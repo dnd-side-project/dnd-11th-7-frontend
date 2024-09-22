@@ -18,9 +18,9 @@ export const MeetingDetail = () => {
   const { uuid } = useParams();
   const navigate = useNavigate();
 
-  const { data: meetingData } = useSuspenseQuery(queries.member.info(uuid as string));
-  const { data: scheduleData } = useSuspenseQuery(queries.member.times(uuid as string));
-  const { data: memberData } = useSuspenseQuery(queries.member.participants(uuid as string));
+  const { data: meetingData } = useSuspenseQuery(queries.meeting.info(uuid as string));
+  const { data: scheduleData } = useSuspenseQuery(queries.meeting.times(uuid as string));
+  const { data: memberData } = useSuspenseQuery(queries.meeting.participants(uuid as string));
 
   return (
     <ScheduleLayout

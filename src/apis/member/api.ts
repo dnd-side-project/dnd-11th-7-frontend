@@ -1,7 +1,7 @@
 import { ENDPOINT } from '@/constants/endpoint';
 import { instance } from '@/lib/axios';
 
-import { CheckResponse, InfoResponse, ParticipantsResponse, TimesResponse } from './type';
+import { CheckResponse } from './type';
 
 export const member = {
   /**
@@ -20,18 +20,6 @@ export const member = {
       withCredentials: true,
       headers: { Authorization: accessToken },
     });
-    return response.data;
-  },
-  info: async (uuid: string) => {
-    const response = await instance.get<InfoResponse>(`meetings/${uuid}/info`, {});
-    return response.data;
-  },
-  times: async (uuid: string) => {
-    const response = await instance.get<TimesResponse>(`meetings/${uuid}/times`, {});
-    return response.data;
-  },
-  participants: async (uuid: string) => {
-    const response = await instance.get<ParticipantsResponse>(`meetings/${uuid}/participants`, {});
     return response.data;
   },
 };
