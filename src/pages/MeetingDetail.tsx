@@ -63,10 +63,9 @@ export const MeetingDetail = () => {
             <Button
               variant={scheduleData.meetingTimeList.length === 0 ? 'tertiary' : 'primary'}
               height="medium"
+              disabled={scheduleData.meetingTimeList.length === 0}
               onClick={() => {
-                if (scheduleData.meetingTimeList.length === 0) {
-                  return;
-                } else if (scheduleData.meetingTimeList.length !== 0) {
+                if (scheduleData.meetingTimeList.length !== 0) {
                   navigate(`/${uuid}/totalTime`);
                 }
               }}
