@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { AppLayout } from '@/components/common/AppLayout';
+import { Card } from '@/components/common/Card';
 import { FixedBottomButton } from '@/components/common/FixedBottomButton';
 import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
@@ -8,18 +8,21 @@ import { IconButton } from '@/components/common/IconButton';
 import { Head3 } from '@/components/common/Typography';
 
 export const PinRelease = () => {
+  // TODO : useNavigation으로 값 받아오기
   return (
-    <AppLayout>
+    <>
       <FormLayout
-        // TODO : 헤더 수정 필요
         header={<BlankSpace />}
-        // TODO :  워딩 수정 필요
-        title={`일정이 입력되었습니다.\n회원님의 식별자는 코드는\n다음과 같습니다.`}
-        description="저장해두세요."
+        title={`입장 코드가 생성되었습니다.\n사용할 수 있도록 저장해 주세요.`}
+        description="일정을 수정할때 필요합니다. 코드를 꼭 저장해주세요!"
         content={
           <FlexBox width="100%" gap={100} padding="78px 0">
-            <FlexBox padding="40px 0">
-              <Head3>7ELEVE</Head3>
+            <FlexBox width="100%" padding="20px 0" alignItems="center" justifyContent="center">
+              <Card>
+                <FlexBox padding="20px 0 ">
+                  <Head3>7ELEVE</Head3>
+                </FlexBox>
+              </Card>
             </FlexBox>
             <FlexBox flexDir="row" gap={28} padding="50px 0 0 0">
               {/* TODO : 링크 공유 */}
@@ -29,14 +32,13 @@ export const PinRelease = () => {
                 label="카카오톡"
                 onClick={() => {}}
               />
-              <IconButton variant="square" iconName="link" label="식별자 복사" onClick={() => {}} />
+              <IconButton variant="square" iconName="copy" label="식별자 복사" onClick={() => {}} />
             </FlexBox>
           </FlexBox>
         }
       />
-      {/* TODO : 임시 버튼 추가 추후 수정 필요 */}
-      <FixedBottomButton>확인</FixedBottomButton>
-    </AppLayout>
+      <FixedBottomButton>결과 보러가기</FixedBottomButton>
+    </>
   );
 };
 
