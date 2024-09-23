@@ -18,6 +18,11 @@ export const MeetingDetail = () => {
   const { uuid } = useParams();
   const navigate = useNavigate();
 
+  // TODO : 잘못된 uuid가 들어올 경우 ERROR페이지로 redirect
+  if (uuid === undefined) {
+    navigate('/');
+  }
+
   const { data: meetingData } = useSuspenseQuery(queries.meeting.info(uuid as string));
   const { data: scheduleData } = useSuspenseQuery(queries.meeting.times(uuid as string));
   const { data: memberData } = useSuspenseQuery(queries.meeting.participants(uuid as string));
