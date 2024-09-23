@@ -1,5 +1,6 @@
 import { ENDPOINT } from '@/constants/endpoint';
 import { instance } from '@/lib/axios';
+import { Meeting } from '@/types/meeting';
 
 import { CheckResponse } from './type';
 
@@ -19,6 +20,18 @@ export const member = {
     const response = await instance.get<CheckResponse>(ENDPOINT.MEMBER.CHECK, {
       withCredentials: true,
       headers: { Authorization: accessToken },
+    });
+    return response.data;
+  },
+  /**
+   * @description 회원이 속한 모임 조회
+   */
+  meetings: async () => {
+    const response = await instance.get<Meeting[]>(ENDPOINT.MEMBER.MEETINGS, {
+      withCredentials: true,
+      headers: {
+        Authorization: localStorage.getItem('accessToken'),
+      },
     });
     return response.data;
   },

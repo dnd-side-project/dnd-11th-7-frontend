@@ -41,9 +41,7 @@ export const NewMeeting = () => {
               dispatch({ type: 'categoryIds', payload: { ...formData, categoryIds } });
             },
           }}
-          onPrev={() => {
-            /* TODO navigate */
-          }}
+          onPrev={() => navigate(-1)}
           onNext={() => setStep('모임이름')}
         />
       </Funnel.Step>
