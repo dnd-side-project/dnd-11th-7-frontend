@@ -22,7 +22,7 @@ export const ScheduleLayout = ({
         <Header
           left={<IconButton iconName="jjakkakText" size={130} iconColor="WH" />}
           right={<IconButton iconName="user" size={28} iconColor="WH" />}
-          backgroundColor="purple"
+          backgroundColor="lightPurple"
         />
         <FlexBox width="100%" alignItems="normal" gap={2} padding="10px 20px 0px 20px">
           <Chip.Group type="slide">
