@@ -32,7 +32,7 @@ export const PinRelease = () => {
                 label="카카오톡"
                 onClick={() => {}}
               />
-              <IconButton variant="square" iconName="copy" label="식별자 복사" onClick={() => {}} />
+              <IconButton variant="square" iconName="copy" label="코드 복사" onClick={() => {}} />
             </FlexBox>
           </FlexBox>
         }
