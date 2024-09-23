@@ -18,7 +18,7 @@ export const MeetingList = ({ title, data }: Props) => {
       <Head4>{title}</Head4>
       {data.length > 0 ? (
         data.map((meeting) => (
-          <Card>
+          <Card key={meeting.meetingId}>
             <FlexBox flexDir="row" justifyContent="space-between" margin="0 0 10px 0">
               <FlexBox alignItems="normal" gap={7}>
                 <Chip.Group>

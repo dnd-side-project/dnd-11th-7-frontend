@@ -26,7 +26,18 @@ dayjs.locale('ko');
 
 export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
   (
-    { startDate, endDate, currentDates, timeSlots, moveNext, movePrev, onTimeSlotClick, ...props },
+    {
+      startDate,
+      endDate,
+      currentDates,
+      timeSlots,
+      moveNext,
+      movePrev,
+      onTimeSlotClick,
+      meetingTimeList = [],
+      totalPeopleNum = 0,
+      ...props
+    },
     ref
   ) => {
     const [isDragging, setIsDragging] = useState(false);
@@ -102,6 +113,10 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
               return (
                 <TimeRangePicker
                   key={date.format('YYYY-MM-DD')}
+                  colIndex={colIndex}
+                  totalPeopleNum={totalPeopleNum}
+                  meetingTimeList={meetingTimeList}
+                  currentDate={date.toDate()}
                   selectedSlots={timeSlots[dateKey] || []}
                   onTimeSlotClick={(rowIndex: number, colIndex: number) =>
                     onTimeSlotClick(rowIndex, colIndex)
@@ -113,7 +128,6 @@ export const ScheduleInput = forwardRef<HTMLDivElement, Props>(
                     handleMove(rowIndex, colIndex + touchedColIndex - colIndex)
                   }
                   onDragEnd={handleEnd}
-                  colIndex={colIndex}
                 />
               );
             })}

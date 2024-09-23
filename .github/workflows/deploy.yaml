@@ -14,6 +14,10 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v3
 
+      - name: .env setting
+        run: |
+          echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" >> .env
+
       - name: Set Up nodejs
         uses: actions/setup-node@v2
         with:

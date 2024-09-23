@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { App } from '@/App';
 import { EditSchedule } from '@/pages/EditSchedule';
+import { meetingLoader } from '@/pages/loaders/meetingLoader';
 import { LoginFailure } from '@/pages/LoginFailure';
 import { LoginSuccess } from '@/pages/LoginSuccess';
 import { Meeting } from '@/pages/Meeting';
@@ -36,6 +37,7 @@ export const router = createBrowserRouter([
         children: [
           {
             index: true,
+            loader: meetingLoader,
             element: (
               <PrivateRoute>
                 <Meeting />
@@ -60,7 +62,6 @@ export const router = createBrowserRouter([
         path: '/:uuid',
         children: [
           {
-            index: true,
             element: <MeetingDetail />,
           },
           {

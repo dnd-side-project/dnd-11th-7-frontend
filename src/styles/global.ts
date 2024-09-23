@@ -8,6 +8,7 @@ export const colors = {
   GY6: '#F6F6F6',
   WH: '#FEFEFE',
   purple: '#857BFF',
+  lightPurple: '#9087FE',
   P1: '#A8A1FF',
   P2: '#DDDAFF',
   P3: '#F3F2FF',
