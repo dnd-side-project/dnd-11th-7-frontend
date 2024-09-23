@@ -1,4 +1,5 @@
 import { forwardRef, useCallback, useRef, useEffect } from 'react';
+import dayjs from 'dayjs';
 
 import { StyledTimeBoxContainer, TimeBoxSelector } from './TimeRangePicker.styled';
 import { Props } from './TimeRangePicker.type';
@@ -11,6 +12,9 @@ export const TimeRangePicker = forwardRef<HTMLDivElement, Props>(
     onDragEnd = () => {},
     onTimeSlotClick = () => {},
     colIndex,
+    meetingTimeList = [],
+    totalPeopleNum = 0,
+    currentDate,
     ...props
   }) => {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -38,6 +42,17 @@ export const TimeRangePicker = forwardRef<HTMLDivElement, Props>(
       [onDragMove]
     );
 
+    const getIntensityForTimeSlot = (index: number) => {
+      const hour = 9 + index;
+      const currentDateStr = dayjs(currentDate).format('YYYY-MM-DD');
+      const matchingSlots = meetingTimeList?.filter((slot) => {
+        const slotStart = dayjs(slot.startTime);
+        return slotStart.format('YYYY-MM-DD') === currentDateStr && slotStart.hour() === hour;
+      });
+
+      return matchingSlots && matchingSlots.length > 0 ? matchingSlots[0].memberNames.length : 0;
+    };
+
     useEffect(() => {
       const container = containerRef.current;
       if (container) {
@@ -63,6 +78,8 @@ export const TimeRangePicker = forwardRef<HTMLDivElement, Props>(
           const isGroupStart = isSelected && !prevSlot;
           const isGroupEnd = isSelected && !nextSlot;
 
+          const intensity = getIntensityForTimeSlot(index);
+
           return (
             <TimeBoxSelector
               key={index}
@@ -72,6 +89,8 @@ export const TimeRangePicker = forwardRef<HTMLDivElement, Props>(
               isFirst={isGroupStart}
               isLast={isGroupEnd}
               isSelected={isSelected}
+              intensity={intensity}
+              totalPeopleNum={totalPeopleNum}
               onMouseDown={() => onDragStart(index, colIndex)}
               onMouseEnter={() => onDragMove(index, colIndex)}
               onTouchStart={() => onTouchStart(index - 1, colIndex)}
