@@ -8,9 +8,9 @@ export const StyledScheduleLayoutContainer = styled.div`
   justify-content: flex-start;
   background: linear-gradient(
     180deg,
-    rgba(133, 123, 255) 0%,
-    rgba(133, 123, 255) 10%,
-    rgba(133, 123, 255, 0.9) 60%,
+    rgba(144, 135, 254) 0%,
+    rgba(144, 135, 254) 10%,
+    rgba(144, 135, 254, 0.9) 60%,
     ${colors.GY6} 100%
   );
   background-size: 100% 350px;
