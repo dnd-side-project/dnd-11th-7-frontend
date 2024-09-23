@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { css } from '@emotion/react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -20,7 +21,7 @@ export const MeetingDetail = () => {
 
   // TODO : 잘못된 uuid가 들어올 경우 ERROR페이지로 redirect
   if (uuid === undefined) {
-    navigate('/');
+    return navigate('/');
   }
 
   const { data: meetingData } = useSuspenseQuery(queries.meeting.info(uuid as string));
