@@ -21,6 +21,6 @@ export type Schedule = {
   }
  */
 export type newSchedule = {
-  nickName: string;
+  nickname?: string;
   dateOfScheduleList: Schedule[];
 };

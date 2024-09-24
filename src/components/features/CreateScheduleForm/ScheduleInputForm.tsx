@@ -1,20 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
+import { queries } from '@/apis';
 import { FixedBottomButton } from '@/components/common/FixedBottomButton';
 import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
 import { Header } from '@/components/common/Header';
 import { IconButton } from '@/components/common/IconButton';
 import { Body2 } from '@/components/common/Typography';
+import { Schedule } from '@/types/schedule';
 
 import { ScheduleInputFormProps } from './types';
 
 import { useSchedule } from '../../../hooks/useSchedule';
 import { ScheduleInput } from '../../common/ScheduleInput/index';
 
-export const ScheduleInputForm = ({ setValue, onNext, onPrev }: ScheduleInputFormProps) => {
-  // TODO: API로 받은 시작일/마지막 날짜 입력
-  const [dates] = useState({ startDate: '2024-09-01', endDate: '2024-09-05' });
+export const ScheduleInputForm = ({ uuid, setValue, onNext, onPrev }: ScheduleInputFormProps) => {
+  const [updatedSchedule, setUpdatedSchedule] = useState<Schedule[]>([]);
+
+  const { data: meetingData } = useSuspenseQuery(queries.meeting.info(uuid));
+  const [dates] = useState({
+    startDate: meetingData.meetingStartDate,
+    endDate: meetingData.meetingEndDate,
+  });
 
   const {
     currentDates,
@@ -25,9 +33,16 @@ export const ScheduleInputForm = ({ setValue, onNext, onPrev }: ScheduleInputFor
     getSelectedTimeRanges,
   } = useSchedule(dates.startDate, dates.endDate);
 
-  const updatedSchedule = getSelectedTimeRanges();
+  const handleTimeSlotUpdate = () => {
+    const newSchedule = getSelectedTimeRanges();
+    setUpdatedSchedule({ ...newSchedule });
+    setValue(newSchedule);
+  };
 
-  setValue(updatedSchedule);
+  useEffect(() => {
+    handleTimeSlotUpdate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [getSelectedTimeRanges]);
 
   return (
     <>
@@ -61,7 +76,7 @@ export const ScheduleInputForm = ({ setValue, onNext, onPrev }: ScheduleInputFor
         }
       />
 
-      <FixedBottomButton onClick={onNext} disabled={updatedSchedule.length == 0}>
+      <FixedBottomButton onClick={onNext} disabled={updatedSchedule.length === 0}>
         확인
       </FixedBottomButton>
     </>
