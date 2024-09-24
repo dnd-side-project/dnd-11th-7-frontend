@@ -25,8 +25,10 @@ export const meeting = {
   /**
    * @description 모임 일정 시간 조회
    */
-  times: async (uuid: string) => {
-    const response = await instance.get<TimesResponse>(`/meetings/${uuid}/times`);
+  times: async (uuid: string, sort: string) => {
+    const response = await instance.get<TimesResponse>(
+      `/meetings/${uuid}/times?sort=${sort === 'LATEST' ? 'LATEST' : ''}`
+    );
     return response.data;
   },
   /**
