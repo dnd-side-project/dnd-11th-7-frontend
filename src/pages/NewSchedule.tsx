@@ -10,8 +10,6 @@ import { Schedule, newSchedule } from '@/types/schedule';
 import { NickNameForm } from '../components/features/CreateScheduleForm/NickNameForm';
 import { ScheduleInputForm } from '../components/features/CreateScheduleForm/ScheduleInputForm';
 
-type MutationParams = { data: newSchedule; uuid: string };
-
 export const NewSchedule = () => {
   const accessToken = localStorage.getItem('accessToken');
   const { uuid } = useParams();
