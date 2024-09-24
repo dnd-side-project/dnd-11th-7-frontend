@@ -2,7 +2,7 @@ import { ENDPOINT } from '@/constants/endpoint';
 import { instance } from '@/lib/axios';
 import { MeetingForm } from '@/types/meeting';
 
-import { CreateMeetingResponse } from './type';
+import { CreateMeetingResponse, InfoResponse, ParticipantsResponse, TimesResponse } from './type';
 
 export const meeting = {
   /**
@@ -13,6 +13,27 @@ export const meeting = {
       withCredentials: true,
       headers: { Authorization: localStorage.getItem('accessToken') },
     });
+    return response.data;
+  },
+  /**
+   * @description 모임 정보 조회
+   */
+  info: async (uuid: string) => {
+    const response = await instance.get<InfoResponse>(`/meetings/${uuid}/info`);
+    return response.data;
+  },
+  /**
+   * @description 모임 일정 시간 조회
+   */
+  times: async (uuid: string) => {
+    const response = await instance.get<TimesResponse>(`/meetings/${uuid}/times`);
+    return response.data;
+  },
+  /**
+   * @description 모임 유저 목록 조회
+   */
+  participants: async (uuid: string) => {
+    const response = await instance.get<ParticipantsResponse>(`/meetings/${uuid}/participants`);
     return response.data;
   },
 };
