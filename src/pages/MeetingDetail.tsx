@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Navigate } from 'react-router-dom';
 
 import { FlexBox } from '@/components/common/FlexBox';
 import { ScheduleLayout } from '@/components/common/ScheduleLayout';
@@ -13,8 +13,7 @@ export const MeetingDetail = () => {
   const navigate = useNavigate();
 
   if (uuid === undefined) {
-    navigate('/');
-    return null;
+    return <Navigate to="/" />;
   }
 
   return (
