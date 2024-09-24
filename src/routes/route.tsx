@@ -62,6 +62,7 @@ export const router = createBrowserRouter([
         path: '/:uuid',
         children: [
           {
+            index: true,
             element: <MeetingDetail />,
           },
           {

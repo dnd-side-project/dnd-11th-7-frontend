@@ -5,6 +5,7 @@ import { colors } from '@/styles/global';
 export const StyledScheduleLayoutContainer = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   background: linear-gradient(
     180deg,
