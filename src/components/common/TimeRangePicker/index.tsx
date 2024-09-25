@@ -42,15 +42,26 @@ export const TimeRangePicker = forwardRef<HTMLDivElement, Props>(
       [onDragMove]
     );
 
-    const getIntensityForTimeSlot = (index: number) => {
+    const getSlotInfo = (index: number) => {
       const hour = 9 + index;
       const currentDateStr = dayjs(currentDate).format('YYYY-MM-DD');
       const matchingSlots = meetingTimeList?.filter((slot) => {
         const slotStart = dayjs(slot.startTime);
+
         return slotStart.format('YYYY-MM-DD') === currentDateStr && slotStart.hour() === hour;
       });
 
-      return matchingSlots && matchingSlots.length > 0 ? matchingSlots[0].memberNames.length : 0;
+      const intensity =
+        matchingSlots && matchingSlots.length > 0 ? matchingSlots[0].memberNames.length : 0;
+      const isSelected = selectedSlots[index] || intensity > 0;
+
+      return { intensity, isSelected };
+    };
+
+    const isGroupBoundary = (index: number, isStart: boolean) => {
+      const { isSelected } = getSlotInfo(index);
+      const { isSelected: adjacentSelected } = getSlotInfo(isStart ? index - 1 : index + 1);
+      return isSelected && !adjacentSelected;
     };
 
     useEffect(() => {
@@ -71,14 +82,11 @@ export const TimeRangePicker = forwardRef<HTMLDivElement, Props>(
         {...props}
       >
         {Array.from({ length: 15 }).map((_, index) => {
-          const isSelected = selectedSlots[index] || false;
-          const prevSlot = selectedSlots[index - 1] || false;
-          const nextSlot = selectedSlots[index + 1] || false;
+          const { intensity, isSelected } = getSlotInfo(index);
+          const isGroupStart = isGroupBoundary(index, true);
+          const isGroupEnd = isGroupBoundary(index, false);
 
-          const isGroupStart = isSelected && !prevSlot;
-          const isGroupEnd = isSelected && !nextSlot;
-
-          const intensity = getIntensityForTimeSlot(index);
+          console.log('intensity', intensity);
 
           return (
             <TimeBoxSelector

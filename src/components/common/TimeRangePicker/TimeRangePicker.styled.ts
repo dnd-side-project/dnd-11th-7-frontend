@@ -33,12 +33,12 @@ export const TimeBoxSelector = styled.div<{
   flex: 1;
   height: 35px;
   background-color: ${(props) => {
-    if (props.isSelected) return colors.purple;
     if (props.intensity > 0) {
       const baseIndex = 10 - props.totalPeopleNum;
       const colorIndex = 10 - baseIndex + props.intensity;
       return intensityColors[colorIndex];
     }
+    if (props.isSelected) return colors.purple;
     return colors.GY6;
   }};
   cursor: pointer;
@@ -46,7 +46,7 @@ export const TimeBoxSelector = styled.div<{
   border-left: 0.5px solid ${colors.WH};
   border-right: 0.5px solid ${colors.WH};
   border-bottom: 1px ${colors.WH}
-    ${(props) => (props.isLast || props.intensity > 0 || props.index === 14 ? 'solid' : 'dashed')};
+    ${(props) => (props.isLast || props.index === 14 ? 'solid' : 'dashed')};
   border-radius: ${(props) => {
     if (props.isSelected) {
       if (props.isFirst && props.isLast) return '8px';

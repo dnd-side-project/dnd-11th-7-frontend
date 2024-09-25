@@ -12,6 +12,7 @@ import { NewMeetingShare } from '@/pages/NewMeetingShare';
 import { NewSchedule } from '@/pages/NewSchedule';
 import { Onboarding } from '@/pages/Onboarding';
 import { PinRelease } from '@/pages/PinRelease';
+import { TimeCollection } from '@/pages/TimeCollection';
 import { TotalSchedule } from '@/pages/TotalSchedule';
 
 import { PrivateRoute } from './PrivateRoute';
@@ -78,9 +79,10 @@ export const router = createBrowserRouter([
             element: <PinRelease />,
           },
           {
-            path: 'totalTime',
+            path: 'schedules',
             element: <TotalSchedule />,
           },
+          { path: 'schedules/overview', element: <TimeCollection /> },
         ],
       },
     ],
