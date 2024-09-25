@@ -5,9 +5,9 @@ export const meeting = {
     queryKey: ['info', uuid],
     queryFn: () => meetingApi.info(uuid),
   }),
-  times: (uuid: string) => ({
-    queryKey: ['times', uuid],
-    queryFn: () => meetingApi.times(uuid),
+  times: (uuid: string, sort?: 'COUNT' | 'LATEST') => ({
+    queryKey: ['meeting', 'times', uuid, sort],
+    queryFn: () => meetingApi.times(uuid, sort),
   }),
   participants: (uuid: string) => ({
     queryKey: ['participants', uuid],
