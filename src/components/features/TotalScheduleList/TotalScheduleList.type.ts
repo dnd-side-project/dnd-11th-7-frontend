@@ -1,4 +1,4 @@
 export type Props = {
   uuid: string;
-  segmentValue: string;
+  sortOption: 'DEFAULT' | 'LATEST';
 };

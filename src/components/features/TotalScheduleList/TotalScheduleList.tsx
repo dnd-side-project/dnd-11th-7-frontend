@@ -9,8 +9,8 @@ import { Props } from './TotalScheduleList.type';
 
 import { ScheduleCard } from '../ScheduleCard';
 
-export const TotalScheduleList = ({ uuid, segmentValue }: Props) => {
-  const { data: scheduleData } = useSuspenseQuery(queries.meeting.times(uuid, segmentValue));
+export const TotalScheduleList = ({ uuid, sortOption }: Props) => {
+  const { data: scheduleData } = useSuspenseQuery(queries.meeting.times(uuid, sortOption));
   return (
     <FlexBox
       width="100%"

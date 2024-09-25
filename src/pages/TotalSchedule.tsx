@@ -21,12 +21,9 @@ export const TotalSchedule = () => {
   const { uuid } = useParams();
   const navigate = useNavigate();
 
-  const [selectedValue, setSelectedValue] = useState<'DEFAULT' | 'LATEST'>('DEFAULT');
+  const [sortOption, setSortOption] = useState<'DEFAULT' | 'LATEST'>('DEFAULT');
 
   const { data: meetingData } = useSuspenseQuery(queries.meeting.info(uuid as string));
-  const handleSegmentChange = (value: string) => {
-    setSelectedValue(value === '사람 많은 순' ? 'DEFAULT' : 'LATEST');
-  };
 
   return (
     <>
@@ -69,17 +66,17 @@ export const TotalSchedule = () => {
                 </Body2>
                 <SegmentedControl
                   variant="contained"
-                  selectedValue={selectedValue === 'DEFAULT' ? '사람 많은 순' : '빠른 시간 순'}
-                  onChange={handleSegmentChange}
+                  selectedValue={sortOption}
+                  onChange={setSortOption}
                 >
-                  <SegmentedControl.Tab label="사람 많은 순" value="사람 많은 순" />
-                  <SegmentedControl.Tab label="빠른 시간 순" value="빠른 시간 순" />
+                  <SegmentedControl.Tab label="사람 많은 순" value="DEFAULT" />
+                  <SegmentedControl.Tab label="빠른 시간 순" value="LATEST" />
                 </SegmentedControl>
                 <Border borderStyle="dashed" color="GY5" />
               </FlexBox>
 
               <Suspense>
-                <TotalScheduleList uuid={uuid as string} segmentValue={selectedValue} />
+                <TotalScheduleList uuid={uuid as string} sortOption={sortOption} />
               </Suspense>
             </FlexBox>
           </Card>
