@@ -1,5 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate, useParams } from 'react-router-dom';
 
+import { mutations } from '@/apis';
+import { Button } from '@/components/common/Button';
+import { FlexBox } from '@/components/common/FlexBox';
+import { Modal } from '@/components/common/Modal';
+import { useModal } from '@/components/common/Modal/useModal';
+import { Body2 } from '@/components/common/Typography';
 import { newScheduleStepNames } from '@/constants/scheduleFrom';
 import { useFunnel } from '@/hooks/useFunnel';
 import { Schedule, newSchedule } from '@/types/schedule';
@@ -8,36 +16,93 @@ import { NickNameForm } from '../components/features/CreateScheduleForm/NickName
 import { ScheduleInputForm } from '../components/features/CreateScheduleForm/ScheduleInputForm';
 
 export const NewSchedule = () => {
+  const { isOpen, openModal, closeModal, modalRef } = useModal();
   const { Funnel, setStep } = useFunnel(newScheduleStepNames);
+  const { uuid } = useParams();
+  const navigate = useNavigate();
 
-  const [newSchedule, setNewSchedule] = useState<newSchedule>({
+  const accessToken = localStorage.getItem('accessToken');
+
+  useEffect(() => {
+    if (accessToken) {
+      setStep('일정입력');
+    }
+  }, [accessToken, setStep]);
+
+  const [nickName, setNickName] = useState('');
+  const [schedule, setSchedule] = useState<newSchedule>({
     dateOfScheduleList: [],
-    nickName: '',
   });
 
-  const updateSchedule = (key: keyof newSchedule, value: string | Schedule[]) => {
-    setNewSchedule((prev) => ({ ...prev, [key]: value }));
+  const updateDateOfScheduleList = (value: Schedule[]) => {
+    setSchedule((prev) => ({ ...prev, dateOfScheduleList: value }));
+  };
+
+  const createScheduleMutation = useMutation({
+    mutationFn: (data: newSchedule) => {
+      const mutationFn = accessToken
+        ? mutations.memberSchedule.createMemberSchedule.mutationFn
+        : mutations.nonMemberSchedule.createNonMemberSchedule.mutationFn;
+
+      return mutationFn(data, uuid as string);
+    },
+    onSuccess: ({ scheduleUuid }) => {
+      navigate(`/${uuid}/share`, { state: { scheduleUuid } });
+    },
+  });
+
+  const handleSubmitMeeting = () => {
+    if (!uuid) return;
+    openModal();
+  };
+
+  const confirmSubmit = () => {
+    if (!uuid) return;
+    const data = accessToken ? schedule : { ...schedule, nickname: nickName };
+    createScheduleMutation.mutate(data);
+    closeModal();
   };
 
   return (
-    <Funnel>
-      <Funnel.Step name="닉네임설정">
-        <NickNameForm
-          // TODO : 일정 목록 페이지로 Navigate
-          onPrev={() => {}}
-          onNext={() => setStep('일정입력')}
-          value={newSchedule.nickName}
-          setValue={(value: string) => updateSchedule('nickName', value)}
-        />
-      </Funnel.Step>
+    <>
+      <Funnel>
+        <Funnel.Step name="닉네임설정">
+          <NickNameForm
+            onPrev={() => navigate(`/${uuid}`)}
+            onNext={() => setStep('일정입력')}
+            value={nickName}
+            setValue={(value: string) => setNickName(value)}
+          />
+        </Funnel.Step>
 
-      <Funnel.Step name="일정입력">
-        <ScheduleInputForm
-          onPrev={() => setStep('닉네임설정')}
-          onNext={() => {}}
-          setValue={(value: Schedule[]) => updateSchedule('dateOfScheduleList', value)}
-        />
-      </Funnel.Step>
-    </Funnel>
+        <Funnel.Step name="일정입력">
+          <ScheduleInputForm
+            uuid={uuid as string}
+            onPrev={() => (accessToken ? navigate(`/${uuid}`) : setStep('닉네임설정'))}
+            onNext={handleSubmitMeeting}
+            setValue={(value: Schedule[]) => updateDateOfScheduleList(value)}
+          />
+        </Funnel.Step>
+      </Funnel>
+      <Modal
+        isOpen={isOpen}
+        onClose={closeModal}
+        title=""
+        modalRef={modalRef}
+        showCloseButton={true}
+      >
+        <FlexBox flexDir="column" gap={20}>
+          <Body2>일정을 저장하시겠습니까?</Body2>
+          <FlexBox width="100%" flexDir="row" gap={15}>
+            <Button variant="secondary" height="small" onClick={closeModal}>
+              취소
+            </Button>
+            <Button variant="primary" height="small" onClick={confirmSubmit}>
+              확인
+            </Button>
+          </FlexBox>
+        </FlexBox>
+      </Modal>
+    </>
   );
 };

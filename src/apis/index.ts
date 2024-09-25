@@ -3,6 +3,10 @@ import { meeting as meetingMutations } from './meeting/mutations';
 import { meeting as meetingQueries } from './meeting/queries';
 import { member as memberApis } from './member/api';
 import { member as memberQueries } from './member/queries';
+import {
+  memberSchedule as memberScheduleMutations,
+  nonMemberSchedule as nonMemberScheduleMutations,
+} from './schedule/mutations';
 
 export const apis = {
   member: memberApis,
@@ -16,4 +20,6 @@ export const queries = {
 
 export const mutations = {
   meeting: meetingMutations,
+  memberSchedule: memberScheduleMutations,
+  nonMemberSchedule: nonMemberScheduleMutations,
 };

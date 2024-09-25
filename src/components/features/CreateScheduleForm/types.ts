@@ -11,5 +11,6 @@ export type NickNameFormProps = FormProps<{
 }>;
 
 export type ScheduleInputFormProps = FormProps<{
+  uuid: string;
   setValue: (schedule: Schedule[]) => void;
 }>;

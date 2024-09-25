@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { FixedBottomButton } from '@/components/common/FixedBottomButton';
 import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
@@ -12,9 +10,8 @@ import { NickNameFormProps } from './types';
 
 const MAX_NICKNAME_LENGTH = 10;
 
-export const NickNameForm = ({ value, onPrev, onNext }: NickNameFormProps) => {
-  const [nickName, setNickName] = useState(value);
-  const isFieldEmpty = nickName.length === 0;
+export const NickNameForm = ({ value, setValue, onPrev, onNext }: NickNameFormProps) => {
+  const isFieldEmpty = value.length === 0;
 
   const validator = (value: string) => {
     if (value.length > MAX_NICKNAME_LENGTH) {
@@ -33,17 +30,17 @@ export const NickNameForm = ({ value, onPrev, onNext }: NickNameFormProps) => {
           <FlexBox width="100%" height="100%" padding="60px 0 0 0" justifyContent="flex-start">
             <TextField
               placeholder="닉네임을 입력해 주세요"
-              value={nickName}
-              onChange={(e) => setNickName(e.target.value)}
-              onClickClear={() => setNickName('')}
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              onClickClear={() => setValue('')}
               validator={validator}
             />
           </FlexBox>
         }
       />
       <FixedBottomButton
-        onClick={() => onNext()}
-        disabled={isFieldEmpty || validator(nickName).isValid === false}
+        onClick={onNext}
+        disabled={isFieldEmpty || validator(value).isValid === false}
       >
         다음
       </FixedBottomButton>
