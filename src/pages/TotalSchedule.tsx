@@ -21,7 +21,7 @@ export const TotalSchedule = () => {
   const { uuid } = useParams();
   const navigate = useNavigate();
 
-  const [sortOption, setSortOption] = useState<'DEFAULT' | 'LATEST'>('DEFAULT');
+  const [sortOption, setSortOption] = useState<'COUNT' | 'LATEST'>('COUNT');
 
   const { data: meetingData } = useSuspenseQuery(queries.meeting.info(uuid as string));
 
@@ -69,7 +69,7 @@ export const TotalSchedule = () => {
                   selectedValue={sortOption}
                   onChange={setSortOption}
                 >
-                  <SegmentedControl.Tab label="사람 많은 순" value="DEFAULT" />
+                  <SegmentedControl.Tab label="사람 많은 순" value="COUNT" />
                   <SegmentedControl.Tab label="빠른 시간 순" value="LATEST" />
                 </SegmentedControl>
                 <Border borderStyle="dashed" color="GY5" />

@@ -1,4 +1,4 @@
 export type Props = {
   uuid: string;
-  sortOption: 'DEFAULT' | 'LATEST';
+  sortOption: 'COUNT' | 'LATEST';
 };
