@@ -16,8 +16,6 @@ import { useSchedule } from '../../../hooks/useSchedule';
 import { ScheduleInput } from '../../common/ScheduleInput/index';
 
 export const ScheduleInputForm = ({ uuid, setValue, onNext, onPrev }: ScheduleInputFormProps) => {
-  const [updatedSchedule, setUpdatedSchedule] = useState<Schedule[]>([]);
-
   const { data: meetingData } = useSuspenseQuery(queries.meeting.info(uuid));
   const [dates] = useState({
     startDate: meetingData.meetingStartDate,
@@ -33,16 +31,11 @@ export const ScheduleInputForm = ({ uuid, setValue, onNext, onPrev }: ScheduleIn
     getSelectedTimeRanges,
   } = useSchedule(dates.startDate, dates.endDate);
 
-  const handleTimeSlotUpdate = () => {
-    const newSchedule = getSelectedTimeRanges();
-    setUpdatedSchedule({ ...newSchedule });
-    setValue(newSchedule);
-  };
-
   useEffect(() => {
-    handleTimeSlotUpdate();
+    const newSchedule = getSelectedTimeRanges();
+    setValue(newSchedule);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getSelectedTimeRanges]);
+  }, [timeSlots]);
 
   return (
     <>
@@ -76,7 +69,7 @@ export const ScheduleInputForm = ({ uuid, setValue, onNext, onPrev }: ScheduleIn
         }
       />
 
-      <FixedBottomButton onClick={onNext} disabled={updatedSchedule.length === 0}>
+      <FixedBottomButton onClick={onNext} disabled={getSelectedTimeRanges().length === 0}>
         확인
       </FixedBottomButton>
     </>
