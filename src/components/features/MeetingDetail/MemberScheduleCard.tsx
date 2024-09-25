@@ -45,7 +45,7 @@ export const MemberScheduleCard = ({ uuid, onNavigate }: MemberScheduleProps) =>
             disabled={scheduleTimeData.meetingTimeList.length === 0}
             onClick={() => {
               if (scheduleTimeData.meetingTimeList.length !== 0) {
-                onNavigate(`/${uuid}/totalTime`);
+                onNavigate(`/${uuid}/schedules`);
               }
             }}
           >

@@ -32,7 +32,7 @@ export const TimeCollection = () => {
       <FormLayout
         header={
           <Header
-            left={<IconButton iconName="back" onClick={() => navigate(`/${uuid}/totalTime`)} />}
+            left={<IconButton iconName="back" onClick={() => navigate(`/${uuid}/schedules`)} />}
             middle={<Body2>일정 확인</Body2>}
           />
         }

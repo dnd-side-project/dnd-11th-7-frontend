@@ -79,10 +79,10 @@ export const router = createBrowserRouter([
             element: <PinRelease />,
           },
           {
-            path: 'totalTime',
+            path: 'schedules',
             element: <TotalSchedule />,
           },
-          { path: 'result', element: <TimeCollection /> },
+          { path: 'schedules/overview', element: <TimeCollection /> },
         ],
       },
     ],
