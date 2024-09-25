@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQueries, useSuspenseQuery } from '@tanstack/react-query';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
 import { queries } from '@/apis';
@@ -15,8 +15,9 @@ export const TimeCollection = () => {
   const { uuid } = useParams();
   const navigate = useNavigate();
 
-  const { data: meetingData } = useSuspenseQuery(queries.meeting.info(uuid as string));
-  const { data: scheduleData } = useSuspenseQuery(queries.meeting.times(uuid as string));
+  const [{ data: meetingData }, { data: scheduleData }] = useSuspenseQueries({
+    queries: [queries.meeting.info(uuid as string), queries.meeting.times(uuid as string)],
+  });
 
   const { currentDates, timeSlots, moveNext, movePrev } = useSchedule(
     meetingData.meetingStartDate,
