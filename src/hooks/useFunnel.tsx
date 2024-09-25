@@ -33,5 +33,5 @@ export const useFunnel = <T,>(stepNames: StepNames<T>) => {
 
   const Funnel = Object.assign(FunnelComponent, { Step });
 
-  return { Funnel, step, setStep };
+  return { Funnel, setStep };
 };
