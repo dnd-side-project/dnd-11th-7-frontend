@@ -17,7 +17,7 @@ import { ScheduleInputForm } from '../components/features/CreateScheduleForm/Sch
 
 export const NewSchedule = () => {
   const { isOpen, openModal, closeModal, modalRef } = useModal();
-  const { Funnel, step, setStep } = useFunnel(newScheduleStepNames);
+  const { Funnel, setStep } = useFunnel(newScheduleStepNames);
   const { uuid } = useParams();
   const navigate = useNavigate();
 
@@ -39,12 +39,12 @@ export const NewSchedule = () => {
   };
 
   const createScheduleMutation = useMutation({
-    mutationFn: async ({ data, uuid }: { data: newSchedule; uuid: string }) => {
-      if (accessToken) {
-        return mutations.memberSchedule.createMemberSchedule.mutationFn(data, uuid);
-      } else {
-        return mutations.nonMemberSchedule.createNonMemberSchedule.mutationFn(data, uuid);
-      }
+    mutationFn: (data: newSchedule) => {
+      const mutationFn = accessToken
+        ? mutations.memberSchedule.createMemberSchedule.mutationFn
+        : mutations.nonMemberSchedule.createNonMemberSchedule.mutationFn;
+
+      return mutationFn(data, uuid as string);
     },
     onSuccess: ({ scheduleUuid }) => {
       navigate(`/${uuid}/share`, { state: { scheduleUuid } });
@@ -59,7 +59,7 @@ export const NewSchedule = () => {
   const confirmSubmit = () => {
     if (!uuid) return;
     const data = accessToken ? schedule : { ...schedule, nickname: nickName };
-    createScheduleMutation.mutate({ data, uuid });
+    createScheduleMutation.mutate(data);
     closeModal();
   };
 
@@ -76,20 +76,12 @@ export const NewSchedule = () => {
         </Funnel.Step>
 
         <Funnel.Step name="일정입력">
-          {step === '일정입력' && (
-            <ScheduleInputForm
-              uuid={uuid as string}
-              onPrev={() => {
-                if (!accessToken) {
-                  setStep('닉네임설정');
-                } else if (accessToken) {
-                  navigate(`/${uuid}`);
-                }
-              }}
-              onNext={handleSubmitMeeting}
-              setValue={(value: Schedule[]) => updateDateOfScheduleList(value)}
-            />
-          )}
+          <ScheduleInputForm
+            uuid={uuid as string}
+            onPrev={() => (accessToken ? navigate(`/${uuid}`) : setStep('닉네임설정'))}
+            onNext={handleSubmitMeeting}
+            setValue={(value: Schedule[]) => updateDateOfScheduleList(value)}
+          />
         </Funnel.Step>
       </Funnel>
       <Modal
