@@ -8,7 +8,6 @@ import { FormLayout } from '@/components/common/FormLayout';
 import { Header } from '@/components/common/Header';
 import { IconButton } from '@/components/common/IconButton';
 import { Body2 } from '@/components/common/Typography';
-import { Schedule } from '@/types/schedule';
 
 import { ScheduleInputFormProps } from './types';
 
