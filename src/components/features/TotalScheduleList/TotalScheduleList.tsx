@@ -19,7 +19,7 @@ export const TotalScheduleList = ({ uuid, sortOption }: Props) => {
       gap={10}
       css={css`
         overflow-y: scroll;
-        max-height: 50vh;
+        max-height: 47vh;
       `}
     >
       <FlexBox width="100%" height="100%" gap={10}>

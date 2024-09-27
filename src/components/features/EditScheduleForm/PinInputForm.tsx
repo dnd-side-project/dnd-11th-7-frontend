@@ -4,13 +4,11 @@ import { FormLayout } from '@/components/common/FormLayout';
 import { Header } from '@/components/common/Header';
 import { IconButton } from '@/components/common/IconButton';
 import { PinInput } from '@/components/common/PinInput';
-import { usePinState } from '@/hooks/usePinState';
 
-import { FormProps } from './types';
+import { PinProps } from './types';
 
-export const PinInputForm = ({ onPrev, onNext }: FormProps) => {
-  // TODO : 식별자가 일치 하지 않을 경우 다음 페이지 이동 불가. API 연결 필요.
-  const { pin, setPin } = usePinState();
+export const PinInputForm = ({ pin, setPin, onPrev, onNext }: PinProps) => {
+  // TODO : 식별자가 일치 하지 않을 경우 다음 페이지 이동 불가. message 보여주기
   const isPinComplete = pin.some((value) => value === '');
   return (
     <>
@@ -25,7 +23,7 @@ export const PinInputForm = ({ onPrev, onNext }: FormProps) => {
         }
       />
       {/* TODO: 식별자가 존재하지 않을 경우 헬퍼 메시지 노출 + 다음 페이지 이동 불가 */}
-      <FixedBottomButton onClick={() => onNext()} disabled={pin[0] === '' || isPinComplete}>
+      <FixedBottomButton onClick={onNext} disabled={isPinComplete}>
         다음
       </FixedBottomButton>
     </>

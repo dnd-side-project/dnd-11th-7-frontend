@@ -5,6 +5,11 @@ export type FormProps = {
   onPrev: () => void;
 };
 
+export type PinProps = FormProps & {
+  pin: string[];
+  setPin: (value: string[]) => void;
+};
+
 export type ScheduleEditInputFormProps = FormProps & {
   setValue: (value: Schedule[]) => void;
 };

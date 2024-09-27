@@ -86,8 +86,6 @@ export const TimeRangePicker = forwardRef<HTMLDivElement, Props>(
           const isGroupStart = isGroupBoundary(index, true);
           const isGroupEnd = isGroupBoundary(index, false);
 
-          console.log('intensity', intensity);
-
           return (
             <TimeBoxSelector
               key={index}

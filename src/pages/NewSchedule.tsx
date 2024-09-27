@@ -47,7 +47,7 @@ export const NewSchedule = () => {
       return mutationFn(data, uuid as string);
     },
     onSuccess: ({ scheduleUuid }) => {
-      navigate(`/${uuid}/share`, { state: { scheduleUuid } });
+      accessToken ? navigate(`/${uuid}`) : navigate(`/${uuid}/share`, { state: { scheduleUuid } });
     },
   });
 
@@ -78,6 +78,7 @@ export const NewSchedule = () => {
         <Funnel.Step name="일정입력">
           <ScheduleInputForm
             uuid={uuid as string}
+            edit={false}
             onPrev={() => (accessToken ? navigate(`/${uuid}`) : setStep('닉네임설정'))}
             onNext={handleSubmitMeeting}
             setValue={(value: Schedule[]) => updateDateOfScheduleList(value)}
