@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { Navigate, type NavigateFunction } from 'react-router-dom';
+import { type NavigateFunction } from 'react-router-dom';
 
 import { mutations, queries } from '@/apis';
 import { Button } from '@/components/common/Button';
