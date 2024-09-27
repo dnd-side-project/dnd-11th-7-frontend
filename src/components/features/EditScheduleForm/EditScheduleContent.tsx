@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import type { NavigateFunction } from 'react-router-dom';
+import { Navigate, type NavigateFunction } from 'react-router-dom';
 
 import { mutations, queries } from '@/apis';
 import { Button } from '@/components/common/Button';
@@ -35,6 +35,10 @@ export const EditScheduleContent = ({
     refetchOnMount: true,
   });
 
+  // TODO : 데이터가 없는데 일정 수정에 들어온 경우 메인 페이지로 redirect
+  if (scheduleData?.dateOfScheduleList.length === 0) {
+    navigate(`/${uuid}`);
+  }
   const [editSchedule, setEditSchedule] = useState<{ dateOfScheduleList: Schedule[] }>();
   const { isOpen, openModal, closeModal, modalRef } = useModal();
 
