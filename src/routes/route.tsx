@@ -2,7 +2,9 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { App } from '@/App';
 import { EditSchedule } from '@/pages/EditSchedule';
+import { Landing } from '@/pages/Landing';
 import { meetingLoader } from '@/pages/loaders/meetingLoader';
+import { Login } from '@/pages/Login';
 import { LoginFailure } from '@/pages/LoginFailure';
 import { LoginSuccess } from '@/pages/LoginSuccess';
 import { Meeting } from '@/pages/Meeting';
@@ -11,7 +13,6 @@ import { NewMeeting } from '@/pages/NewMeeting';
 import { NewMeetingShare } from '@/pages/NewMeetingShare';
 import { NewSchedule } from '@/pages/NewSchedule';
 import { NotFound } from '@/pages/NotFound';
-import { Onboarding } from '@/pages/Onboarding';
 import { PinRelease } from '@/pages/PinRelease';
 import { TimeCollection } from '@/pages/TimeCollection';
 import { TotalSchedule } from '@/pages/TotalSchedule';
@@ -25,11 +26,12 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Onboarding />,
+        element: <Landing />,
       },
       {
         path: 'login',
         children: [
+          { index: true, element: <Login /> },
           { path: 'success', element: <LoginSuccess /> },
           { path: 'failure', element: <LoginFailure /> },
         ],
