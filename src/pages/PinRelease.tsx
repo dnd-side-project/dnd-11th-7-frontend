@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { Card } from '@/components/common/Card';
 import { FixedBottomButton } from '@/components/common/FixedBottomButton';
@@ -8,7 +9,15 @@ import { IconButton } from '@/components/common/IconButton';
 import { Head3 } from '@/components/common/Typography';
 
 export const PinRelease = () => {
-  // TODO : useNavigation으로 값 받아오기
+  const { uuid } = useParams();
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const nonMemberScheduleUuid = state?.scheduleUuid;
+
+  if (!nonMemberScheduleUuid) {
+    return <Navigate to={`/${uuid}`} />;
+  }
+
   return (
     <>
       <FormLayout
@@ -20,7 +29,7 @@ export const PinRelease = () => {
             <FlexBox width="100%" padding="20px 0" alignItems="center" justifyContent="center">
               <Card>
                 <FlexBox padding="20px 0 ">
-                  <Head3>7ELEVE</Head3>
+                  <Head3>{nonMemberScheduleUuid}</Head3>
                 </FlexBox>
               </Card>
             </FlexBox>
@@ -37,7 +46,7 @@ export const PinRelease = () => {
           </FlexBox>
         }
       />
-      <FixedBottomButton>결과 보러가기</FixedBottomButton>
+      <FixedBottomButton onClick={() => navigate(`/${uuid}`)}>결과 보러가기</FixedBottomButton>
     </>
   );
 };

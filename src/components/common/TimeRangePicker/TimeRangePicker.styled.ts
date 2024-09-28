@@ -36,7 +36,7 @@ export const TimeBoxSelector = styled.div<{
     if (props.intensity > 0) {
       const baseIndex = 10 - props.totalPeopleNum;
       const colorIndex = 10 - baseIndex + props.intensity;
-      return intensityColors[colorIndex];
+      return intensityColors[colorIndex - 1];
     }
     if (props.isSelected) return colors.purple;
     return colors.GY6;
