@@ -72,7 +72,11 @@ export const router = createBrowserRouter([
           },
           {
             path: 'new',
-            element: <NewSchedule />,
+            element: (
+              <PrivateRoute>
+                <NewSchedule />
+              </PrivateRoute>
+            ),
           },
           {
             path: 'edit',
