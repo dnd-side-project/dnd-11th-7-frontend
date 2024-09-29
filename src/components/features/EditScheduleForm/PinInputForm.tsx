@@ -7,8 +7,7 @@ import { PinInput } from '@/components/common/PinInput';
 
 import { PinProps } from './types';
 
-export const PinInputForm = ({ pin, setPin, onPrev, onNext }: PinProps) => {
-  // TODO : 식별자가 일치 하지 않을 경우 다음 페이지 이동 불가. message 보여주기
+export const PinInputForm = ({ pin, setPin, message, onPrev, onNext }: PinProps) => {
   const isPinComplete = pin.some((value) => value === '');
   return (
     <>
@@ -18,11 +17,10 @@ export const PinInputForm = ({ pin, setPin, onPrev, onNext }: PinProps) => {
         description="영어와 숫자로 이루어진 6자리 식별자를 입력해주세요"
         content={
           <FlexBox width="100%" height="100%" padding="100px 0 0 0" justifyContent="flex-start">
-            <PinInput value={pin} onPinChange={setPin} />
+            <PinInput value={pin} onPinChange={setPin} message={message} />
           </FlexBox>
         }
       />
-      {/* TODO: 식별자가 존재하지 않을 경우 헬퍼 메시지 노출 + 다음 페이지 이동 불가 */}
       <FixedBottomButton onClick={onNext} disabled={isPinComplete}>
         다음
       </FixedBottomButton>

@@ -8,6 +8,7 @@ export type FormProps = {
 export type PinProps = FormProps & {
   pin: string[];
   setPin: (value: string[]) => void;
+  message?: string;
 };
 
 export type ScheduleEditInputFormProps = FormProps & {
