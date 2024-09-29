@@ -12,5 +12,7 @@ export type NickNameFormProps = FormProps<{
 
 export type ScheduleInputFormProps = FormProps<{
   uuid: string;
+  edit: boolean;
+  dateOfScheduleList?: Schedule[];
   setValue: (schedule: Schedule[]) => void;
 }>;

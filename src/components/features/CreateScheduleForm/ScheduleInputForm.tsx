@@ -14,7 +14,14 @@ import { ScheduleInputFormProps } from './types';
 import { useSchedule } from '../../../hooks/useSchedule';
 import { ScheduleInput } from '../../common/ScheduleInput/index';
 
-export const ScheduleInputForm = ({ uuid, setValue, onNext, onPrev }: ScheduleInputFormProps) => {
+export const ScheduleInputForm = ({
+  uuid,
+  edit,
+  dateOfScheduleList,
+  setValue,
+  onNext,
+  onPrev,
+}: ScheduleInputFormProps) => {
   const { data: meetingData } = useSuspenseQuery(queries.meeting.info(uuid));
   const [dates] = useState({
     startDate: meetingData.meetingStartDate,
@@ -28,7 +35,7 @@ export const ScheduleInputForm = ({ uuid, setValue, onNext, onPrev }: ScheduleIn
     movePrev,
     handleTimeSlotClick,
     getSelectedTimeRanges,
-  } = useSchedule(dates.startDate, dates.endDate);
+  } = useSchedule(dates.startDate, dates.endDate, edit ? dateOfScheduleList : undefined);
 
   useEffect(() => {
     const newSchedule = getSelectedTimeRanges();
@@ -42,7 +49,7 @@ export const ScheduleInputForm = ({ uuid, setValue, onNext, onPrev }: ScheduleIn
         header={
           <Header
             left={<IconButton iconName="back" onClick={onPrev} />}
-            middle={<Body2>일정 입력</Body2>}
+            middle={<Body2>일정 {edit ? '수정' : '입력'}</Body2>}
           />
         }
         // TODO : title 없는 경우 수정
@@ -69,7 +76,7 @@ export const ScheduleInputForm = ({ uuid, setValue, onNext, onPrev }: ScheduleIn
       />
 
       <FixedBottomButton onClick={onNext} disabled={getSelectedTimeRanges().length === 0}>
-        확인
+        {edit ? '수정' : '확인'}
       </FixedBottomButton>
     </>
   );
