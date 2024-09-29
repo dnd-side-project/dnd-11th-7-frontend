@@ -6,6 +6,10 @@ type Props = {
   children: React.ReactNode;
 };
 
+/**
+ * @description 로그인이 필요한 페이지를 래핑하는 컴포넌트.
+ * 로그인 여부 확인 후, 로그인했다면 래핑한 페이지를 렌더하고 로그인하지 않았다면 로그인 페이지로 리다이렉트함
+ */
 export const PrivateRoute = ({ children }: Props) => {
   const { pathname, state } = useLocation();
   const { isAuthenticated } = useAuth();
