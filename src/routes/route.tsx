@@ -10,6 +10,7 @@ import { MeetingDetail } from '@/pages/MeetingDetail';
 import { NewMeeting } from '@/pages/NewMeeting';
 import { NewMeetingShare } from '@/pages/NewMeetingShare';
 import { NewSchedule } from '@/pages/NewSchedule';
+import { NotFound } from '@/pages/NotFound';
 import { Onboarding } from '@/pages/Onboarding';
 import { PinRelease } from '@/pages/PinRelease';
 import { TimeCollection } from '@/pages/TimeCollection';
@@ -61,6 +62,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/:uuid',
+        errorElement: <NotFound />,
         children: [
           {
             index: true,
