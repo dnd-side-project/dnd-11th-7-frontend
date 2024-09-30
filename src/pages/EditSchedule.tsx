@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { EditScheduleContent } from '@/components/features/EditScheduleForm/EditScheduleContent';
 import { PinInputForm } from '@/components/features/EditScheduleForm/PinInputForm';
-import { editScheduleStepNames } from '@/constants/scheduleFrom';
+import { editScheduleStepNames } from '@/constants/scheduleForm';
 import { useFunnel } from '@/hooks/useFunnel';
 import { usePinState } from '@/hooks/usePinState';
 
