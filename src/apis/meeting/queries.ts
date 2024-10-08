@@ -9,6 +9,10 @@ export const meeting = {
     queryKey: ['meeting', 'times', uuid, sort],
     queryFn: () => meetingApi.times(uuid, sort),
   }),
+  bestTime: (uuid: string) => ({
+    queryKey: ['best-tome', uuid],
+    queryFn: () => meetingApi.bestTime(uuid),
+  }),
   participants: (uuid: string) => ({
     queryKey: ['participants', uuid],
     queryFn: () => meetingApi.participants(uuid),

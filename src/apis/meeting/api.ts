@@ -32,6 +32,13 @@ export const meeting = {
     return response.data;
   },
   /**
+   * @description 최적의 모임 시간 시간 조회
+   */
+  bestTime: async (uuid: string) => {
+    const response = await instance.get<string>(`/meetings/${uuid}/best-time`);
+    return response.data;
+  },
+  /**
    * @description 모임 유저 목록 조회
    */
   participants: async (uuid: string) => {
