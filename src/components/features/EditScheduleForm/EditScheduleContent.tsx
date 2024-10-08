@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { type NavigateFunction } from 'react-router-dom';
 
-import { mutations, queries } from '@/apis';
+import { mutations } from '@/apis';
 import { Button } from '@/components/common/Button';
 import { FlexBox } from '@/components/common/FlexBox';
 import { Modal } from '@/components/common/Modal';
@@ -15,28 +15,24 @@ import { ScheduleInputForm } from '../CreateScheduleForm/ScheduleInputForm';
 export type editScheduleContentProps = {
   uuid: string;
   accessToken?: string | null;
+  data: Schedule[];
   pin: string[];
   setStep: (step: '식별자입력' | '일정수정') => void;
+  refetch: () => void;
   navigate: NavigateFunction;
 };
 
 export const EditScheduleContent = ({
   uuid,
   accessToken,
+  data,
   pin,
   setStep,
+  refetch,
   navigate,
 }: editScheduleContentProps) => {
-  const { data: scheduleData, refetch } = useQuery({
-    ...(accessToken
-      ? queries.schedule.member(uuid as string)
-      : queries.schedule.guests(uuid as string, pin.join(''))),
-    enabled: !!accessToken,
-    refetchOnMount: true,
-  });
-
   // TODO : 데이터가 없는데 일정 수정에 들어온 경우 메인 페이지로 redirect
-  if (scheduleData?.dateOfScheduleList.length === 0) {
+  if (data?.length === 0) {
     navigate(`/${uuid}`);
   }
   const [editSchedule, setEditSchedule] = useState<{ dateOfScheduleList: Schedule[] }>();
@@ -71,11 +67,11 @@ export const EditScheduleContent = ({
 
   return (
     <>
-      {scheduleData?.dateOfScheduleList && (
+      {data && (
         <ScheduleInputForm
           uuid={uuid}
           edit={true}
-          dateOfScheduleList={scheduleData?.dateOfScheduleList}
+          dateOfScheduleList={data}
           onPrev={() => (accessToken ? navigate(`/${uuid}`) : setStep('식별자입력'))}
           onNext={handleSubmitMeeting}
           setValue={updateSchedule}
