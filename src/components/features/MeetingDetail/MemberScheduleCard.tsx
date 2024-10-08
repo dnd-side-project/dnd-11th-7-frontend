@@ -13,7 +13,6 @@ export type MemberScheduleProps = UuidProps & NavigateProps;
 
 export const MemberScheduleCard = ({ uuid, onNavigate }: MemberScheduleProps) => {
   const { data: bestTime } = useSuspenseQuery(queries.meeting.bestTime(uuid));
-  console.log('bestTime', bestTime);
 
   return (
     <FlexBox width="100%" padding="30px 20px 10px 20px">
