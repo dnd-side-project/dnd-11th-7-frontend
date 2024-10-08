@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-exports */
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { editScheduleStepNames } from '@/constants/scheduleFrom';
+import { editScheduleStepNames } from '@/constants/scheduleForm';
 import { useFunnel } from '@/hooks/useFunnel';
 import { usePinState } from '@/hooks/usePinState';
 

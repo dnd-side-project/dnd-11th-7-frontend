@@ -8,7 +8,7 @@ import { FlexBox } from '@/components/common/FlexBox';
 import { Modal } from '@/components/common/Modal';
 import { useModal } from '@/components/common/Modal/useModal';
 import { Body2 } from '@/components/common/Typography';
-import { newScheduleStepNames } from '@/constants/scheduleFrom';
+import { newScheduleStepNames, scheduleModalNavigateNames } from '@/constants/scheduleForm';
 import { useFunnel } from '@/hooks/useFunnel';
 import { Schedule, newSchedule } from '@/types/schedule';
 
@@ -47,20 +47,23 @@ export const NewSchedule = () => {
       return mutationFn(data, uuid as string);
     },
     onSuccess: ({ scheduleUuid }) => {
-      accessToken ? navigate(`/${uuid}`) : navigate(`/${uuid}/share`, { state: { scheduleUuid } });
+      accessToken ? openModal() : navigate(`/${uuid}/share`, { state: { scheduleUuid } });
     },
   });
 
   const handleSubmitMeeting = () => {
     if (!uuid) return;
-    openModal();
-  };
-
-  const confirmSubmit = () => {
-    if (!uuid) return;
     const data = accessToken ? schedule : { ...schedule, nickname: nickName };
     createScheduleMutation.mutate(data);
+  };
+
+  const handelNavigateResultOrEdit = (value: string) => {
+    if (!uuid) return;
     closeModal();
+    if (value == scheduleModalNavigateNames.RESULT) {
+      return navigate(`/${uuid}/schedules`);
+    }
+    return navigate(`/${uuid}/edit`);
   };
 
   return (
@@ -93,13 +96,21 @@ export const NewSchedule = () => {
         showCloseButton={true}
       >
         <FlexBox flexDir="column" gap={20}>
-          <Body2>일정을 저장하시겠습니까?</Body2>
+          <Body2>쨰깍! 일정이 생성되었어요!</Body2>
           <FlexBox width="100%" flexDir="row" gap={15}>
-            <Button variant="secondary" height="small" onClick={closeModal}>
-              취소
+            <Button
+              variant="tertiary"
+              height="small"
+              onClick={() => handelNavigateResultOrEdit(scheduleModalNavigateNames.EDIT)}
+            >
+              {scheduleModalNavigateNames.EDIT}
             </Button>
-            <Button variant="primary" height="small" onClick={confirmSubmit}>
-              확인
+            <Button
+              variant="primary"
+              height="small"
+              onClick={() => handelNavigateResultOrEdit(scheduleModalNavigateNames.RESULT)}
+            >
+              {scheduleModalNavigateNames.RESULT}
             </Button>
           </FlexBox>
         </FlexBox>
