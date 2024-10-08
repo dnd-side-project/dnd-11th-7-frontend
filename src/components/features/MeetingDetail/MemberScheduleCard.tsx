@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { queries } from '@/apis';
 import { Button } from '@/components/common/Button';
@@ -12,6 +12,11 @@ import { UuidProps, NavigateProps } from './MeetingDetail.type';
 export type MemberScheduleProps = UuidProps & NavigateProps;
 
 export const MemberScheduleCard = ({ uuid, onNavigate }: MemberScheduleProps) => {
+  const accessToken = localStorage.getItem('accessToken');
+  const { data: checkScheduleData } = useQuery({
+    ...queries.meeting.checkSchedule(uuid as string),
+    enabled: !!accessToken,
+  });
   const { data: bestTime } = useSuspenseQuery(queries.meeting.bestTime(uuid));
 
   return (
@@ -34,9 +39,15 @@ export const MemberScheduleCard = ({ uuid, onNavigate }: MemberScheduleProps) =>
           )}
         </FlexBox>
         <FlexBox flexDir="row" gap={10} padding="20px 0 0 0">
-          <Button variant="primary" height="medium" onClick={() => onNavigate(`/${uuid}/new`)}>
-            일정 입력하기
-          </Button>
+          {accessToken && checkScheduleData ? (
+            <Button variant="primary" height="medium" onClick={() => onNavigate(`/${uuid}/edit`)}>
+              일정 수정하기
+            </Button>
+          ) : (
+            <Button variant="primary" height="medium" onClick={() => onNavigate(`/${uuid}/new`)}>
+              일정 입력하기
+            </Button>
+          )}
           <Button
             variant={bestTime ? 'tertiary' : 'primary'}
             height="medium"
