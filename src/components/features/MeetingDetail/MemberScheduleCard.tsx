@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
@@ -13,11 +14,32 @@ export type MemberScheduleProps = UuidProps & NavigateProps;
 
 export const MemberScheduleCard = ({ uuid, onNavigate }: MemberScheduleProps) => {
   const accessToken = localStorage.getItem('accessToken');
-  const { data: checkScheduleData } = useQuery({
+
+  const { data: checkScheduleData, isLoading: isScheduleLoading } = useQuery({
     ...queries.meeting.checkSchedule(uuid as string),
     enabled: !!accessToken,
   });
   const { data: bestTime } = useSuspenseQuery(queries.meeting.bestTime(uuid));
+
+  const renderButton = () => {
+    // TODO : 버튼에 로딩뷰 추가되면 변경
+    if (isScheduleLoading) {
+      return (
+        <Button variant="primary" height="medium" disabled>
+          로딩 중..
+        </Button>
+      );
+    }
+
+    const buttonText = checkScheduleData ? '일정 수정하기' : '일정 입력하기';
+    const navigatePath = checkScheduleData ? `/${uuid}/edit` : `/${uuid}/new`;
+
+    return (
+      <Button variant="primary" height="medium" onClick={() => onNavigate(navigatePath)}>
+        {buttonText}
+      </Button>
+    );
+  };
 
   return (
     <FlexBox width="100%" padding="30px 20px 10px 20px">
@@ -39,15 +61,7 @@ export const MemberScheduleCard = ({ uuid, onNavigate }: MemberScheduleProps) =>
           )}
         </FlexBox>
         <FlexBox flexDir="row" gap={10} padding="20px 0 0 0">
-          {accessToken && checkScheduleData ? (
-            <Button variant="primary" height="medium" onClick={() => onNavigate(`/${uuid}/edit`)}>
-              일정 수정하기
-            </Button>
-          ) : (
-            <Button variant="primary" height="medium" onClick={() => onNavigate(`/${uuid}/new`)}>
-              일정 입력하기
-            </Button>
-          )}
+          {renderButton()}
           <Button
             variant={bestTime ? 'tertiary' : 'primary'}
             height="medium"
