@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
