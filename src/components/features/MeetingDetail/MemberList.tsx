@@ -11,6 +11,12 @@ import { UuidProps } from './MeetingDetail.type';
 
 export const MemberList = ({ uuid }: UuidProps) => {
   const { data: memberData } = useSuspenseQuery(queries.meeting.participants(uuid));
+
+  const leader = memberData.participantInfoList.find((member) => member.isLeader);
+  const member = memberData.participantInfoList.filter((member) => !member.isLeader);
+
+  const totalParticipant = leader ? [leader, ...member] : memberData.participantInfoList;
+
   return (
     <FlexBox width="100%" padding="0 20px">
       <Card>
@@ -19,7 +25,7 @@ export const MemberList = ({ uuid }: UuidProps) => {
             {memberData.isAnonymous ? '익명' : '실명'}
           </Chip>
           <FlexBox flexDir="row" flexWrap="wrap" justifyContent="flex-start" gap={10}>
-            {memberData.participantInfoList.map((member, index) => (
+            {totalParticipant.map((member, index) => (
               <Member
                 key={index}
                 isSubmitted={member.isAssigned}
