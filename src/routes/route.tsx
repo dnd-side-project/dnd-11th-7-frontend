@@ -89,9 +89,16 @@ export const router = createBrowserRouter([
             path: 'schedules',
             element: <TotalSchedule />,
           },
-          { path: 'schedules/overview', element: <TimeCollection /> },
+          {
+            path: 'schedules/overview',
+            element: <TimeCollection />,
+          },
         ],
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ]);
