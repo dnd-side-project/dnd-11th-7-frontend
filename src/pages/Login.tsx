@@ -9,7 +9,7 @@ import { ENV } from '@/lib/env';
 
 export const Login = () => {
   const [searchParams] = useSearchParams();
-  const redirect = searchParams.get('redirect') ?? '/meeting'; // NOTE: 로그인 완료 후 redirect할 url이 없다면, /meeting((모임 목록)으로 이동
+  const redirect = searchParams.get('redirect') ?? '/meeting'; // NOTE: 로그인 완료 후 redirect할 url이 없다면, /meeting (모임 목록)으로 이동
   const navigate = useNavigate();
 
   return (
