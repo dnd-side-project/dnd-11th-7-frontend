@@ -84,13 +84,18 @@ export const useSchedule = (
   const handleTimeSlotClick = useCallback(
     (row: number, col: number) => {
       const dateKey = currentDates[col].format('YYYY-MM-DD');
-      setTimeSlots((prevSlots) => ({
-        ...prevSlots,
-        [dateKey]: prevSlots[dateKey].map((time, index) => (index === row ? !time : time)),
-      }));
+      setTimeSlots((prevSlots) => {
+        const newSlots = {
+          ...prevSlots,
+          [dateKey]: prevSlots[dateKey].map((time, index) => (index === row ? !time : time)),
+        };
+
+        savedTimeSlots[dateKey] = newSlots[dateKey];
+        return newSlots;
+      });
       setSelectedTime(`${row + 9 < 10 ? '0' : ''}${row + 9}:00`);
     },
-    [currentDates]
+    [currentDates, savedTimeSlots]
   );
 
   const getSelectedTimeRanges = useCallback(() => {
