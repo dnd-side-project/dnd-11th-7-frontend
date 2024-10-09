@@ -17,4 +17,8 @@ export const meeting = {
     queryKey: ['participants', uuid],
     queryFn: () => meetingApi.participants(uuid),
   }),
+  checkSchedule: (uuid: string) => ({
+    queryKey: ['check-schedule', uuid],
+    queryFn: () => meetingApi.checkSchedule(uuid),
+  }),
 } as const;

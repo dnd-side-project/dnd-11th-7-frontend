@@ -11,6 +11,7 @@ import { MemberScheduleCard } from '@/components/features/MeetingDetail/MemberSc
 export const MeetingDetail = () => {
   const { uuid } = useParams();
   const navigate = useNavigate();
+  const accessToken = localStorage.getItem('accessToken');
 
   if (uuid === undefined) {
     return <Navigate to="/" />;
@@ -28,16 +29,18 @@ export const MeetingDetail = () => {
       <Suspense>
         <MemberList uuid={uuid} />
       </Suspense>
-      <FlexBox padding="14px">
-        <Body3
-          regularWeight
-          color="GY4"
-          onClick={() => navigate(`/${uuid}/edit`)}
-          style={{ cursor: 'pointer' }}
-        >
-          일정 수정하기
-        </Body3>
-      </FlexBox>
+      {!accessToken && (
+        <FlexBox padding="14px">
+          <Body3
+            regularWeight
+            color="GY4"
+            onClick={() => navigate(`/${uuid}/edit`)}
+            style={{ cursor: 'pointer' }}
+          >
+            일정 수정하기
+          </Body3>
+        </FlexBox>
+      )}
     </ScheduleLayout>
   );
 };
