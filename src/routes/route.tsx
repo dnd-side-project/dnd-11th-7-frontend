@@ -16,7 +16,7 @@ import { PinRelease } from '@/pages/PinRelease';
 import { TimeCollection } from '@/pages/TimeCollection';
 import { TotalSchedule } from '@/pages/TotalSchedule';
 
-import { PrivateRoute } from './PrivateRoute';
+import { RequireAuthRoute } from './RequireAuthRoute';
 
 export const router = createBrowserRouter([
   {
@@ -42,17 +42,17 @@ export const router = createBrowserRouter([
             index: true,
             // loader: meetingLoader, FIXME: 로그인하지 않은 경우 권한을 필요로하는 로더 동작 불가능하므로 제거하기
             element: (
-              <PrivateRoute>
+              <RequireAuthRoute>
                 <Meeting />
-              </PrivateRoute>
+              </RequireAuthRoute>
             ),
           },
           {
             path: 'new',
             element: (
-              <PrivateRoute>
+              <RequireAuthRoute>
                 <NewMeeting />
-              </PrivateRoute>
+              </RequireAuthRoute>
             ),
           },
           {
@@ -72,9 +72,9 @@ export const router = createBrowserRouter([
           {
             path: 'new',
             element: (
-              <PrivateRoute>
+              <RequireAuthRoute>
                 <NewSchedule />
-              </PrivateRoute>
+              </RequireAuthRoute>
             ),
           },
           {
