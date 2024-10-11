@@ -96,7 +96,7 @@ export const NewSchedule = () => {
         showCloseButton={true}
       >
         <FlexBox flexDir="column" gap={20}>
-          <Body2>쨰깍! 일정이 생성되었어요!</Body2>
+          <Body2>째깍! 일정이 생성되었어요!</Body2>
           <FlexBox width="100%" flexDir="row" gap={15}>
             <Button
               variant="tertiary"
