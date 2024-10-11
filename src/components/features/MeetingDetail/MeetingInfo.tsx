@@ -4,6 +4,7 @@ import { queries } from '@/apis';
 import { Chip } from '@/components/common/Chip';
 import { FlexBox } from '@/components/common/FlexBox';
 import { SpeechBubble } from '@/components/common/SpeechBubble';
+import { formatDate } from '@/utils/formatDate';
 import { isPastDate } from '@/utils/isPastDate';
 
 import { UuidProps } from './MeetingDetail.type';
@@ -24,7 +25,7 @@ export const MeetingInfo = ({ uuid }: UuidProps) => {
         {meetingData.meetingName}
       </Head3>
       <Body3 regularWeight color="WH">
-        {meetingData.meetingStartDate} - {meetingData.meetingEndDate}
+        {formatDate(meetingData.meetingStartDate)} - {formatDate(meetingData.meetingEndDate)}
       </Body3>
       <FlexBox alignItems="normal" width="73%" margin="20px 0 5px 0">
         {/* TODO : 길이가 길어지는 경우 flex 조절 필요 */}
