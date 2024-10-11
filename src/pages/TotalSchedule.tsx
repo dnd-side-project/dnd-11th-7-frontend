@@ -21,7 +21,7 @@ export const TotalSchedule = () => {
   const { uuid } = useParams();
   const navigate = useNavigate();
 
-  const [sortOption, setSortOption] = useState<'COUNT' | 'LATEST'>('COUNT');
+  const [sortOption, setSortOption] = useState<'count' | 'latest'>('count');
 
   const { data: meetingData } = useSuspenseQuery(queries.meeting.info(uuid as string));
 
@@ -69,8 +69,8 @@ export const TotalSchedule = () => {
                   selectedValue={sortOption}
                   onChange={setSortOption}
                 >
-                  <SegmentedControl.Tab label="사람 많은 순" value="COUNT" />
-                  <SegmentedControl.Tab label="빠른 시간 순" value="LATEST" />
+                  <SegmentedControl.Tab label="사람 많은 순" value="count" />
+                  <SegmentedControl.Tab label="빠른 시간 순" value="latest" />
                 </SegmentedControl>
                 <Border borderStyle="dashed" color="GY5" />
               </FlexBox>
@@ -82,7 +82,7 @@ export const TotalSchedule = () => {
           </Card>
         }
       />
-      <FixedBottomButton onClick={() => navigate(`/${uuid}/result`)}>
+      <FixedBottomButton onClick={() => navigate(`/${uuid}/schedules/overview`)}>
         일정 한눈에 보러가기
       </FixedBottomButton>
     </>
