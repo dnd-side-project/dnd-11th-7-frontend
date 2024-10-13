@@ -2,7 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { App } from '@/App';
 import { EditSchedule } from '@/pages/EditSchedule';
-import { meetingLoader } from '@/pages/loaders/meetingLoader';
+import { Landing } from '@/pages/Landing';
+import { Login } from '@/pages/Login';
 import { LoginFailure } from '@/pages/LoginFailure';
 import { LoginSuccess } from '@/pages/LoginSuccess';
 import { Meeting } from '@/pages/Meeting';
@@ -11,12 +12,11 @@ import { NewMeeting } from '@/pages/NewMeeting';
 import { NewMeetingShare } from '@/pages/NewMeetingShare';
 import { NewSchedule } from '@/pages/NewSchedule';
 import { NotFound } from '@/pages/NotFound';
-import { Onboarding } from '@/pages/Onboarding';
 import { PinRelease } from '@/pages/PinRelease';
 import { TimeCollection } from '@/pages/TimeCollection';
 import { TotalSchedule } from '@/pages/TotalSchedule';
 
-import { PrivateRoute } from './PrivateRoute';
+import { RequireAuthRoute } from './RequireAuthRoute';
 
 export const router = createBrowserRouter([
   {
@@ -25,11 +25,12 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Onboarding />,
+        element: <Landing />,
       },
       {
         path: 'login',
         children: [
+          { index: true, element: <Login /> },
           { path: 'success', element: <LoginSuccess /> },
           { path: 'failure', element: <LoginFailure /> },
         ],
@@ -39,19 +40,19 @@ export const router = createBrowserRouter([
         children: [
           {
             index: true,
-            loader: meetingLoader,
+            // loader: meetingLoader, FIXME: 로그인하지 않은 경우 권한을 필요로하는 로더 동작 불가능하므로 제거하기
             element: (
-              <PrivateRoute>
+              <RequireAuthRoute>
                 <Meeting />
-              </PrivateRoute>
+              </RequireAuthRoute>
             ),
           },
           {
             path: 'new',
             element: (
-              <PrivateRoute>
+              <RequireAuthRoute>
                 <NewMeeting />
-              </PrivateRoute>
+              </RequireAuthRoute>
             ),
           },
           {
@@ -70,7 +71,11 @@ export const router = createBrowserRouter([
           },
           {
             path: 'new',
-            element: <NewSchedule />,
+            element: (
+              <RequireAuthRoute>
+                <NewSchedule />
+              </RequireAuthRoute>
+            ),
           },
           {
             path: 'edit',
@@ -84,9 +89,16 @@ export const router = createBrowserRouter([
             path: 'schedules',
             element: <TotalSchedule />,
           },
-          { path: 'schedules/overview', element: <TimeCollection /> },
+          {
+            path: 'schedules/overview',
+            element: <TimeCollection />,
+          },
         ],
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ]);

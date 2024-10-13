@@ -7,6 +7,7 @@ import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
 import { Icon } from '@/components/common/Icon';
 import { IconButton } from '@/components/common/IconButton';
+// import { ENV } from '@/lib/env'; // TODO 주석 해제
 
 export const NewMeetingShare = () => {
   const navigate = useNavigate();
@@ -14,8 +15,13 @@ export const NewMeetingShare = () => {
   const meetingUuid = state?.meetingUuid;
 
   if (Boolean(meetingUuid) === false) {
-    return <Navigate to="/" />; // TODO 랜딩 페이지로 이동 (현재 /는 로그인페이지)
+    return <Navigate to="/" />;
   }
+
+  // TODO 주석 해제 (@typescript-eslint/no-unused-vars 경고때문에 임시 주석처리)
+  // const shareUrl = ENV.IS_PRODUCTION
+  //   ? `https://jjakkak.com/${meetingUuid}`
+  //   : `http://localhost:5173/${meetingUuid}`;
 
   return (
     <>
