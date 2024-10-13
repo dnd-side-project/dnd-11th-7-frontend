@@ -7,7 +7,8 @@ import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
 import { Icon } from '@/components/common/Icon';
 import { IconButton } from '@/components/common/IconButton';
-// import { ENV } from '@/lib/env'; // TODO 주석 해제
+import { ENV } from '@/lib/env';
+import { copyToClipboard } from '@/utils/copy';
 
 export const NewMeetingShare = () => {
   const navigate = useNavigate();
@@ -18,10 +19,9 @@ export const NewMeetingShare = () => {
     return <Navigate to="/" />;
   }
 
-  // TODO 주석 해제 (@typescript-eslint/no-unused-vars 경고때문에 임시 주석처리)
-  // const shareUrl = ENV.IS_PRODUCTION
-  //   ? `https://jjakkak.com/${meetingUuid}`
-  //   : `http://localhost:5173/${meetingUuid}`;
+  const shareUrl = ENV.IS_PRODUCTION
+    ? `https://jjakkak.com/${meetingUuid}`
+    : `http://localhost:5173/${meetingUuid}`;
 
   return (
     <>
@@ -44,9 +44,7 @@ export const NewMeetingShare = () => {
                 variant="square"
                 iconName="link"
                 label="링크 복사"
-                onClick={() => {
-                  /* TODO */
-                }}
+                onClick={() => copyToClipboard(shareUrl)}
               />
             </FlexBox>
           </FlexBox>
