@@ -1,14 +1,10 @@
-import type { ComponentProps, ReactNode } from 'react';
+import type { ComponentProps } from 'react';
 
 import { FlexBox } from '@/components/common/FlexBox';
 import { Body2 } from '@/components/common/Typography';
 import { colors } from '@/styles/global';
 
-type Props = {
-  order: number;
-  title: string;
-  src: ReactNode;
-};
+import { Props } from './LandingContentLayout.types';
 
 export const LandingContentLayout = ({
   order,
