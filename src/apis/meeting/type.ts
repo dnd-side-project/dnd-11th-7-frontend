@@ -15,7 +15,20 @@ export type TimesResponse = {
   length: number;
   numberOfPeople: number;
   isAnonymous: boolean;
+  requestTime: string;
   meetingTimeList: MeetingTimeList[];
+};
+
+export type PageInfoResponse = {
+  page: number;
+  size: number;
+  totalPages: number;
+  totalElements: number;
+};
+
+export type MeetingTimeResponse = {
+  data: TimesResponse;
+  pageInfo: PageInfoResponse;
 };
 
 export type MeetingTimeList = {

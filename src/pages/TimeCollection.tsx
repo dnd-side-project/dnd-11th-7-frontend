@@ -15,8 +15,8 @@ export const TimeCollection = () => {
   const { uuid } = useParams();
   const navigate = useNavigate();
 
-  const [{ data: meetingData }, { data: scheduleData }] = useSuspenseQueries({
-    queries: [queries.meeting.info(uuid as string), queries.meeting.times(uuid as string)],
+  const [{ data: meetingData }, { data: allTimeData }] = useSuspenseQueries({
+    queries: [queries.meeting.info(uuid as string), queries.meeting.allTime(uuid as string)],
   });
 
   const { currentDates, timeSlots, moveNext, movePrev } = useSchedule(
@@ -54,8 +54,8 @@ export const TimeCollection = () => {
               moveNext={moveNext}
               movePrev={movePrev}
               onTimeSlotClick={() => {}}
-              totalPeopleNum={scheduleData.numberOfPeople}
-              meetingTimeList={scheduleData.meetingTimeList}
+              totalPeopleNum={allTimeData.numberOfPeople}
+              meetingTimeList={allTimeData.meetingTimeList}
             />
           </FlexBox>
         }

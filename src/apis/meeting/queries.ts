@@ -5,9 +5,14 @@ export const meeting = {
     queryKey: ['info', uuid],
     queryFn: () => meetingApi.info(uuid),
   }),
-  times: (uuid: string, sort?: 'COUNT' | 'LATEST') => ({
-    queryKey: ['meeting', 'times', uuid, sort],
-    queryFn: () => meetingApi.times(uuid, sort),
+  times: (uuid: string, sort: 'count' | 'latest', requestTime?: string, pageNum?: number) => ({
+    queryKey: ['meeting', 'times', uuid, sort, requestTime, pageNum],
+    queryFn: ({ pageParam = { page: 0, requestTime: '' } }) =>
+      meetingApi.times(uuid, sort, pageParam.requestTime, pageParam.page),
+  }),
+  allTime: (uuid: string) => ({
+    queryKey: ['times', 'all', uuid],
+    queryFn: () => meetingApi.allTime(uuid),
   }),
   bestTime: (uuid: string) => ({
     queryKey: ['best-tome', uuid],
