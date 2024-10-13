@@ -7,10 +7,12 @@ import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
 import { Icon } from '@/components/common/Icon';
 import { IconButton } from '@/components/common/IconButton';
+import { useKakaoSdk } from '@/hooks/useKakaoSdk';
 import { ENV } from '@/lib/env';
 import { copyToClipboard } from '@/utils/copy';
 
 export const NewMeetingShare = () => {
+  useKakaoSdk();
   const navigate = useNavigate();
   const { state } = useLocation();
   const meetingUuid = state?.meetingUuid;
@@ -36,9 +38,7 @@ export const NewMeetingShare = () => {
                 variant="square"
                 iconName="kakaotalk1"
                 label="카카오톡"
-                onClick={() => {
-                  /* TODO */
-                }}
+                onClick={() => window.Kakao.Share.sendDefault(templateForShareMeeting(shareUrl))}
               />
               <IconButton
                 variant="square"
@@ -70,3 +70,23 @@ const BlankSpace = styled.div`
   width: 100%;
   height: 52px;
 `;
+
+const templateForShareMeeting = (shareUrl: string) => ({
+  objectType: 'feed',
+  content: {
+    title: '째깍 초대 링크가 도착했어요!',
+    description: '모임 날짜를 정하기 위해 가능한 시간을 알려주세요.',
+    imageUrl: '/images/kakao-share-thumbnail.png',
+    link: {
+      webUrl: shareUrl,
+    },
+  },
+  buttons: [
+    {
+      title: '가능한 시간 입력하기',
+      link: {
+        webUrl: shareUrl,
+      },
+    },
+  ],
+});
