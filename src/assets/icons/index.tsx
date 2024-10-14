@@ -34,6 +34,7 @@ import JjakkakIllust from './jjakkak-illust.svg?react';
 import JjakkakLogo1 from './jjakkak-logo-1.svg?react';
 import JjakkakLogo2 from './jjakkak-logo-2.svg?react';
 import JjakkakText from './jjakkak-text.svg?react';
+import JjakkaksIllust2 from './jjakkaks-illust-2.svg?react';
 import JjakkaksIllust from './jjakkaks-illust.svg?react';
 import Kakaotalk1 from './kakaotalk-1.svg?react';
 import Kakaotalk2 from './kakaotalk-2.svg?react';
@@ -87,6 +88,7 @@ export const IconMap = {
   jjakkakFill10: JjakkakFill10,
   jjakkakIllust: JjakkakIllust,
   jjakkaksIllust: JjakkaksIllust,
+  jjakkaksIllust2: JjakkaksIllust2,
   jjakkakLogo1: JjakkakLogo1,
   jjakkakLogo2: JjakkakLogo2,
   jjakkakText: JjakkakText,
