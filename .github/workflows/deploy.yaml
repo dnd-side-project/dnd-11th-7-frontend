@@ -16,8 +16,8 @@ jobs:
 
       - name: .env setting
         run: |
-          echo "API_BASE_URL=${{ secrets.API_BASE_URL }}" >> .env
-          echo "KAKAO_JAVASCRIPT_KEY=${{ secrets.KAKAO_JAVASCRIPT_KEY }}" >> .env
+          echo "VITE_API_BASE_URL=${{ secrets.API_BASE_URL }}" >> .env
+          echo "VITE_KAKAO_JAVASCRIPT_KEY=${{ secrets.KAKAO_JAVASCRIPT_KEY }}" >> .env
 
       - name: Set Up nodejs
         uses: actions/setup-node@v2
