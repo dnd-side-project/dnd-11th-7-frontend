@@ -74,9 +74,9 @@ const BlankSpace = styled.div`
 const templateForShareMeeting = (shareUrl: string) => ({
   objectType: 'feed',
   content: {
-    title: '째깍 초대 링크가 도착했어요!',
-    description: '모임 날짜를 정하기 위해 가능한 시간을 알려주세요.',
-    imageUrl: '/images/kakao-share-thumbnail.png',
+    title: '째깍 모임 링크가 도착했어요!',
+    description: '나의 일정을 입력하고 모두가 가능한 시간을 확인해요.',
+    imageUrl: 'https://ifh.cc/g/vK7L4P.jpg',
     link: {
       webUrl: shareUrl,
     },
