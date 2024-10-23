@@ -28,6 +28,6 @@
 
     "jsxImportSource": "@emotion/react"
   },
-  "include": ["src", "svg.d.ts"],
+  "include": ["src", "svg.d.ts", "global.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

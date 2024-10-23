@@ -7,9 +7,12 @@ import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
 import { Icon } from '@/components/common/Icon';
 import { IconButton } from '@/components/common/IconButton';
-// import { ENV } from '@/lib/env'; // TODO 주석 해제
+import { useKakaoSdk } from '@/hooks/useKakaoSdk';
+import { ENV } from '@/lib/env';
+import { copyToClipboard } from '@/utils/copy';
 
 export const NewMeetingShare = () => {
+  useKakaoSdk();
   const navigate = useNavigate();
   const { state } = useLocation();
   const meetingUuid = state?.meetingUuid;
@@ -18,10 +21,9 @@ export const NewMeetingShare = () => {
     return <Navigate to="/" />;
   }
 
-  // TODO 주석 해제 (@typescript-eslint/no-unused-vars 경고때문에 임시 주석처리)
-  // const shareUrl = ENV.IS_PRODUCTION
-  //   ? `https://jjakkak.com/${meetingUuid}`
-  //   : `http://localhost:5173/${meetingUuid}`;
+  const shareUrl = ENV.IS_PRODUCTION
+    ? `https://jjakkak.com/${meetingUuid}`
+    : `http://localhost:5173/${meetingUuid}`;
 
   return (
     <>
@@ -36,17 +38,13 @@ export const NewMeetingShare = () => {
                 variant="square"
                 iconName="kakaotalk1"
                 label="카카오톡"
-                onClick={() => {
-                  /* TODO */
-                }}
+                onClick={() => window.Kakao.Share.sendDefault(templateForShareMeeting(shareUrl))}
               />
               <IconButton
                 variant="square"
                 iconName="link"
                 label="링크 복사"
-                onClick={() => {
-                  /* TODO */
-                }}
+                onClick={() => copyToClipboard(shareUrl)}
               />
             </FlexBox>
           </FlexBox>
@@ -72,3 +70,23 @@ const BlankSpace = styled.div`
   width: 100%;
   height: 52px;
 `;
+
+const templateForShareMeeting = (shareUrl: string) => ({
+  objectType: 'feed',
+  content: {
+    title: '째깍 모임 링크가 도착했어요!',
+    description: '나의 일정을 입력하고 모두가 가능한 시간을 확인해요.',
+    imageUrl: 'https://ifh.cc/g/vK7L4P.jpg',
+    link: {
+      webUrl: shareUrl,
+    },
+  },
+  buttons: [
+    {
+      title: '가능한 시간 입력하기',
+      link: {
+        webUrl: shareUrl,
+      },
+    },
+  ],
+});
