@@ -7,8 +7,11 @@ import { FlexBox } from '@/components/common/FlexBox';
 import { FormLayout } from '@/components/common/FormLayout';
 import { IconButton } from '@/components/common/IconButton';
 import { Head3 } from '@/components/common/Typography';
+import { useKakaoSdk } from '@/hooks/useKakaoSdk';
+import { copyToClipboard } from '@/utils/copy';
 
 export const PinRelease = () => {
+  useKakaoSdk();
   const { uuid } = useParams();
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -34,14 +37,20 @@ export const PinRelease = () => {
               </Card>
             </FlexBox>
             <FlexBox flexDir="row" gap={28} padding="50px 0 0 0">
-              {/* TODO : 링크 공유 */}
               <IconButton
                 variant="square"
                 iconName="kakaotalk1"
                 label="카카오톡"
-                onClick={() => {}}
+                onClick={() =>
+                  window.Kakao.Share.sendDefault(templateForShareUuid(nonMemberScheduleUuid))
+                }
               />
-              <IconButton variant="square" iconName="copy" label="코드 복사" onClick={() => {}} />
+              <IconButton
+                variant="square"
+                iconName="copy"
+                label="코드 복사"
+                onClick={() => copyToClipboard(nonMemberScheduleUuid)}
+              />
             </FlexBox>
           </FlexBox>
         }
@@ -55,3 +64,23 @@ const BlankSpace = styled.div`
   width: 100%;
   height: 52px;
 `;
+
+const templateForShareUuid = (Uuid: string) => ({
+  objectType: 'feed',
+  content: {
+    title: '째깍! 일정 수정 시 필요한 입장 코드입니다.',
+    description: `${Uuid}`,
+    imageUrl: 'https://ifh.cc/g/vK7L4P.jpg',
+    link: {
+      webUrl: 'www.jjakkak.com',
+    },
+  },
+  buttons: [
+    {
+      title: '째깍 방문하기',
+      link: {
+        webUrl: 'www.jjakkak.com',
+      },
+    },
+  ],
+});
