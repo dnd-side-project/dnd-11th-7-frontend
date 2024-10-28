@@ -77,6 +77,7 @@ const templateForShareUuid = (jjakkakUrl: string, Uuid: string) => ({
     description: `${Uuid}`,
     imageUrl: 'https://ifh.cc/g/vK7L4P.jpg',
     link: {
+      mobileWebUrl: jjakkakUrl,
       webUrl: jjakkakUrl,
     },
   },
@@ -84,6 +85,7 @@ const templateForShareUuid = (jjakkakUrl: string, Uuid: string) => ({
     {
       title: '째깍 방문하기',
       link: {
+        mobileWebUrl: jjakkakUrl,
         webUrl: jjakkakUrl,
       },
     },

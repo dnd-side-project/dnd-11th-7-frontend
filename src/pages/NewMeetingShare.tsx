@@ -78,6 +78,7 @@ const templateForShareMeeting = (shareUrl: string) => ({
     description: '나의 일정을 입력하고 모두가 가능한 시간을 확인해요.',
     imageUrl: 'https://ifh.cc/g/vK7L4P.jpg',
     link: {
+      mobileWebUrl: shareUrl,
       webUrl: shareUrl,
     },
   },
@@ -85,6 +86,7 @@ const templateForShareMeeting = (shareUrl: string) => ({
     {
       title: '가능한 시간 입력하기',
       link: {
+        mobileWebUrl: shareUrl,
         webUrl: shareUrl,
       },
     },
