@@ -8,6 +8,7 @@ import { FormLayout } from '@/components/common/FormLayout';
 import { IconButton } from '@/components/common/IconButton';
 import { Head3 } from '@/components/common/Typography';
 import { useKakaoSdk } from '@/hooks/useKakaoSdk';
+import { ENV } from '@/lib/env';
 import { copyToClipboard } from '@/utils/copy';
 
 export const PinRelease = () => {
@@ -20,6 +21,8 @@ export const PinRelease = () => {
   if (!nonMemberScheduleUuid) {
     return <Navigate to={`/${uuid}`} />;
   }
+
+  const jjakkakUrl = ENV.IS_PRODUCTION ? `https://www.jjakkak.com` : `http://localhost:5173`;
 
   return (
     <>
@@ -42,7 +45,9 @@ export const PinRelease = () => {
                 iconName="kakaotalk1"
                 label="카카오톡"
                 onClick={() =>
-                  window.Kakao.Share.sendDefault(templateForShareUuid(nonMemberScheduleUuid))
+                  window.Kakao.Share.sendDefault(
+                    templateForShareUuid(jjakkakUrl, nonMemberScheduleUuid)
+                  )
                 }
               />
               <IconButton
@@ -65,21 +70,21 @@ const BlankSpace = styled.div`
   height: 52px;
 `;
 
-const templateForShareUuid = (Uuid: string) => ({
+const templateForShareUuid = (jjakkakUrl: string, Uuid: string) => ({
   objectType: 'feed',
   content: {
     title: '째깍! 일정 수정 시 필요한 입장 코드입니다.',
     description: `${Uuid}`,
     imageUrl: 'https://ifh.cc/g/vK7L4P.jpg',
     link: {
-      webUrl: 'www.jjakkak.com',
+      webUrl: jjakkakUrl,
     },
   },
   buttons: [
     {
       title: '째깍 방문하기',
       link: {
-        webUrl: 'www.jjakkak.com',
+        webUrl: jjakkakUrl,
       },
     },
   ],
