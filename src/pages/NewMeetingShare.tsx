@@ -22,7 +22,7 @@ export const NewMeetingShare = () => {
   }
 
   const shareUrl = ENV.IS_PRODUCTION
-    ? `https://jjakkak.com/${meetingUuid}`
+    ? `https://www.jjakkak.com/${meetingUuid}`
     : `http://localhost:5173/${meetingUuid}`;
 
   return (

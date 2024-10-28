@@ -68,7 +68,7 @@ export const meeting = {
    * @description 회원 일정 작성 여부 조회
    */
   checkSchedule: async (uuid: string) => {
-    const response = await instance.get<boolean>(`/meetings/${uuid}/schedules/check`, {
+    const response = await instance.get<boolean>(`/meetings/${uuid}/schedules/members/check`, {
       withCredentials: true,
       headers: { Authorization: localStorage.getItem('accessToken') },
     });
