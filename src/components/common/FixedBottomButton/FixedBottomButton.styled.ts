@@ -7,6 +7,6 @@ export const Container = styled.div`
   max-width: 430px;
   padding-left: 20px;
   padding-right: 20px;
-  padding-bottom: 82px;
+  padding-bottom: 20px;
   z-index: 999;
 `;

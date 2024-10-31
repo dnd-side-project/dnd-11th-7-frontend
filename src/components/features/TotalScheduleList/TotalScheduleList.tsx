@@ -64,7 +64,7 @@ export const TotalScheduleList = ({ uuid, sortOption }: Props) => {
       gap={10}
       css={css`
         overflow-y: scroll;
-        max-height: 47vh;
+        max-height: 55vh;
       `}
     >
       {scheduleData?.pages.map((schedule, pageIndex) => (

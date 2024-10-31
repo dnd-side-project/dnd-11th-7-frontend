@@ -42,8 +42,7 @@ export const TotalSchedule = () => {
           <Card
             emojiPosition="top-left"
             css={css`
-              margin-top: 30px;
-              max-height: 65vh;
+              margin-top: 15px;
             `}
           >
             <FlexBox

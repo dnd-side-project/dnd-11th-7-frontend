@@ -4,7 +4,6 @@ import { colors } from '@/styles/global';
 
 export const StyledCardContainer = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   border: 1px solid ${colors.GY6};

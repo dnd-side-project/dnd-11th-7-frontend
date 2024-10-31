@@ -42,9 +42,9 @@ export const TimeCollection = () => {
           <FlexBox
             flexDir="column"
             width="100%"
-            height="calc(100vh - 200px)"
+            height="calc(100vh - 180px)"
             alignItems="start"
-            padding="0 0 60px 0"
+            padding="0 0 50px 0"
           >
             <ScheduleInput
               startDate={meetingData.meetingStartDate}
