@@ -1,4 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
+import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 
 import { queries } from '@/apis';
@@ -12,11 +13,12 @@ export const Meeting = () => {
   const navigate = useNavigate();
   const { data } = useSuspenseQuery(queries.member.meetings); // TODO 에러처리
   const isDataEmpty = data.length === 0;
+  const sortedData = data.sort((a, b) => dayjs(b.dueDateTime).diff(dayjs(a.dueDateTime)));
 
   return (
     <>
       <Header left={<Icon name="jjakkakText" size={{ width: 115, height: 13 }} color="BK" />} />
-      <MeetingList title="나의 모임" data={data} />
+      <MeetingList title="나의 모임" data={sortedData} />
       {isDataEmpty ? (
         <FixedBottomButton onClick={() => navigate('/meeting/new')}>
           모임 일정 생성하기
