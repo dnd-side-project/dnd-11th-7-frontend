@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import dayjs from 'dayjs';
+import { useNavigate } from 'react-router-dom';
 
 import { Border } from '@/components/common/Border';
 import { Card } from '@/components/common/Card';
@@ -13,12 +14,14 @@ import { isPastDate } from '@/utils/isPastDate';
 type Props = { title?: string; data: Meeting[] };
 
 export const MeetingList = ({ title, data }: Props) => {
+  const navigate = useNavigate();
+
   return (
     <FlexBox alignItems="normal" padding="15px 20px" gap={17}>
       <Head4>{title}</Head4>
       {data.length > 0 ? (
         data.map((meeting) => (
-          <Card key={meeting.meetingId}>
+          <Card key={meeting.meetingUuid} onClick={() => navigate(`/${meeting.meetingUuid}`)}>
             <FlexBox flexDir="row" justifyContent="space-between" margin="0 0 10px 0">
               <FlexBox alignItems="normal" gap={7}>
                 <Chip.Group>
