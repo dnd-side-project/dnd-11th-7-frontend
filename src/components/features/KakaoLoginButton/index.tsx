@@ -10,7 +10,7 @@ export const KakaoLoginButton = ({ ...props }: ComponentPropsWithoutRef<'a'>) =>
     <KakaoButtonContainer {...props}>
       <FlexBox flexDir="row" alignItems="center" justifyContent="center" gap={8}>
         <Icon name="kakaotalk2" size={18} />
-        카카오톡으로 로그인
+        카카오 계정으로 시작하기
       </FlexBox>
     </KakaoButtonContainer>
   );

@@ -1,13 +1,14 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-import { FixedBottomButton as FBB } from '@/components/common/FixedBottomButton';
 import { FlexBox } from '@/components/common/FlexBox';
 import { Icon } from '@/components/common/Icon';
 import { LandingContentLayout } from '@/components/common/LandingContentLayout';
 import { Body1 } from '@/components/common/Typography';
+import { KakaoLoginButton } from '@/components/features/KakaoLoginButton';
 import { useAuth } from '@/hooks/useAuth';
+import { ENV } from '@/lib/env';
 import { colors } from '@/styles/global';
 
 /**
@@ -15,7 +16,6 @@ import { colors } from '@/styles/global';
  */
 export const Landing = () => {
   const { isAuthenticated } = useAuth();
-  const navigate = useNavigate();
 
   if (isAuthenticated) {
     return <Navigate to="/meeting" />;
@@ -75,21 +75,17 @@ export const Landing = () => {
         </Body1>
       </FlexBox>
 
-      <FixedBottomButton onClick={() => navigate('/login')}>시작하기</FixedBottomButton>
+      <StyledKakaoLoginButton href={`${ENV.API_BASE_URL}/auth/oauth2/kakao?redirect=/meeting`} />
     </FlexBox>
   );
 };
 
-const FixedBottomButton = styled(FBB)`
-  position: sticky;
-  background-color: ${colors.WH};
-  color: ${colors.purple};
-  font-weight: 800;
-
-  @media (hover: hover) and (pointer: fine) {
-    &:hover:not(:disabled) {
-      background-color: ${colors.GY5};
-      color: ${colors.purple};
-    }
-  }
+const StyledKakaoLoginButton = styled(KakaoLoginButton)`
+  position: fixed;
+  bottom: 20px;
+  left: auto;
+  right: auto;
+  width: 100%;
+  max-width: 390px;
+  z-index: 999;
 `;
