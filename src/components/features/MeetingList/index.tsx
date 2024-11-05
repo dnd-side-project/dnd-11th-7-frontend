@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 
+import type { IconName } from '@/assets/icons';
 import { Border } from '@/components/common/Border';
 import { Card } from '@/components/common/Card';
 import { Chip } from '@/components/common/Chip';
@@ -20,7 +21,7 @@ export const MeetingList = ({ title, data }: Props) => {
     <FlexBox alignItems="normal" padding="15px 20px" gap={17}>
       <Head4>{title}</Head4>
       {data.length > 0 ? (
-        data.map((meeting) => (
+        data.map((meeting, index) => (
           <Card key={meeting.meetingUuid} onClick={() => navigate(`/${meeting.meetingUuid}`)}>
             <FlexBox flexDir="row" justifyContent="space-between" margin="0 0 10px 0">
               <FlexBox alignItems="normal" gap={7}>
@@ -42,8 +43,7 @@ export const MeetingList = ({ title, data }: Props) => {
                 </Body4>
               </FlexBox>
               <Icon
-                // TODO get랜덤이미지
-                name="jjakkak1"
+                name={getRandomJjakkakIconName(index)}
                 size={72}
                 color={isPastDate(meeting.dueDateTime) ? 'GY5' : 'purple'}
               />
@@ -83,3 +83,7 @@ const GridBox = styled.div`
   row-gap: 8px;
   margin-top: 10px;
 `;
+
+const getRandomJjakkakIconName = (index: number) => {
+  return `jjakkak${(index % 9) + 1}` as IconName;
+};
