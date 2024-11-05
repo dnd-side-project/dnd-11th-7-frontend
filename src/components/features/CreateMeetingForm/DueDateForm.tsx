@@ -18,31 +18,35 @@ export const DueDateForm = ({ context, onNext, onPrev }: Props<MeetingForm['dueD
 
   const [selectedDueDate, setSelectedDueDate] = useState(dueDateTime);
 
-  const accessDate = dayjs().format('YYYY-MM-DDTHH'); // NOTE: 해당 페이지의 접속 날짜를 기준으로 +n일을 계산하기 위함
+  const accessDate = dayjs().format('YYYY-MM-DD'); // NOTE: 해당 페이지의 접속 날짜를 기준으로 +n일을 계산하기 위함
   const endDateOf = useMemo(
     () => ({
       // TODO 유틸화
-      오늘: dayjs(accessDate).endOf('day').format('YYYY-MM-DDTHH:mm:ss'),
-      내일: dayjs(accessDate).add(1, 'day').endOf('day').format('YYYY-MM-DDTHH:mm:ss'),
-      '3일': dayjs(accessDate).add(3, 'day').endOf('day').format('YYYY-MM-DDTHH:mm:ss'),
-      '5일': dayjs(accessDate).add(5, 'day').endOf('day').format('YYYY-MM-DDTHH:mm:ss'),
+      오늘: dayjs(accessDate).endOf('day').format('YYYY-MM-DD'),
+      내일: dayjs(accessDate).add(1, 'day').endOf('day').format('YYYY-MM-DD'),
+      '3일': dayjs(accessDate).add(3, 'day').endOf('day').format('YYYY-MM-DD'),
+      '5일': dayjs(accessDate).add(5, 'day').endOf('day').format('YYYY-MM-DD'),
     }),
     [accessDate]
   );
   const endDates = Object.entries(endDateOf).filter(([, value]) =>
-    dayjs(value).isBefore(dayjs(meetingStartDate))
+    dayjs(value).isSameOrBefore(dayjs(meetingStartDate))
   );
 
   return (
     <>
       <FormLayout
         header={<FormLayout.Header progress={progress} maxProgress={maxProgress} onPrev={onPrev} />}
-        title={`일정 입력 마감 기한을\n기입해 주세요`}
+        title={`일정 입력 마감 기한을\n선택해 주세요`}
         content={
           <FlexBox width="100%" padding="78px 0">
             <Switch selectedValue={selectedDueDate} onChange={setSelectedDueDate}>
               {endDates.map(([label, value]) => (
-                <Switch.Button key={value} label={label} value={value} />
+                <Switch.Button
+                  key={value}
+                  label={label}
+                  value={dayjs(value).format('YYYY-MM-DDTHH:mm:ss')}
+                />
               ))}
             </Switch>
           </FlexBox>
