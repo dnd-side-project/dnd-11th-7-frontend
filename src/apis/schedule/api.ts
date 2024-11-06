@@ -19,7 +19,7 @@ export const schedule = {
    * @description 회원 일정 수정
    */
   editMemberSchedule: async (data: { dateOfScheduleList: Schedule[] }, uuid: string) => {
-    const response = await instance.patch(`/meetings/${uuid}/schedules`, data, {
+    const response = await instance.patch(`/meetings/${uuid}/schedules/members`, data, {
       withCredentials: true,
       headers: { Authorization: localStorage.getItem('accessToken') },
     });
@@ -46,7 +46,7 @@ export const schedule = {
     nonMemberUuid: string
   ) => {
     const response = await instance.patch(
-      `/meetings/${scheduleUuid}/schedules/${nonMemberUuid}`,
+      `/meetings/${scheduleUuid}/schedules/guests/${nonMemberUuid}`,
       data
     );
 
