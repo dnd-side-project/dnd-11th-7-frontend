@@ -22,7 +22,14 @@ export const MeetingList = ({ title, data }: Props) => {
       <Head4>{title}</Head4>
       {data.length > 0 ? (
         data.map((meeting, index) => (
-          <Card key={meeting.meetingUuid} onClick={() => navigate(`/${meeting.meetingUuid}`)}>
+          <Card
+            key={meeting.meetingUuid}
+            onClick={() => !isPastDate(meeting.dueDateTime) && navigate(`/${meeting.meetingUuid}`)}
+            style={{
+              cursor: isPastDate(meeting.dueDateTime) ? 'default' : 'pointer !important',
+              userSelect: 'none',
+            }}
+          >
             <FlexBox flexDir="row" justifyContent="space-between" margin="0 0 10px 0">
               <FlexBox alignItems="normal" gap={7}>
                 <Chip.Group>
