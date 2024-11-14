@@ -22,10 +22,10 @@ export const DueDateForm = ({ context, onNext, onPrev }: Props<MeetingForm['dueD
   const endDateOf = useMemo(
     () => ({
       // TODO 유틸화
-      오늘: dayjs(accessDate).endOf('day').format('YYYY-MM-DD'),
-      내일: dayjs(accessDate).add(1, 'day').endOf('day').format('YYYY-MM-DD'),
-      '3일': dayjs(accessDate).add(3, 'day').endOf('day').format('YYYY-MM-DD'),
-      '5일': dayjs(accessDate).add(5, 'day').endOf('day').format('YYYY-MM-DD'),
+      오늘: dayjs(accessDate).endOf('day').format('YYYY-MM-DDT23:59:59'),
+      내일: dayjs(accessDate).add(1, 'day').endOf('day').format('YYYY-MM-DDT23:59:59'),
+      '3일': dayjs(accessDate).add(3, 'day').endOf('day').format('YYYY-MM-DDT23:59:59'),
+      '5일': dayjs(accessDate).add(5, 'day').endOf('day').format('YYYY-MM-DDT23:59:59'),
     }),
     [accessDate]
   );
