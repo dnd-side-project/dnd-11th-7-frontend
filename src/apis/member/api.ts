@@ -2,15 +2,17 @@ import { ENDPOINT } from '@/constants/endpoint';
 import { instance } from '@/lib/axios';
 import { Meeting } from '@/types/meeting';
 
-import { CheckResponse } from './type';
+import { CheckResponse, ReissueResponse } from './type';
 
 export const member = {
   /**
    * @description 토큰 재발급
    */
   reissue: async () => {
-    const response = await instance.get(ENDPOINT.MEMBER.REISSUE, { withCredentials: true });
-    localStorage.setItem('accessToken', response.headers.authorization);
+    const response = await instance.get<ReissueResponse>(ENDPOINT.MEMBER.REISSUE, {
+      withCredentials: true,
+    });
+    localStorage.setItem('accessToken', response.data.accessToken);
     return response.data;
   },
   /**
