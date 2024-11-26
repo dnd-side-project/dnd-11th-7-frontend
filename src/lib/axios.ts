@@ -21,7 +21,6 @@ instance.interceptors.response.use(
     return response;
   },
   async function onRejected(error: AxiosError) {
-    console.log('rejected error', error);
     if (error.response?.status === 401 && error.response?.config.url === '/auth/check') {
       const staledAccessToken = localStorage.getItem('accessToken');
       localStorage.removeItem('accessToken');
