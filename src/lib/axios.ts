@@ -1,9 +1,11 @@
 import axios, { AxiosError } from 'axios';
 
 import { ReissueResponse } from '@/apis/member/type';
+import { ENDPOINT } from '@/constants/endpoint';
 
 import { ENV } from './env';
 
+const ACCESS_TOKEN = 'accessToken';
 export const instance = axios.create({
   baseURL: ENV.API_BASE_URL,
   timeout: 5000,
@@ -14,25 +16,25 @@ export const instance = axios.create({
 
 instance.interceptors.response.use(
   function onFulFilled(response) {
-    if (response.status === 200 && response.config.url === '/auth/reissue') {
+    if (response.status === 200 && response.config.url === ENDPOINT.MEMBER.REISSUE) {
       const newAccessToken = response.data.accessToken;
-      localStorage.setItem('accessToken', newAccessToken);
+      localStorage.setItem(ACCESS_TOKEN, newAccessToken);
     }
     return response;
   },
   async function onRejected(error: AxiosError) {
-    if (error.response?.status === 401 && error.response?.config.url === '/auth/check') {
-      const staledAccessToken = localStorage.getItem('accessToken');
-      localStorage.removeItem('accessToken');
+    if (error.response?.status === 401 && error.response?.config.url === ENDPOINT.MEMBER.CHECK) {
+      const staledAccessToken = localStorage.getItem(ACCESS_TOKEN);
+      localStorage.removeItem(ACCESS_TOKEN);
 
-      instance.get<ReissueResponse>('/auth/reissue', {
+      instance.get<ReissueResponse>(ENDPOINT.MEMBER.REISSUE, {
         withCredentials: true,
         headers: { Authorization: staledAccessToken },
       });
     }
 
-    if (error.response?.status === 418 && error.response?.config.url === '/auth/reissue') {
-      localStorage.removeItem('accessToken');
+    if (error.response?.status === 418 && error.response?.config.url === ENDPOINT.MEMBER.REISSUE) {
+      localStorage.removeItem(ACCESS_TOKEN);
       if (confirm('로그인이 필요합니다.')) location.href = '/';
     }
 
