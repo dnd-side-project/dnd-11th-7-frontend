@@ -1,41 +1,43 @@
 import axios, { AxiosError } from 'axios';
 
+import { ReissueResponse } from '@/apis/member/type';
+import { ENDPOINT } from '@/constants/endpoint';
+
 import { ENV } from './env';
 
+const ACCESS_TOKEN = 'accessToken';
 export const instance = axios.create({
   baseURL: ENV.API_BASE_URL,
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
-    _retry: '0',
   },
 });
 
 instance.interceptors.response.use(
   function onFulFilled(response) {
+    if (response.status === 200 && response.config.url === ENDPOINT.MEMBER.REISSUE) {
+      const newAccessToken = response.data.accessToken;
+      localStorage.setItem(ACCESS_TOKEN, newAccessToken);
+    }
     return response;
   },
   async function onRejected(error: AxiosError) {
-    const originalRequest = error.config;
-    if (
-      error.response?.status === 401 &&
-      originalRequest &&
-      originalRequest.headers._retry === '0'
-    ) {
-      try {
-        const response = await instance.get('/auth/reissue', { withCredentials: true }); // 순환 참조 방지 위해 apis 함수 사용 X
-        const newAccessToken = response.headers.Authorization;
-        localStorage.setItem('accessToken', newAccessToken);
+    if (error.response?.status === 401 && error.response?.config.url === ENDPOINT.MEMBER.CHECK) {
+      const staledAccessToken = localStorage.getItem(ACCESS_TOKEN);
+      localStorage.removeItem(ACCESS_TOKEN);
 
-        originalRequest.withCredentials = true;
-        originalRequest.headers.Authorization = newAccessToken;
-        originalRequest.headers._retry = '1';
-
-        return await instance(originalRequest);
-      } catch (reissueError) {
-        alert('로그인이 필요합니다.');
-        return Promise.reject(reissueError);
-      }
+      instance.get<ReissueResponse>(ENDPOINT.MEMBER.REISSUE, {
+        withCredentials: true,
+        headers: { Authorization: staledAccessToken },
+      });
     }
+
+    if (error.response?.status === 418 && error.response?.config.url === ENDPOINT.MEMBER.REISSUE) {
+      localStorage.removeItem(ACCESS_TOKEN);
+      if (confirm('로그인이 필요합니다.')) location.href = '/';
+    }
+
+    return Promise.reject(error);
   }
 );
