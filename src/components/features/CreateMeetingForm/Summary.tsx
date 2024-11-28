@@ -85,7 +85,7 @@ export const Summary = ({ data, isSubmitting, onNext, onPrev }: Props) => {
           </Button>
         }
         right={
-          <Button variant="primary" height="large" onClick={onNext} disabled={isSubmitting}>
+          <Button variant="primary" height="large" onClick={onNext} isLoading={isSubmitting}>
             일정 생성하기
           </Button>
         }
