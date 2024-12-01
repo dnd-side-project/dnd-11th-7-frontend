@@ -1,6 +1,6 @@
 import Lottie from 'react-lottie';
 
-import LoadingJson from './loading.json';
+import LoadingJson from './Loading.json';
 
 export const Loading = () => {
   const defaultOptions = {
