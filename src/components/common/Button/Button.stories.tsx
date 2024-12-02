@@ -44,6 +44,7 @@ export const Basic: Story = {
   args: {
     variant: 'primary',
     height: 'large',
+    isLoading: false,
     children: '다음',
     disabled: false,
   },
@@ -59,6 +60,9 @@ export const Basic: Story = {
         type: 'inline-radio',
       },
       options: ['large', 'medium', 'small'],
+    },
+    isLoading: {
+      control: 'boolean',
     },
     disabled: {
       control: 'boolean',

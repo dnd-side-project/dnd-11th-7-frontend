@@ -21,20 +21,17 @@ export const MemberScheduleCard = ({ uuid, onNavigate }: MemberScheduleProps) =>
   const { data: bestTime } = useSuspenseQuery(queries.meeting.bestTime(uuid));
 
   const renderButton = () => {
-    // TODO : 버튼에 로딩뷰 추가되면 변경
-    if (isScheduleLoading) {
-      return (
-        <Button variant="primary" height="medium" disabled>
-          로딩 중..
-        </Button>
-      );
-    }
-
     const buttonText = checkScheduleData ? '일정 수정하기' : '일정 입력하기';
     const navigatePath = checkScheduleData ? `/${uuid}/edit` : `/${uuid}/new`;
 
     return (
-      <Button variant="primary" height="medium" onClick={() => onNavigate(navigatePath)}>
+      <Button
+        variant="primary"
+        height="medium"
+        disabled={isScheduleLoading}
+        isLoading={isScheduleLoading}
+        onClick={() => onNavigate(navigatePath)}
+      >
         {buttonText}
       </Button>
     );

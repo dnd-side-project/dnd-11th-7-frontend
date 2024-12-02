@@ -10,6 +10,11 @@ export type Props = {
    */
   height: 'large' | 'medium' | 'small';
   /**
+   * Whether the button is disabled.
+   * @default false
+   */
+  isLoading?: boolean;
+  /**
    * Optional children for the button, typically a string.
    */
   children: React.ReactNode;

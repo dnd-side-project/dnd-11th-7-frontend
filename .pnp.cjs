@@ -45,11 +45,13 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/react-query-devtools", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:5.51.1"],\
           ["@types/react", "npm:18.3.3"],\
           ["@types/react-dom", "npm:18.3.0"],\
+          ["@types/react-lottie", "npm:1.2.10"],\
           ["@typescript-eslint/eslint-plugin", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:6.21.0"],\
           ["@typescript-eslint/parser", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:6.21.0"],\
           ["@vitejs/plugin-react", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:4.3.1"],\
           ["@yarnpkg/sdks", "npm:3.1.3"],\
           ["axios", "npm:1.7.4"],\
+          ["babel-runtime", "npm:6.26.0"],\
           ["chromatic", "virtual:5d465395bb03a03c7d96f250a093d8f2b099df57e070be0305879a487f5de630b55d47d8bbc6b98f328c23aabfbe10a520ed00dc95b67d32f3d8977214ff7b08#npm:11.5.5"],\
           ["dayjs", "npm:1.11.11"],\
           ["eslint", "npm:8.57.0"],\
@@ -71,6 +73,7 @@ const RAW_RUNTIME_STATE =
           ["react-dom", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:18.3.1"],\
           ["react-error-boundary", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:4.0.13"],\
           ["react-helmet-async", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:2.0.5"],\
+          ["react-lottie", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:1.2.9"],\
           ["react-router-dom", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:6.24.1"],\
           ["storybook", "npm:8.2.9"],\
           ["typescript", "patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"],\
@@ -5899,6 +5902,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/react-lottie", [\
+      ["npm:1.2.10", {\
+        "packageLocation": "./.yarn/cache/@types-react-lottie-npm-1.2.10-433a635adc-c0b71c534a.zip/node_modules/@types/react-lottie/",\
+        "packageDependencies": [\
+          ["@types/react-lottie", "npm:1.2.10"],\
+          ["@types/react", "npm:18.3.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/resolve", [\
       ["npm:1.20.6", {\
         "packageLocation": "./.yarn/cache/@types-resolve-npm-1.20.6-6ab126a04b-a9b0549d81.zip/node_modules/@types/resolve/",\
@@ -7202,6 +7215,17 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["babel-runtime", [\
+      ["npm:6.26.0", {\
+        "packageLocation": "./.yarn/cache/babel-runtime-npm-6.26.0-d38e7946b4-caa7520049.zip/node_modules/babel-runtime/",\
+        "packageDependencies": [\
+          ["babel-runtime", "npm:6.26.0"],\
+          ["core-js", "npm:2.6.12"],\
+          ["regenerator-runtime", "npm:0.11.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["balanced-match", [\
       ["npm:1.0.2", {\
         "packageLocation": "./.yarn/cache/balanced-match-npm-1.0.2-a53c126459-9308baf0a7.zip/node_modules/balanced-match/",\
@@ -7903,6 +7927,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["core-js", [\
+      ["npm:2.6.12", {\
+        "packageLocation": "./.yarn/unplugged/core-js-npm-2.6.12-0b93d77d31/node_modules/core-js/",\
+        "packageDependencies": [\
+          ["core-js", "npm:2.6.12"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["core-js-compat", [\
       ["npm:3.37.1", {\
         "packageLocation": "./.yarn/cache/core-js-compat-npm-3.37.1-51cca8bb53-4e2da9c900.zip/node_modules/core-js-compat/",\
@@ -8339,11 +8372,13 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/react-query-devtools", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:5.51.1"],\
           ["@types/react", "npm:18.3.3"],\
           ["@types/react-dom", "npm:18.3.0"],\
+          ["@types/react-lottie", "npm:1.2.10"],\
           ["@typescript-eslint/eslint-plugin", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:6.21.0"],\
           ["@typescript-eslint/parser", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:6.21.0"],\
           ["@vitejs/plugin-react", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:4.3.1"],\
           ["@yarnpkg/sdks", "npm:3.1.3"],\
           ["axios", "npm:1.7.4"],\
+          ["babel-runtime", "npm:6.26.0"],\
           ["chromatic", "virtual:5d465395bb03a03c7d96f250a093d8f2b099df57e070be0305879a487f5de630b55d47d8bbc6b98f328c23aabfbe10a520ed00dc95b67d32f3d8977214ff7b08#npm:11.5.5"],\
           ["dayjs", "npm:1.11.11"],\
           ["eslint", "npm:8.57.0"],\
@@ -8365,6 +8400,7 @@ const RAW_RUNTIME_STATE =
           ["react-dom", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:18.3.1"],\
           ["react-error-boundary", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:4.0.13"],\
           ["react-helmet-async", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:2.0.5"],\
+          ["react-lottie", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:1.2.9"],\
           ["react-router-dom", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:6.24.1"],\
           ["storybook", "npm:8.2.9"],\
           ["typescript", "patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"],\
@@ -11408,6 +11444,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["lottie-web", [\
+      ["npm:5.12.2", {\
+        "packageLocation": "./.yarn/cache/lottie-web-npm-5.12.2-942dc9e22a-0aeaf631b1.zip/node_modules/lottie-web/",\
+        "packageDependencies": [\
+          ["lottie-web", "npm:5.12.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["loupe", [\
       ["npm:2.3.7", {\
         "packageLocation": "./.yarn/cache/loupe-npm-2.3.7-f294c2ef33-71a781c8fc.zip/node_modules/loupe/",\
@@ -13086,6 +13131,30 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["react-lottie", [\
+      ["npm:1.2.9", {\
+        "packageLocation": "./.yarn/cache/react-lottie-npm-1.2.9-27f25357b6-8389605d61.zip/node_modules/react-lottie/",\
+        "packageDependencies": [\
+          ["react-lottie", "npm:1.2.9"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:1.2.9", {\
+        "packageLocation": "./.yarn/__virtual__/react-lottie-virtual-4912491a22/0/cache/react-lottie-npm-1.2.9-27f25357b6-8389605d61.zip/node_modules/react-lottie/",\
+        "packageDependencies": [\
+          ["react-lottie", "virtual:c6b0d0664ee806a27edc15b7122fa341a11551c3706b5168c476b9c2c6566ea5acc0def30b35852c02335bd44650f766cc396b7821830ac82642f4873d7699e0#npm:1.2.9"],\
+          ["@types/react", "npm:18.3.3"],\
+          ["lottie-web", "npm:5.12.2"],\
+          ["prop-types", "npm:15.8.1"],\
+          ["react", "npm:18.3.1"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["react-refresh", [\
       ["npm:0.14.2", {\
         "packageLocation": "./.yarn/cache/react-refresh-npm-0.14.2-95df341b4d-875b72ef56.zip/node_modules/react-refresh/",\
@@ -13229,6 +13298,13 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["regenerator-runtime", [\
+      ["npm:0.11.1", {\
+        "packageLocation": "./.yarn/cache/regenerator-runtime-npm-0.11.1-a31e4f8dcd-69cfa839ef.zip/node_modules/regenerator-runtime/",\
+        "packageDependencies": [\
+          ["regenerator-runtime", "npm:0.11.1"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:0.14.1", {\
         "packageLocation": "./.yarn/cache/regenerator-runtime-npm-0.14.1-a6c97c609a-1b16eb2c4b.zip/node_modules/regenerator-runtime/",\
         "packageDependencies": [\
