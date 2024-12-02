@@ -28,6 +28,7 @@ export const MemberScheduleCard = ({ uuid, onNavigate }: MemberScheduleProps) =>
       <Button
         variant="primary"
         height="medium"
+        disabled={isScheduleLoading}
         isLoading={isScheduleLoading}
         onClick={() => onNavigate(navigatePath)}
       >
