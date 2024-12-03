@@ -30,7 +30,7 @@ export const DueDateForm = ({ context, onNext, onPrev }: Props<MeetingForm['dueD
     [accessDate]
   );
   const endDates = Object.entries(endDateOf).filter(([, value]) =>
-    dayjs(value).isSameOrBefore(dayjs(meetingStartDate))
+    dayjs(value).startOf('day').isSameOrBefore(dayjs(meetingStartDate))
   );
 
   return (

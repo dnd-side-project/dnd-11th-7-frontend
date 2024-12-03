@@ -70,7 +70,7 @@ export const schedule = {
    */
   guests: async (scheduleUuid: string, nonMemberUuid: string) => {
     const response = await instance.get<ScheduleTimeResponse>(
-      `/meetings/${scheduleUuid}/schedules/guests?scheduleUuid=${nonMemberUuid}`
+      `/meetings/${scheduleUuid}/schedules/guests/${nonMemberUuid}`
     );
     return response.data;
   },
