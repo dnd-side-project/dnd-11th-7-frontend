@@ -4,6 +4,7 @@ import { useParams, useNavigate, Navigate } from 'react-router-dom';
 
 import { FlexBox } from '@/components/common/FlexBox';
 import { ScheduleLayout } from '@/components/common/ScheduleLayout';
+import { Skeleton } from '@/components/common/Skeleton';
 import { Body3 } from '@/components/common/Typography';
 import { MeetingInfo } from '@/components/features/MeetingDetail/MeetingInfo';
 import { MemberList } from '@/components/features/MeetingDetail/MemberList';
@@ -31,14 +32,31 @@ export const MeetingDetail = () => {
         <meta property="og:image" content="https://ifh.cc/g/38gbOb.jpg" />
       </Helmet>
       <ScheduleLayout>
-        {/* TODO Suspense fallback */}
-        <Suspense>
+        <Suspense
+          fallback={
+            <FlexBox width="100%" height="100%" padding="50px 20px 20px 20px">
+              <Skeleton layout="text" width="100%" height="170px" />
+            </FlexBox>
+          }
+        >
           <MeetingInfo uuid={uuid} />
         </Suspense>
-        <Suspense>
+        <Suspense
+          fallback={
+            <FlexBox width="100%" height="100%" padding="10px 20px">
+              <Skeleton width="100%" height="200px" />
+            </FlexBox>
+          }
+        >
           <MemberScheduleCard uuid={uuid} onNavigate={navigate} />
         </Suspense>
-        <Suspense>
+        <Suspense
+          fallback={
+            <FlexBox width="100%" height="100%" padding="0px 20px">
+              <Skeleton width="100%" height="160px" />
+            </FlexBox>
+          }
+        >
           <MemberList uuid={uuid} />
         </Suspense>
         {!accessToken && (
