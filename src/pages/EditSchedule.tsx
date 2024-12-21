@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -71,18 +71,15 @@ export const EditSchedule = () => {
       </Funnel.Step>
 
       <Funnel.Step name="일정수정">
-        {/* // TODO : fallback 추가 */}
-        <Suspense>
-          <EditScheduleContent
-            uuid={uuid as string}
-            accessToken={accessToken}
-            data={scheduleData?.dateOfScheduleList as Schedule[]}
-            pin={pin}
-            setStep={setStep}
-            refetch={refetch}
-            navigate={navigate}
-          />
-        </Suspense>
+        <EditScheduleContent
+          uuid={uuid as string}
+          accessToken={accessToken}
+          data={scheduleData?.dateOfScheduleList as Schedule[]}
+          pin={pin}
+          setStep={setStep}
+          refetch={refetch}
+          navigate={navigate}
+        />
       </Funnel.Step>
     </Funnel>
   );

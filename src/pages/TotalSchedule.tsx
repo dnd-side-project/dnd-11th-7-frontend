@@ -12,6 +12,7 @@ import { FormLayout } from '@/components/common/FormLayout';
 import { Header } from '@/components/common/Header';
 import { IconButton } from '@/components/common/IconButton';
 import { SegmentedControl } from '@/components/common/SegmentedControl';
+import { Skeleton } from '@/components/common/Skeleton';
 import { Body2 } from '@/components/common/Typography';
 import { TotalScheduleList } from '@/components/features/TotalScheduleList/TotalScheduleList';
 import { colors } from '@/styles/global';
@@ -32,8 +33,6 @@ export const TotalSchedule = () => {
           <Header
             left={<IconButton iconName="back" onClick={() => navigate(`/${uuid}`)} />}
             middle={<Body2>전체보기</Body2>}
-            // TODO : MY페이지 이동
-            right={<IconButton iconName="user" />}
           />
         }
         // TODO: 추후 title 제거
@@ -74,7 +73,15 @@ export const TotalSchedule = () => {
                 <Border borderStyle="dashed" color="GY5" />
               </FlexBox>
 
-              <Suspense>
+              <Suspense
+                fallback={
+                  <FlexBox gap={10}>
+                    {Array.from({ length: 4 }).map((_, index) => (
+                      <Skeleton key={index} layout="box" width="100%" height="110px" />
+                    ))}
+                  </FlexBox>
+                }
+              >
                 <TotalScheduleList uuid={uuid as string} sortOption={sortOption} />
               </Suspense>
             </FlexBox>

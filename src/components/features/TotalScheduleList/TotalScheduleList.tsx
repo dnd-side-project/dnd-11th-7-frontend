@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { css } from '@emotion/react';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
 import { queries } from '@/apis';
 import { FlexBox } from '@/components/common/FlexBox';
@@ -18,7 +18,7 @@ export const TotalScheduleList = ({ uuid, sortOption }: Props) => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery({
+  } = useSuspenseInfiniteQuery({
     ...queries.meeting.times(uuid, sortOption),
     initialPageParam: { page: 0, requestTime: '' },
     getNextPageParam: (lastPage) => {
