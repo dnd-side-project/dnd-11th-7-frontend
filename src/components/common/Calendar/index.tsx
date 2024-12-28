@@ -48,9 +48,11 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(
           />
         </StyledDateHeader>
         <StyledWeekHeader>
-          {['월', '화', '수', '목', '금', '토', '일'].map((day) => (
-            <div key={day}>{day}</div>
-          ))}
+          {generateDates()
+            .slice(0, 7)
+            .map(({ date }) => (
+              <div key={date.toString()}>{CALENDAR.WEEKDAYS[date.day()]}</div>
+            ))}
         </StyledWeekHeader>
         <StyledDatesGrid>
           {generateDates().map(({ date, isCurrentMonth, isDisabled, ...props }) => (
