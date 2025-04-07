@@ -32,7 +32,6 @@ export const TotalSchedule = () => {
           <Header
             left={<IconButton iconName="back" onClick={() => navigate(`/${uuid}`)} />}
             middle={<Body2>전체보기</Body2>}
-            // TODO : MY페이지 이동
             right={<IconButton iconName="user" />}
           />
         }
